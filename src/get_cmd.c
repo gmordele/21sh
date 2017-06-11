@@ -6,15 +6,16 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 15:39:54 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/11 15:56:29 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/11 18:31:58 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int		get_cmd(char *cmd_buf)
+int		get_cmd(char *cmd_buf, int prompt_len)
 {
 	(void)cmd_buf;
+	(void)prompt_len;
 
 	return (1);
 }
