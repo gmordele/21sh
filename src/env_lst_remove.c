@@ -14,14 +14,14 @@
 #include "header.h"
 #include "libft.h"
 
-static void	free_root(t_env_lst **root)
+static void	free_head(t_env_lst **head)
 {
 	t_env_lst *p;
 
-	free((*root)->value);
-	free((*root)->name);
-	p = *root;
-	*root = p->next;
+	free((*head)->value);
+	free((*head)->name);
+	p = *head;
+	*head = p->next;
 	free(p);
 }
 
@@ -33,20 +33,20 @@ static void	free_el(t_env_lst *prev, t_env_lst *el)
 	free(el);
 }
 
-int			env_lst_remove(t_env_lst **root, char *name)
+int			env_lst_remove(t_env_lst **head, char *name)
 {
 	t_env_lst	*p;
 	t_env_lst	*p_next;
 
-	if (root == NULL || *root == NULL || name == NULL)
+	if (head == NULL || *head == NULL || name == NULL)
 		return (-1);
-	if (ft_strequ(name, (*root)->name))
+	if (ft_strequ(name, (*head)->name))
 	{
-		free_root(root);
+		free_head(head);
 		return (0);
 	}
-	p = *root;
-	p_next = (*root)->next;
+	p = *head;
+	p_next = (*head)->next;
 	while (p_next != NULL)
 	{
 		if (ft_strequ(name, p_next->name))

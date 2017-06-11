@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   restore_term.c                                     :+:      :+:    :+:   */
+/*   sta_env_lst.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/10 16:48:32 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/11 19:15:35 by gmordele         ###   ########.fr       */
+/*   Created: 2017/06/11 18:42:40 by gmordele          #+#    #+#             */
+/*   Updated: 2017/06/11 19:31:50 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <termios.h>
 #include "header.h"
 
-void		restore_term(void)
+t_env_lst	**sta_env_lst(t_env_lst **head_env)
 {
-	t_term_info *term;
+	static t_env_lst	**sta_head_env = NULL;
 
-	if (!exit_insert())
-		err_exit("Error exit_insert");
-	term = sta_term_info(NULL);
-	if (term->is_saved)
-		if (tcsetattr(0, TCSANOW, &term->saved_termios) < 0)
-			err_exit("Error tcsetattr");
+	if (head_env == NULL)
+	{
+		if (sta_head_env == NULL)
+			err_exit("Error sta_env_lst");
+	}
+	else
+		sta_head_env = head_env;
+	return (sta_head_env);
 }

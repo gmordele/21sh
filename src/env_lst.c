@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 23:21:18 by gmordele          #+#    #+#             */
-/*   Updated: 2017/03/29 17:20:54 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/11 18:48:01 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,17 @@ t_env_lst	*env_lst_new(char *name, char *value)
 	return (ret);
 }
 
-void		env_lst_add(t_env_lst **root, char *name, char *value)
+void		env_lst_add(t_env_lst **head, char *name, char *value)
 {
 	t_env_lst	*p;
 
-	if (root == NULL || name == NULL || value == NULL)
+	if (head == NULL || name == NULL || value == NULL)
 		return ;
-	if (*root == NULL)
-		*root = env_lst_new(name, value);
+	if (*head == NULL)
+		*head = env_lst_new(name, value);
 	else
 	{
-		p = *root;
+		p = *head;
 		while (p->next != NULL)
 			p = p->next;
 		p->next = env_lst_new(name, value);

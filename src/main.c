@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:05:04 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/11 18:37:32 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/11 19:40:59 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,14 @@ int			main(int argc, char *argv[])
 {
 	t_term_info	term;
 	int			options;
-	env_lst		*head;
+	t_env_lst	*head_env;
 
+	(void)head_env;
 	options = get_options(argc, argv);
-	init_termios(&term);
 	init_termcap();
+	head_env = get_env_lst();
+	sta_env_lst(&head_env);
+	init_termios(&term);
 	init_signals();
 	if (options & OPT_KEYS)
 		print_keys();

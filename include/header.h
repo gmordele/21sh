@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/11 18:35:37 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/11 19:19:09 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,16 @@ int				pressed_key(int n, char *read_buf);
 void			move_cursor_right(void);
 void			move_cursor_left(void);
 void			enter_insert(void);
-void			exit_insert(void);
+int				exit_insert(void);
 int				get_cmd(char *cmd_buf, int prompt_len);
-int				env_lst_remove(t_env_lst **root, char *name);
-void			env_lst_add(t_env_lst **root, char *name, char *value);
+int				env_lst_remove(t_env_lst **head, char *name);
+void			env_lst_add(t_env_lst **head, char *name, char *value);
 t_env_lst		*get_env_lst(void);
 char			*env_lst_get_value(char *name, t_env_lst *env_lst);
 t_env_lst		*env_lst_new(char *name, char *value);
 size_t			env_lst_len(t_env_lst *env_lst);
 void			env_lst_set_value(char *name, char *value, t_env_lst **env_lst);
 void			env_lst_free(t_env_lst **env_lst);
+t_env_lst		**sta_env_lst(t_env_lst **head_env);
 
 #endif
