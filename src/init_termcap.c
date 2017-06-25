@@ -20,8 +20,8 @@ void	init_termcap(void)
 	char	*term_type;
 	
 	if ((term_type = getenv("TERM")) == NULL)
-		err_exit_rest("Error getenv");
+		err_exit("Error getenv");
 	if (tgetent(NULL, term_type) <= 0)
-		err_exit_rest("Error tgetent");
+		err_exit("Error tgetent");
 	enter_insert();
 }

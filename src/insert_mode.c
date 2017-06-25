@@ -18,9 +18,9 @@ void 	enter_insert(void)
 {
 	char	*cap;
 	if((cap = tgetstr("im" ,NULL)) == NULL)
-		err_exit_rest("Error tgetstr");
+		err_exit("Error tgetstr");
 	if (tputs(cap, 1, tputc) < 0)
-		err_exit_rest("Error tputs");
+		err_exit("Error tputs");
 }
 
 int		exit_insert(void)

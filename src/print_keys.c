@@ -22,7 +22,7 @@ void	print_keys(void)
 	int		i;
 
 	if ((n = read(0, buf, 1024)) <= 0)
-		err_exit_rest("Error read");
+		err_exit("Error read");
 	ft_printf("n = %d ", n);
 	first = 1;
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 10:51:37 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/11 11:00:37 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/25 15:56:03 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void		init_signals(void)
 	{
 		if (sig != 9 && sig != 17)
 			if (signal(sig, SIG_IGN) == SIG_ERR)
-				err_exit_rest("Error signal");
+				err_exit("Error signal");
 		++sig;
 	}
 	if (signal(SIGINT, sigint_handler) == SIG_ERR)
-		err_exit_rest("Error signal");
+		err_exit("Error signal");
 }

@@ -19,9 +19,9 @@ void	move_cursor_right(void)
 	char	*cap;
 
 	if((cap = tgetstr("nd" ,NULL)) == NULL)
-		err_exit_rest("Error tgetstr");
+		err_exit("Error tgetstr");
 	if (tputs(cap, 1, tputc) < 0)
-		err_exit_rest("Error tputs");
+		err_exit("Error tputs");
 }
 
 void	move_cursor_left(void)
@@ -29,7 +29,7 @@ void	move_cursor_left(void)
 	char	*cap;
 
 	if((cap = tgetstr("le" ,NULL)) == NULL)
-		err_exit_rest("Error tgetstr");
+		err_exit("Error tgetstr");
 	if (tputs(cap, 1, tputc) < 0)
-		err_exit_rest("Error tputs");
+		err_exit("Error tputs");
 }

@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_env_lst.c                                      :+:      :+:    :+:   */
+/*   env_lst_get.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/25 00:08:00 by gmordele          #+#    #+#             */
-/*   Updated: 2017/03/28 00:49:13 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/25 16:18:40 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "header.h"
 #include "libft.h"
-
-t_env_lst	*get_env_lst(void)
+#include <stdio.h>
+void	env_lst_get(void)
 {
-	extern char	**environ;
-	char		*equal_pos;
-	char		*name_tmp;
-	t_env_lst	*env_lst;
+	extern char			**environ;
+	char				*equal_pos;
+	char				*name_tmp;
+	static t_env_lst	*env_lst = NULL;
 
-	env_lst = NULL;
 	if (environ != NULL)
 	{
 		while (*environ != NULL)
@@ -37,5 +36,5 @@ t_env_lst	*get_env_lst(void)
 			environ++;
 		}
 	}
-	return (env_lst);
+	env_lst_sta(&env_lst);
 }

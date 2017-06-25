@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/11 19:19:09 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/25 15:53:18 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ typedef struct	s_env_lst
 
 t_term_info		*sta_term_info(t_term_info *term);
 void			err_exit(char *str);
-void			err_exit_rest(char *str);
 void			restore_term(void);
 void			init_termios(t_term_info *term);
 void			init_termcap(void);
@@ -65,12 +64,12 @@ int				exit_insert(void);
 int				get_cmd(char *cmd_buf, int prompt_len);
 int				env_lst_remove(t_env_lst **head, char *name);
 void			env_lst_add(t_env_lst **head, char *name, char *value);
-t_env_lst		*get_env_lst(void);
+void			env_lst_get(void);
 char			*env_lst_get_value(char *name, t_env_lst *env_lst);
 t_env_lst		*env_lst_new(char *name, char *value);
 size_t			env_lst_len(t_env_lst *env_lst);
 void			env_lst_set_value(char *name, char *value, t_env_lst **env_lst);
-void			env_lst_free(t_env_lst **env_lst);
-t_env_lst		**sta_env_lst(t_env_lst **head_env);
+void			env_lst_free(void);
+t_env_lst		**env_lst_sta(t_env_lst **head_env);
 
 #endif

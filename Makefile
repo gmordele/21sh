@@ -6,7 +6,7 @@
 #    By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/17 00:00:01 by gmordele          #+#    #+#              #
-#    Updated: 2017/06/11 18:52:50 by gmordele         ###   ########.fr        #
+#    Updated: 2017/06/25 15:50:40 by gmordele         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -17,13 +17,13 @@ CC			=	gcc
 CFLAGS		=	-Wall -Werror -Wextra
 
 SRC			=	main.c				init_term.c			sta_term_info.c		\
-				err_exit.c			err_exit_rest.c		restore_term.c		\
+				err_exit.c					restore_term.c		\
 				get_options.c		print_keys.c		init_termcap.c		\
 				tputc.c				normal_exit.c		init_signals.c		\
 				pressed_key.c		move_cursor.c		insert_mode.c		\
 				get_cmd.c			env_lst_remove.c	env_lst.c			\
-				get_env_lst.c		env_lst_get_value.c	env_lst_set_value.c	\
-				sta_env_lst.c
+				env_lst_get.c		env_lst_get_value.c	env_lst_set_value.c	\
+				env_lst_sta.c
 
 OBJ			=	$(SRC:%.c=%.o)
 

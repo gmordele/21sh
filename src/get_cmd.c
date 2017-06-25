@@ -25,7 +25,7 @@ int		get_cmd(char *cmd_buf, int prompt_len)
 	int		key;
 
 		if ((n = read(0, read_buf, READBUFSIZE)) <= 0)
-			err_exit_rest("Error read");
+			err_exit("Error read");
 		key = pressed_key(n, read_buf);
 		if (key == KEY_ESCAPE)
 			exit = 1;
@@ -33,10 +33,10 @@ int		get_cmd(char *cmd_buf, int prompt_len)
 		{
 			{
 				if ((cap = tgetstr("le", NULL)) == NULL)
-					err_exit_rest("Error tgetstr");
+					err_exit("Error tgetstr");
 				tputs(cap, 1, tputc);
 				if ((cap = tgetstr("dc", NULL)) == NULL)
-					err_exit_rest("Error tgetstr");
+					err_exit("Error tgetstr");
 				tputs(cap, 1, tputc);
 			}
 		}

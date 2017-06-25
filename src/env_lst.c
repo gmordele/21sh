@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 23:21:18 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/11 18:48:01 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/25 16:19:03 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 #include "libft.h"
 #include "header.h"
 
-void		env_lst_free(t_env_lst **env_lst)
+void		env_lst_free(void)
 {
 	t_env_lst *p1;
 	t_env_lst *p2;
+	t_env_lst **env_lst;
 
+	env_lst = env_lst_sta(NULL);
 	if (env_lst == NULL || *env_lst == NULL)
 		return ;
 	p1 = *env_lst;
@@ -52,12 +54,11 @@ t_env_lst	*env_lst_new(char *name, char *value)
 
 	if (name == NULL || value == NULL)
 		return (NULL);
-	if ((ret = malloc(sizeof(t_env_lst))) != NULL)
-	{
-		ret->name = ft_strdup(name);
-		ret->value = ft_strdup(value);
-		ret->next = NULL;
-	}
+	if ((ret = malloc(sizeof(t_env_lst))) == NULL)
+		err_exit("Error malloc");
+	ret->name = ft_strdup(name);
+	ret->value = ft_strdup(value);
+	ret->next = NULL;
 	return (ret);
 }
 
