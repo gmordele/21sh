@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/25 15:53:18 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/27 19:09:34 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,25 @@
 # define KEY_RIGHT			4
 # define KEY_BACKSPACE		5
 # define KEY_ESCAPE			6
+# define KEY_RETURN			10
+
+# define MATCH_NO			0
+# define MATCH_QUOTE		1
+# define MATCH_DQOTE		2
 
 typedef struct	s_term_info
 {
 	struct termios	saved_termios;
 	int				is_saved;
 }				t_term_info;
+
+typedef struct	s_cmd_info
+{
+	int		prompt_len;
+	int		cur_row;
+	int		cur_col;
+	int		copy;
+}				t_cmd_info;
 
 typedef struct	s_cmd
 {
@@ -61,11 +74,11 @@ void			move_cursor_right(void);
 void			move_cursor_left(void);
 void			enter_insert(void);
 int				exit_insert(void);
-int				get_cmd(char *cmd_buf, int prompt_len);
+int				cmd_get(char *cmd_buf, int prompt_len);
 int				env_lst_remove(t_env_lst **head, char *name);
 void			env_lst_add(t_env_lst **head, char *name, char *value);
 void			env_lst_get(void);
-char			*env_lst_get_value(char *name, t_env_lst *env_lst);
+char			*env_lst_get_value(char *name);
 t_env_lst		*env_lst_new(char *name, char *value);
 size_t			env_lst_len(t_env_lst *env_lst);
 void			env_lst_set_value(char *name, char *value, t_env_lst **env_lst);
