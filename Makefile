@@ -6,7 +6,7 @@
 #    By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/17 00:00:01 by gmordele          #+#    #+#              #
-#    Updated: 2017/06/28 15:55:42 by gmordele         ###   ########.fr        #
+#    Updated: 2017/06/28 21:08:39 by gmordele         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -23,7 +23,8 @@ SRC			=	main.c				 	init_term.c					sta_term_info.c		\
 				pressed_key.c			cmd_move_cursor.c			insert_mode.c		\
 				cmd_get.c				env_lst_remove.c			env_lst.c			\
 				env_lst_get.c			env_lst_get_value.c			env_lst_set_value.c	\
-				env_lst_sta.c
+				env_lst_sta.c			cmd_handle_key_return.c		cmd_insert_char.c	\
+				
 
 OBJ			=	$(SRC:%.c=%.o)
 

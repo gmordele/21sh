@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 15:39:54 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/28 16:18:57 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/28 21:11:34 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,11 @@ void		cmd_handle_key(t_cmd_info *cmd_info, int key)
 	if (ft_isprint(key))
 		cmd_handle_key_char(cmd_info, key);
 	else if (key == KEY_RETURN)
-		cmd_info->complet = 1;
+		cmd_handle_key_return(cmd_info);
 	else if (key == KEY_LEFT)
 		cmd_move_cursor_left(cmd_info);
+	else if (key == KEY_RIGHT)
+		cmd_move_cursor_right(cmd_info);
 //	else if (key == KEY_RIGHT)
 //		move_cursor_right();
 }

@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 12:11:04 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/28 15:49:39 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/28 19:27:36 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	cmd_move_cursor_left(void)
 {
 	char	*cap;
 
+	printf("test\n`");
 	if((cap = tgetstr("le" ,NULL)) == NULL)
 		err_exit("Error tgetstr");
 	if (tputs(cap, 1, tputc) < 0)
