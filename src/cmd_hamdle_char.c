@@ -1,35 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_move_cursor.c                                  :+:      :+:    :+:   */
+/*   cmd_hamdle_char.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/11 12:11:04 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/28 15:49:39 by gmordele         ###   ########.fr       */
+/*   Created: 2017/06/27 20:37:08 by gmordele          #+#    #+#             */
+/*   Updated: 2017/06/27 20:38:19 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <term.h>
 #include "header.h"
 
-void	cmd_move_cursor_right(void)
+void cmd_handle_key_char(t_cmd_info *cmd_info, int key)
 {
-	char	*cap;
 
-	if((cap = tgetstr("nd" ,NULL)) == NULL)
-		err_exit("Error tgetstr");
-	if (tputs(cap, 1, tputc) < 0)
-		err_exit("Error tputs");
-}
-
-void	cmd_move_cursor_left(void)
-{
-	char	*cap;
-
-	if((cap = tgetstr("le" ,NULL)) == NULL)
-		err_exit("Error tgetstr");
-	if (tputs(cap, 1, tputc) < 0)
-		err_exit("Error tputs");
 }

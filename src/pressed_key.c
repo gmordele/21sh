@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 11:55:17 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/26 21:00:27 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/27 20:26:25 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ static int	n_3(char *read_buf)
 		if (read_buf[2] == 67)
 			return (KEY_RIGHT);
 	}
-		;
 	return (0);
 }
 

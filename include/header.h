@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/27 19:09:34 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/28 19:13:48 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,11 @@ typedef struct	s_cmd_info
 	int		prompt_len;
 	int		cur_row;
 	int		cur_col;
-	int		copy;
+	int		complet;
+	int		char_buf;
+	int		buf_pos;
+	char	*cmd_buf;
+	int		nchar_buf;
 }				t_cmd_info;
 
 typedef struct	s_cmd
@@ -62,7 +66,7 @@ typedef struct	s_env_lst
 t_term_info		*sta_term_info(t_term_info *term);
 void			err_exit(char *str);
 void			restore_term(void);
-void			init_termios(t_term_info *term);
+void			init_termios(void);
 void			init_termcap(void);
 int				get_options(int argc, char **argv);
 void			print_keys(void);
@@ -70,11 +74,11 @@ int				tputc(int c);
 void			normal_exit(void);
 void			init_signals(void);
 int				pressed_key(int n, char *read_buf);
-void			move_cursor_right(void);
-void			move_cursor_left(void);
+void			cmd_move_cursor_right(void);
+void			cmd_move_cursor_left(t_cmd_info *cmd_info);
 void			enter_insert(void);
 int				exit_insert(void);
-int				cmd_get(char *cmd_buf, int prompt_len);
+void			cmd_get(char *cmd_buf, int prompt_len);
 int				env_lst_remove(t_env_lst **head, char *name);
 void			env_lst_add(t_env_lst **head, char *name, char *value);
 void			env_lst_get(void);
@@ -84,5 +88,7 @@ size_t			env_lst_len(t_env_lst *env_lst);
 void			env_lst_set_value(char *name, char *value, t_env_lst **env_lst);
 void			env_lst_free(void);
 t_env_lst		**env_lst_sta(t_env_lst **head_env);
+void			cmd_handle_key_char(t_cmd_info *cmd_info, int key);
+void			cmd_handle_char(t_cmd_info *cmd_info, int c);
 
 #endif

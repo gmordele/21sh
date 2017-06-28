@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/10 16:00:52 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/10 16:35:09 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/27 19:15:15 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,14 @@ static void	save_term(t_term_info *term, struct termios to_save)
 	sta_term_info(term);
 }
 
-void		init_termios(t_term_info *term)
+void		init_termios(void)
 {
 	struct termios	buf;
-
+	static t_term_info term;
+	
 	if (tcgetattr(0, &buf) < 0)
 		err_exit("Error tcgetattr");
-	save_term(term, buf);
+	save_term(&term, buf);
 	buf.c_lflag &= ~(ECHO | ICANON);
 	buf.c_cc[VMIN] = 1;
 	buf.c_cc[VTIME] = 0;

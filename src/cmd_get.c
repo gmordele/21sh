@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 15:39:54 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/27 19:09:58 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/28 16:18:57 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,22 @@
 #include "header.h"
 #include "libft.h"
 
-int		cmd_get(char *cmd_buf, int prompt_len)
+static void	init_cmd(t_cmd_info *cmd_info, int prompt_len, char *cmd_buf)
 {
-	(void)cmd_buf;
-	(void)prompt_len;
-	char	read_buf[READBUFSIZE];
-	int		key;
-	char *cap;
-	int n;
-	
+	cmd_buf[0] = '\0';
+	cmd_info->prompt_len = prompt_len;
+	cmd_info->cur_row = 0;
+	cmd_info->cur_col = 0;
+	cmd_info->complet = 0;
+	cmd_info->cmd_buf = cmd_buf;
+	cmd_info->buf_pos = 0;
+	cmd_info->nchar_buf = 0;
+}
 
-	if ((n = read(0, read_buf, READBUFSIZE)) <= 0)
-		err_exit("Error read");
-	key = pressed_key(n, read_buf);
-	if (key == KEY_ESCAPE)
-		return (0);
+void		cmd_handle_key(t_cmd_info *cmd_info, int key)
+{
+	(void)cmd_info;
+	/*
 	else if (key == KEY_BACKSPACE)
 	{
 		{
@@ -41,13 +42,32 @@ int		cmd_get(char *cmd_buf, int prompt_len)
 			tputs(cap, 1, tputc);
 		}
 	}
-	else if (ft_isprint(key) && n == 1)
-		ft_printf("%c", key);
+	*/
+	if (ft_isprint(key))
+		cmd_handle_key_char(cmd_info, key);
+	else if (key == KEY_RETURN)
+		cmd_info->complet = 1;
 	else if (key == KEY_LEFT)
-		move_cursor_left();
-	else if (key == KEY_RIGHT)
-		move_cursor_right();
-	return (1);
+		cmd_move_cursor_left(cmd_info);
+//	else if (key == KEY_RIGHT)
+//		move_cursor_right();
+}
+
+void		cmd_get(char *cmd_buf, int prompt_len)
+{
+	char		read_buf[READBUFSIZE];
+	int			key;
+	int			n;
+	t_cmd_info	cmd_info;
+
+	init_cmd(&cmd_info, prompt_len, cmd_buf);
+	while (!cmd_info.complet)
+	{
+		if ((n = read(0, read_buf, READBUFSIZE)) <= 0)
+			err_exit("Error read");
+		key = pressed_key(n, read_buf);
+		cmd_handle_key(&cmd_info, key);
+	}
 }
 
 
