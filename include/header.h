@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/28 21:11:23 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/07/17 20:04:30 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # define KEY_BACKSPACE		5
 # define KEY_ESCAPE			6
 # define KEY_RETURN			10
+# define KEY_S_UP			11
+# define KEY_S_DOWN			12
 
 # define MATCH_NO			0
 # define MATCH_QUOTE		1
@@ -92,5 +94,7 @@ void			cmd_handle_key_char(t_cmd_info *cmd_info, int key);
 void			cmd_handle_char(t_cmd_info *cmd_info, int c);
 void			cmd_handle_key_return(t_cmd_info *cmd_info);
 void			cmd_insert_char(t_cmd_info *cmd_info, int c);
+void			cmd_handle_key_backspace(t_cmd_info *cmd_info);
+void			cmd_remove_char(t_cmd_info *cmd_info);
 
 #endif

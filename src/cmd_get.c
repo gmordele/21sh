@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 15:39:54 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/28 21:11:34 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/07/17 19:44:53 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void	init_cmd(t_cmd_info *cmd_info, int prompt_len, char *cmd_buf)
 void		cmd_handle_key(t_cmd_info *cmd_info, int key)
 {
 	(void)cmd_info;
+
 	/*
 	else if (key == KEY_BACKSPACE)
 	{
@@ -43,10 +44,13 @@ void		cmd_handle_key(t_cmd_info *cmd_info, int key)
 		}
 	}
 	*/
+
 	if (ft_isprint(key))
 		cmd_handle_key_char(cmd_info, key);
 	else if (key == KEY_RETURN)
 		cmd_handle_key_return(cmd_info);
+	else if (key == KEY_BACKSPACE)
+		cmd_handle_key_backspace(cmd_info);
 	else if (key == KEY_LEFT)
 		cmd_move_cursor_left(cmd_info);
 	else if (key == KEY_RIGHT)

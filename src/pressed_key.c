@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 11:55:17 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/27 20:26:25 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/07/17 19:41:43 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,26 @@ static int	n_3(char *read_buf)
 	return (0);
 }
 
+static int n_6(char *read_buf)
+{
+	if (read_buf[0] == 27 && read_buf[1] == 91 && read_buf[2] == 49
+		&& read_buf[3] == 59 && read_buf[4] == 50)
+	{
+		if (read_buf[5] == 65)
+			return (KEY_S_UP);
+		if (read_buf[5] == 66)
+			return (KEY_S_DOWN);
+	}
+	return (0);
+}
+
 int			pressed_key(int n, char *read_buf)
 {
 	if (n == 1)
 		return (n_1(read_buf));
 	if (n == 3)
 		return (n_3(read_buf));
+	if (n == 6)
+		return (n_6(read_buf));
 	return (0);
 }
