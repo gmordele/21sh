@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:05:04 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/28 15:58:17 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/28 21:58:33 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	main_loop(void)
 		//	if (!get_cmd(cmd_buf, prompt_len))
 //			break;
 	cmd_get(cmd_buf, prompt_len);
-	ft_printf("\n|%s|\n", cmd_buf);
+	ft_printf("|%s|\n", cmd_buf);
 //	}
 }
 
