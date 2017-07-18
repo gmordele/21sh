@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_move_cursor_right.c                            :+:      :+:    :+:   */
+/*   cmd_move_cursor_end.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/17 19:33:27 by gmordele          #+#    #+#             */
-/*   Updated: 2017/07/18 17:10:09 by gmordele         ###   ########.fr       */
+/*   Created: 2017/07/18 16:01:18 by gmordele          #+#    #+#             */
+/*   Updated: 2017/07/18 16:58:54 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include <term.h>
 #include "header.h"
 
-static void	move_next_line(t_cmd_info *cmd_info)
+static void	move_cursor_down(void)
 {
-	char *cap;
+	char	*cap;
 
 	if ((cap = tgetstr("do", NULL)) == NULL)
 		err_exit("Error tgetstr");
@@ -24,31 +23,32 @@ static void	move_next_line(t_cmd_info *cmd_info)
 		err_exit("Error tputs");
 	if ((cap = tgetstr("cr", NULL)) == NULL)
 		err_exit("Error tgetstr");
+	if (tputs(cap, 1, tputc) < 0)
+		err_exit("Error tputs");
 	if ((cap = tgetstr("nd", NULL)) == NULL)
 		err_exit("Error tgetstr");
 	if (tputs(cap, 1, tputc) < 0)
 		err_exit("Error tputs");
 	if (tputs(cap, 1, tputc) < 0)
 		err_exit("Error tputs");
-	++(cmd_info->cur_line);
-	cmd_info->cur_col = 0;
 }
 
-void		cmd_move_cursor_right(t_cmd_info *cmd_info)
+void		cmd_move_cursor_end(t_cmd_info *cmd_info)
 {
 	char	*cap;
+	int		pos;
 
-	if (cmd_info->cmd_buf[cmd_info->buf_pos] == '\0')
-		return ;
-	if (cmd_info->cmd_buf[cmd_info->buf_pos] != '\n')
+	pos = cmd_info->buf_pos;
+	while (cmd_info->cmd_buf[pos] != '\0')
 	{
-		if ((cap = tgetstr("nd", NULL)) == NULL)
-			err_exit("Error tgetstr");
-		if (tputs(cap, 1, tputc) < 0)
-			err_exit("Error tputs");
-		++(cmd_info->cur_col);
+		if (cmd_info->cmd_buf[pos++] == '\n')
+			move_cursor_down();
+		else
+		{
+			if ((cap = tgetstr("nd", NULL)) == NULL)
+				err_exit("Error tgetstr");
+			if (tputs(cap, 1, tputc) < 0)
+				err_exit("Error tputs");
+		}
 	}
-	else
-		move_next_line(cmd_info);
-	++(cmd_info->buf_pos);
 }

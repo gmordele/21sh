@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 20:51:01 by gmordele          #+#    #+#             */
-/*   Updated: 2017/07/17 19:12:54 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/07/18 16:58:08 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,15 @@ static int	is_complet(t_cmd_info *cmd_info)
 
 void		cmd_handle_key_return(t_cmd_info *cmd_info)
 {
-	write (1, "\n", 1);
+	cmd_move_cursor_end(cmd_info);
+	write(1, "\n", 1);
 	if (is_complet(cmd_info))
 		cmd_info->complet = 1;
 	else
 	{
 		if (cmd_info->nchar_buf >= CMDBUFSIZE - 1)
 			return ;
-		write (1, "> ", 2);
+		write(1, "> ", 2);
 		++(cmd_info->cur_line);
 		cmd_info->cur_col = 0;
 		while (cmd_info->cmd_buf[cmd_info->buf_pos] != '\0')

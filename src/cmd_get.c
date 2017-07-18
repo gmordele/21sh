@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 15:39:54 by gmordele          #+#    #+#             */
-/*   Updated: 2017/07/17 19:44:53 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/07/18 16:48:32 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,6 @@ static void	init_cmd(t_cmd_info *cmd_info, int prompt_len, char *cmd_buf)
 
 void		cmd_handle_key(t_cmd_info *cmd_info, int key)
 {
-	(void)cmd_info;
-
-	/*
-	else if (key == KEY_BACKSPACE)
-	{
-		{
-			if ((cap = tgetstr("le", NULL)) == NULL)
-				err_exit("Error tgetstr");
-			tputs(cap, 1, tputc);
-			if ((cap = tgetstr("dc", NULL)) == NULL)
-				err_exit("Error tgetstr");
-			tputs(cap, 1, tputc);
-		}
-	}
-	*/
-
 	if (ft_isprint(key))
 		cmd_handle_key_char(cmd_info, key);
 	else if (key == KEY_RETURN)
@@ -55,8 +39,6 @@ void		cmd_handle_key(t_cmd_info *cmd_info, int key)
 		cmd_move_cursor_left(cmd_info);
 	else if (key == KEY_RIGHT)
 		cmd_move_cursor_right(cmd_info);
-//	else if (key == KEY_RIGHT)
-//		move_cursor_right();
 }
 
 void		cmd_get(char *cmd_buf, int prompt_len)
@@ -75,7 +57,3 @@ void		cmd_get(char *cmd_buf, int prompt_len)
 		cmd_handle_key(&cmd_info, key);
 	}
 }
-
-
-
-

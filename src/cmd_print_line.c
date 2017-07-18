@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   err_exit.c                                         :+:      :+:    :+:   */
+/*   cmd_print_line.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/18 16:54:31 by gmordele          #+#    #+#             */
-/*   Updated: 2017/07/18 16:54:32 by gmordele         ###   ########.fr       */
+/*   Created: 2017/07/18 17:35:28 by gmordele          #+#    #+#             */
+/*   Updated: 2017/07/18 17:47:46 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "header.h"
-#include "libft.h"
+#include <unistd.h>
 
-void		err_exit(char *str)
+int		cmd_print_line(char *s)
 {
-	env_lst_free();
-	ft_dprintf(2, "%s\n", str);
-	restore_term();
-	exit(EXIT_FAILURE);
+	int	len;
+	int	i;
+
+	i = 0;
+	len = 0;
+	while (s[i] != '\0' && s[i] != '\n')
+	{
+		++len;
+		++i;
+	}
+	write(1, s, len);
+	return (len);
 }

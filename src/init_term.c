@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/10 16:00:52 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/27 19:15:15 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/07/18 16:55:21 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ static void	save_term(t_term_info *term, struct termios to_save)
 
 void		init_termios(void)
 {
-	struct termios	buf;
-	static t_term_info term;
-	
+	struct termios		buf;
+	static t_term_info	term;
+
 	if (tcgetattr(0, &buf) < 0)
 		err_exit("Error tcgetattr");
 	save_term(&term, buf);
