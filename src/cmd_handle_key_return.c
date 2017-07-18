@@ -60,7 +60,7 @@ void		cmd_handle_key_return(t_cmd_info *cmd_info)
 		if (cmd_info->nchar_buf >= CMDBUFSIZE - 1)
 			return ;
 		write (1, "> ", 2);
-		++(cmd_info->cur_row);
+		++(cmd_info->cur_line);
 		cmd_info->cur_col = 0;
 		while (cmd_info->cmd_buf[cmd_info->buf_pos] != '\0')
 			++(cmd_info->buf_pos);

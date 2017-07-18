@@ -19,7 +19,7 @@ static void	init_cmd(t_cmd_info *cmd_info, int prompt_len, char *cmd_buf)
 {
 	cmd_buf[0] = '\0';
 	cmd_info->prompt_len = prompt_len;
-	cmd_info->cur_row = 0;
+	cmd_info->cur_line = 0;
 	cmd_info->cur_col = 0;
 	cmd_info->complet = 0;
 	cmd_info->cmd_buf = cmd_buf;
