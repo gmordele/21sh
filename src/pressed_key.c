@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 11:55:17 by gmordele          #+#    #+#             */
-/*   Updated: 2017/07/18 16:56:59 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/07/18 21:52:01 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static int	n_1(char *read_buf)
 		return (KEY_ESCAPE);
 	if (read_buf[0] == 10)
 		return (KEY_RETURN);
+	if (read_buf[0] == 4)
+		return (KEY_CTRL_D);
 	return (0);
 }
 
@@ -42,15 +44,23 @@ static int	n_3(char *read_buf)
 	return (0);
 }
 
+static int	n_4(char *read_buf)
+{
+	if (read_buf[0] == 27 && read_buf[1] == 91 && read_buf[2] == 51
+		&& read_buf[3] == 126)
+		return (KEY_DELETE);
+	return (0);
+}
+
 static int	n_6(char *read_buf)
 {
 	if (read_buf[0] == 27 && read_buf[1] == 91 && read_buf[2] == 49
 		&& read_buf[3] == 59 && read_buf[4] == 50)
 	{
 		if (read_buf[5] == 65)
-			return (KEY_S_UP);
+			return (KEY_SHIFT_UP);
 		if (read_buf[5] == 66)
-			return (KEY_S_DOWN);
+			return (KEY_SHIFT_DOWN);
 	}
 	return (0);
 }
@@ -61,6 +71,8 @@ int			pressed_key(int n, char *read_buf)
 		return (n_1(read_buf));
 	if (n == 3)
 		return (n_3(read_buf));
+	if (n == 4)
+		return (n_4(read_buf));
 	if (n == 6)
 		return (n_6(read_buf));
 	return (0);

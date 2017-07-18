@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 20:03:59 by gmordele          #+#    #+#             */
-/*   Updated: 2017/07/17 20:13:35 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/07/18 22:42:41 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,20 @@ void	cmd_remove_char(t_cmd_info *cmd_info)
 		++pos;
 	}
 	--(cmd_info->buf_pos);
+	--(cmd_info->nchar_buf);
+}
+
+void	cmd_remove_char_del(t_cmd_info *cmd_info)
+{
+	int		pos;
+
+	pos = cmd_info->buf_pos;
+	while (42)
+	{
+		cmd_info->cmd_buf[pos] = cmd_info->cmd_buf[pos + 1];
+		if (cmd_info->cmd_buf[pos] == '\0')
+			break ;
+		++pos;
+	}
 	--(cmd_info->nchar_buf);
 }

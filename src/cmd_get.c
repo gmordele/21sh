@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 15:39:54 by gmordele          #+#    #+#             */
-/*   Updated: 2017/07/18 16:48:32 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/07/18 21:47:49 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void		cmd_handle_key(t_cmd_info *cmd_info, int key)
 		cmd_move_cursor_left(cmd_info);
 	else if (key == KEY_RIGHT)
 		cmd_move_cursor_right(cmd_info);
+	else if (key == KEY_CTRL_D || key == KEY_DELETE)
+		cmd_handle_key_delete(cmd_info);
 }
 
 void		cmd_get(char *cmd_buf, int prompt_len)
