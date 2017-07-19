@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:05:04 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/28 21:58:33 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/07/19 16:57:14 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,12 @@ static void	main_loop(void)
 	char	cmd_buf[CMDBUFSIZE];
 	int		prompt_len;
 
-	prompt_len = ft_printf("21sh>");
-//	while (42)
-//	{
-		//	if (!get_cmd(cmd_buf, prompt_len))
-//			break;
-	cmd_get(cmd_buf, prompt_len);
-	ft_printf("|%s|\n", cmd_buf);
-//	}
+	while (42)
+	{
+		prompt_len = ft_printf("21sh> ");
+		cmd_get(cmd_buf, prompt_len);
+		ft_printf("{MAG}%s{RES}\n", cmd_buf);
+	}
 }
 
 int			main(int argc, char *argv[])
