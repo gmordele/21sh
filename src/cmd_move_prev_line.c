@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 17:41:52 by gmordele          #+#    #+#             */
-/*   Updated: 2017/07/18 17:42:19 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/07/19 14:50:25 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,11 @@ static void	move_cur_col(t_cmd_info *cmd_info)
 	else
 		begin = 2;
 	col = begin + cmd_info->cur_col;
+	if ((cap = tgetstr("nd", NULL)) == NULL)
+		err_exit("Error tgetstr");
 	while (col--)
-	{
-		if ((cap = tgetstr("nd", NULL)) == NULL)
-			err_exit("Error tgetstr");
 		if (tputs(cap, 1, tputc) < 0)
 			err_exit("Error tputs");
-	}
 }
 
 void		cmd_move_prev_line(t_cmd_info *cmd_info)

@@ -6,7 +6,7 @@
 #    By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/17 00:00:01 by gmordele          #+#    #+#              #
-#    Updated: 2017/07/18 21:48:27 by gmordele         ###   ########.fr        #
+#    Updated: 2017/07/19 13:21:35 by gmordele         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -16,17 +16,17 @@ CC			=	gcc
 
 CFLAGS		=	-Wall -Werror -Wextra
 
-SRC			=	main.c				 	init_term.c					sta_term_info.c		\
-				err_exit.c				cmd_handle_key_char.c		restore_term.c		\
-				get_options.c			print_keys.c				init_termcap.c		\
-				tputc.c					normal_exit.c				init_signals.c		\
-				pressed_key.c			cmd_handle_key_backspace.c	insert_mode.c		\
-				cmd_get.c				env_lst_remove.c			env_lst.c			\
-				env_lst_get.c			env_lst_get_value.c			env_lst_set_value.c	\
-				env_lst_sta.c			cmd_handle_key_return.c		cmd_insert_char.c	\
-				cmd_move_cursor_right.c	cmd_move_cursor_left.c		cmd_remove_char.c	\
-				cmd_prev_line_len.c		cmd_move_cursor_end.c		cmd_print_line.c	\
-				cmd_move_prev_line.c	cmd_handle_key_delete.c
+SRC			=	main.c				 	init_term.c					sta_term_info.c				\
+				err_exit.c				cmd_handle_key_char.c		restore_term.c				\
+				get_options.c			print_keys.c				init_termcap.c				\
+				tputc.c					normal_exit.c				init_signals.c				\
+				pressed_key.c			cmd_handle_key_backspace.c	insert_mode.c				\
+				cmd_get.c				env_lst_remove.c			env_lst.c					\
+				env_lst_get.c			env_lst_get_value.c			env_lst_set_value.c			\
+				env_lst_sta.c			cmd_handle_key_return.c		cmd_insert_char.c			\
+				cmd_move_cursor_right.c	cmd_move_cursor_left.c		cmd_remove_char.c			\
+				cmd_prev_line_len.c		cmd_move_cursor_end.c		cmd_print_line.c			\
+				cmd_move_prev_line.c	cmd_handle_key_delete.c		cmd_handle_key_shift_up.c	\
 
 OBJ			=	$(SRC:%.c=%.o)
 
