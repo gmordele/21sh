@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 17:41:52 by gmordele          #+#    #+#             */
-/*   Updated: 2017/07/19 14:50:25 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/07/20 00:34:19 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void		cmd_move_prev_line(t_cmd_info *cmd_info)
 	int		prev_line_len;
 	char	*cap;
 
+	if (cmd_info->cur_line <= 0)
+		return ;
 	if ((prev_line_len = cmd_prev_line_len(cmd_info)) < 0)
 		err_exit("Error prev_line_len");
 	if ((cap = tgetstr("up", NULL)) == NULL)

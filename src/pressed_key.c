@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 11:55:17 by gmordele          #+#    #+#             */
-/*   Updated: 2017/07/18 21:52:01 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/07/19 23:35:22 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,10 @@ static int	n_6(char *read_buf)
 			return (KEY_SHIFT_UP);
 		if (read_buf[5] == 66)
 			return (KEY_SHIFT_DOWN);
+		if (read_buf[5] == 68)
+			return (KEY_SHIFT_LEFT);
+		if (read_buf[5] == 67)
+			return (KEY_SHIFT_RIGHT);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/07/19 18:52:04 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/07/20 00:52:10 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # define KEY_SHIFT_DOWN		12
 # define KEY_CTRL_D			13
 # define KEY_DELETE			14
+# define KEY_SHIFT_LEFT		15
+# define KEY_SHIFT_RIGHT	16
 
 # define MATCH_NO			0
 # define MATCH_QUOTE		1
@@ -107,6 +109,6 @@ void			cmd_handle_key_delete(t_cmd_info *cmd_info);
 void			cmd_remove_char_del(t_cmd_info *cmd_info);
 void			cmd_handle_key_shift_up(t_cmd_info *cmd_info);
 void			cmd_handle_key_shift_down(t_cmd_info *cmd_info);
+void			cmd_handle_key_shift_left(t_cmd_info *cmd_info);
 
 #endif
-
