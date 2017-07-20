@@ -6,7 +6,7 @@
 #    By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/17 00:00:01 by gmordele          #+#    #+#              #
-#    Updated: 2017/07/19 23:41:37 by gmordele         ###   ########.fr        #
+#    Updated: 2017/07/20 16:45:57 by gmordele         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -28,6 +28,7 @@ SRC			=	main.c				 			init_term.c							sta_term_info.c				\
 				cmd_prev_line_len.c				cmd_move_cursor_end.c				cmd_print_line.c			\
 				cmd_move_prev_line.c			cmd_handle_key_delete.c				cmd_handle_key_shift_up.c	\
 				cmd_handle_key_shift_down.c		cmd_next_line_len.c					cmd_handle_key_shift_left.c	\
+				cmd_handle_key_shift_right.c
 
 OBJ			=	$(SRC:%.c=%.o)
 

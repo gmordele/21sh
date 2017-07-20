@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/07/20 00:52:10 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/07/20 16:46:12 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,6 @@ void			cmd_remove_char_del(t_cmd_info *cmd_info);
 void			cmd_handle_key_shift_up(t_cmd_info *cmd_info);
 void			cmd_handle_key_shift_down(t_cmd_info *cmd_info);
 void			cmd_handle_key_shift_left(t_cmd_info *cmd_info);
+void			cmd_handle_key_shift_right(t_cmd_info *cmd_info);
 
 #endif
