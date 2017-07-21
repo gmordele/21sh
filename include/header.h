@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/07/20 16:46:12 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/07/20 21:52:46 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,13 @@
 # define KEY_DELETE			14
 # define KEY_SHIFT_LEFT		15
 # define KEY_SHIFT_RIGHT	16
-
-# define MATCH_NO			0
-# define MATCH_QUOTE		1
-# define MATCH_DQOTE		2
+# define KEY_CTRL_F			17
+# define KEY_CTRL_B			18
+# define KEY_HOME			19
+# define KEY_END			20
+# define KEY_CTRL_A			21
+# define KEY_CTRL_E			22
+# define KEY_CTRL_SPACE		23
 
 typedef struct	s_term_info
 {
@@ -55,6 +58,9 @@ typedef struct	s_cmd_info
 	int		buf_pos;
 	char	*cmd_buf;
 	int		nchar_buf;
+	int		clipboard;
+	int		clip1;
+	int		clip2;
 }				t_cmd_info;
 
 typedef struct	s_cmd
@@ -111,5 +117,8 @@ void			cmd_handle_key_shift_up(t_cmd_info *cmd_info);
 void			cmd_handle_key_shift_down(t_cmd_info *cmd_info);
 void			cmd_handle_key_shift_left(t_cmd_info *cmd_info);
 void			cmd_handle_key_shift_right(t_cmd_info *cmd_info);
+void			cmd_move_next_line(t_cmd_info *cmd_info);
+void			cmd_move_cursor_begin(t_cmd_info *cmd_info);
+void			cmd_handle_key_ctrl_space(t_cmd_info *cmd_info);
 
 #endif

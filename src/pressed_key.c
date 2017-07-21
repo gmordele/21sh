@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 11:55:17 by gmordele          #+#    #+#             */
-/*   Updated: 2017/07/19 23:35:22 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/07/20 21:49:03 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,18 @@ static int	n_1(char *read_buf)
 		return (KEY_RETURN);
 	if (read_buf[0] == 4)
 		return (KEY_CTRL_D);
+	if (read_buf[0] == 6)
+		return (KEY_CTRL_F);
+	if (read_buf[0] == 2)
+		return (KEY_CTRL_B);
+	if (read_buf[0] == 1)
+		return (KEY_CTRL_A);
+	if (read_buf[0] == 5)
+		return (KEY_CTRL_E);
+	if (read_buf[0] == 0)
+		return (KEY_CTRL_SPACE);
+	if (read_buf[0] == 27)
+		return (KEY_ESCAPE);
 	return (0);
 }
 
@@ -40,6 +52,10 @@ static int	n_3(char *read_buf)
 			return (KEY_LEFT);
 		if (read_buf[2] == 67)
 			return (KEY_RIGHT);
+		if (read_buf[2] == 72)
+			return (KEY_HOME);
+		if (read_buf[2] == 70)
+			return (KEY_END);
 	}
 	return (0);
 }
