@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 22:34:15 by gmordele          #+#    #+#             */
-/*   Updated: 2017/10/30 00:37:45 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/10/30 00:48:48 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,20 @@ static void	print_buf(t_cmd_info *cmd_info, int fd)
 
 static void	print_elem(int i, char *s, t_cmd_info *cmd_info, int fd)
 {
-	if (cmd_info->buf_pos != i)
-		ft_dprintf(fd, "[%02d] = %3d = %2s\n", i, (cmd_info->cmd_buf)[i], s);
+	int		len;
+
+	if (cmd_info->nchar_buf < 10)
+		len = 1;
+	else if (cmd_info->nchar_buf < 100)
+		len = 2;
 	else
-		ft_dprintf(fd, "[{BG_RED}%02d{RES}] = %3d = %2s\n",
-				i, (cmd_info->cmd_buf[i]), s);
+		len = 3;
+	if (cmd_info->buf_pos != i)
+		ft_dprintf(fd, "[%0*d] = %3d = %2s\n",
+				len, i, (cmd_info->cmd_buf)[i], s);
+	else
+		ft_dprintf(fd, "[{BG_RED}%0*d{RES}] = %3d = %2s\n",
+				len, i, (cmd_info->cmd_buf[i]), s);
 }
 
 static void	print_buf_arr(t_cmd_info *cmd_info, int fd)
