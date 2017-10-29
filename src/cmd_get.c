@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 15:39:54 by gmordele          #+#    #+#             */
-/*   Updated: 2017/07/20 21:51:48 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/10/29 03:00:43 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 static void	init_cmd(t_cmd_info *cmd_info, int prompt_len, char *cmd_buf)
 {
-	cmd_buf[0] = '\0';
+	ft_memset(cmd_buf, 0, CMDBUFSIZE);
 	cmd_info->prompt_len = prompt_len;
 	cmd_info->cur_line = 0;
 	cmd_info->cur_col = 0;
