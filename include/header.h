@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/07/20 21:52:46 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/10/29 22:40:52 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <string.h>
 
 # define OPT_KEYS			1
+# define OPT_DEBUG			2
 
 # define CMDBUFSIZE			1024
 # define READBUFSIZE		16
@@ -41,6 +42,7 @@
 # define KEY_CTRL_A			21
 # define KEY_CTRL_E			22
 # define KEY_CTRL_SPACE		23
+# define KEY_CTRL_X			24
 
 typedef struct	s_term_info
 {
@@ -50,6 +52,7 @@ typedef struct	s_term_info
 
 typedef struct	s_cmd_info
 {
+	int		options;
 	int		prompt_len;
 	int		cur_line;
 	int		cur_col;
@@ -90,7 +93,7 @@ void			cmd_move_cursor_right(t_cmd_info *cmd_info);
 void			cmd_move_cursor_left(t_cmd_info *cmd_info);
 void			enter_insert(void);
 int				exit_insert(void);
-void			cmd_get(char *cmd_buf, int prompt_len);
+void			cmd_get(char *cmd_buf, int prompt_len, int options);
 int				env_lst_remove(t_env_lst **head, char *name);
 void			env_lst_add(t_env_lst **head, char *name, char *value);
 void			env_lst_get(void);
@@ -120,5 +123,6 @@ void			cmd_handle_key_shift_right(t_cmd_info *cmd_info);
 void			cmd_move_next_line(t_cmd_info *cmd_info);
 void			cmd_move_cursor_begin(t_cmd_info *cmd_info);
 void			cmd_handle_key_ctrl_space(t_cmd_info *cmd_info);
+void			cmd_handle_key_ctrl_x(t_cmd_info *cmd_info);
 
 #endif

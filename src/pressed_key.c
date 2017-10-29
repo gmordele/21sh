@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 11:55:17 by gmordele          #+#    #+#             */
-/*   Updated: 2017/07/20 21:49:03 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/10/29 22:42:38 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ static int	n_1(char *read_buf)
 		return (KEY_CTRL_SPACE);
 	if (read_buf[0] == 27)
 		return (KEY_ESCAPE);
+	if (read_buf[0] == 24)
+		return (KEY_CTRL_X);
 	return (0);
 }
 

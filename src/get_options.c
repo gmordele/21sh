@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/10 17:26:01 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/10 17:39:25 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/10/29 22:41:04 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static int	get_option(char c)
 {
 	if (c == 'k')
 		return (OPT_KEYS);
+	if (c == 'd')
+		return (OPT_DEBUG);
 	return (0);
 }
 
