@@ -103,4 +103,5 @@ void		cmd_handle_key_ctrl_x(t_cmd_info *cmd_info)
 	if (fd < 0)
 		err_exit("Error open()");
 	print_cmd_debug(cmd_info, fd);
+	close(fd);
 }
