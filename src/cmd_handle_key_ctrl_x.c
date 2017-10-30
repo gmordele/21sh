@@ -70,6 +70,7 @@ static void	print_buf_arr(t_cmd_info *cmd_info, int fd)
 	i = 0;
 	while (cmd_info->cmd_buf[i] != '\0')
 	{
+		ft_memset(s, 0, 3);
 		if (ft_isprint((cmd_info->cmd_buf)[i]))
 			s[0] = cmd_info->cmd_buf[i];
 		else if ((cmd_info->cmd_buf)[i] == '\n')
@@ -78,7 +79,6 @@ static void	print_buf_arr(t_cmd_info *cmd_info, int fd)
 			s[0] = '.';
 		print_elem(i, s, cmd_info, fd);
 		++i;
-		ft_memset(s, 0, 3);
 	}
 	print_elem(i, "0", cmd_info, fd);
 }
