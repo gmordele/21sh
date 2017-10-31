@@ -27,6 +27,7 @@ static void	init_cmd(t_cmd_info *cmd_info, int prompt_len, char *cmd_buf,
 	cmd_info->complet = 0;
 	cmd_info->buf_pos = 0;
 	cmd_info->nchar_buf = 0;
+	cmd_info->term_width = cmd_get_term_width();
 	cmd_info->clipboard = 0;
 }
 

@@ -52,18 +52,19 @@ typedef struct	s_term_info
 
 typedef struct	s_cmd_info
 {
-	int		options;
-	int		prompt_len;
-	int		cur_line;
-	int		cur_col;
-	int		complet;
-	int		char_buf;
-	int		buf_pos;
-	char	*cmd_buf;
-	int		nchar_buf;
-	int		clipboard;
-	int		clip1;
-	int		clip2;
+	int				options;
+	int				prompt_len;
+	int				cur_line;
+	int				cur_col;
+	int				complet;
+	int				char_buf;
+	int				buf_pos;
+	char			*cmd_buf;
+	int				nchar_buf;
+	unsigned short	term_width;
+	int				clipboard;
+	int				clip1;
+	int				clip2;
 }				t_cmd_info;
 
 typedef struct	s_cmd
@@ -124,5 +125,6 @@ void			cmd_move_next_line(t_cmd_info *cmd_info);
 void			cmd_move_cursor_begin(t_cmd_info *cmd_info);
 void			cmd_handle_key_ctrl_space(t_cmd_info *cmd_info);
 void			cmd_handle_key_ctrl_x(t_cmd_info *cmd_info);
+unsigned short	cmd_get_term_width(void);
 
 #endif
