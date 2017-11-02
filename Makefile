@@ -61,7 +61,7 @@ mklib			:
 	make -C $(DEST_LIB)
 
 clean			:
-	rm -f $(OBJ)
+	rm -rf $(DEST_OBJ)
 
 fclean			:	clean
 	rm -f $(NAME)
@@ -69,8 +69,7 @@ fclean			:	clean
 re				:	fclean all
 
 clean_lib		:
-	rm -f $(OBJ)
-	rmdir $(DEST_OBJ)
+	rm -rf $(DEST_OBJ)
 	make clean -C $(DEST_LIB)
 
 fclean_lib		:	clean
