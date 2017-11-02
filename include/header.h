@@ -126,5 +126,7 @@ void			cmd_move_cursor_begin(t_cmd_info *cmd_info);
 void			cmd_handle_key_ctrl_space(t_cmd_info *cmd_info);
 void			cmd_handle_key_ctrl_x(t_cmd_info *cmd_info);
 unsigned short	cmd_get_term_width(void);
+void			cmd_handle_key_left(t_cmd_info *cmd_info);
+void			cmd_handle_key_right(t_cmd_info *cmd_info);
 
 #endif

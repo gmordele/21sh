@@ -40,7 +40,7 @@ int			main(int argc, char *argv[])
 	env_lst_get();
 	init_termcap();
 	init_termios();
-	init_signals();
+//	init_signals();
 	if (options & OPT_KEYS)
 		print_keys();
 	else

@@ -17,7 +17,10 @@ int		cmd_prev_line_len(t_cmd_info *cmd_info)
 	int		pos;
 	int		len;
 
-	pos = cmd_info->buf_pos - 1;
+
+	if (cmd_info->cur_line <= 0)
+		return (-1);
+	pos = cmd_info->buf_pos;
 	while (cmd_info->cmd_buf[pos] != '\n')
 	{
 		if (pos-- < 0)
@@ -30,5 +33,6 @@ int		cmd_prev_line_len(t_cmd_info *cmd_info)
 		++len;
 		--pos;
 	}
+	len += (cmd_info->cur_line == 1) ? cmd_info->prompt_len : 2;
 	return (len);
 }

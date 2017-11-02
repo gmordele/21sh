@@ -30,6 +30,7 @@ SRC			=	main.c				 			init_term.c							sta_term_info.c				\
 				cmd_handle_key_shift_down.c		cmd_next_line_len.c					cmd_handle_key_shift_left.c	\
 				cmd_handle_key_shift_right.c	cmd_move_next_line.c				cmd_move_cursor_begin.c		\
 				cmd_handle_key_ctrl_space.c		cmd_handle_key_ctrl_x.c				cmd_get_term_width.c		\
+				cmd_handle_key_left.c			cmd_handle_key_right.c
 
 OBJ			=	$(SRC:%.c=%.o)
 
@@ -52,7 +53,7 @@ $(NAME)		:	$(LIBFT) $(OBJ) $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@ -I$(DEST_INC) -I$(DEST_LIB)
 
 mklib		:
-	make -C $(DEST_LIB) 
+	make -C $(DEST_LIB)
 
 clean		:
 	rm -f $(OBJ)

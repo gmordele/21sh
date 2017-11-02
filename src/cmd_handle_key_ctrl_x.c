@@ -87,7 +87,9 @@ static void	print_cmd_debug(t_cmd_info *cmd_info, int fd)
 {
 	ft_dprintf(fd, "--cmd_debug--\nbuf_pos = %d\nnchar_buf = %d\n",
 			cmd_info->buf_pos, cmd_info->nchar_buf);
-	ft_dprintf(fd, "term_width = %u", cmd_info->term_width);
+	ft_dprintf(fd, "term_width = %u\n", cmd_info->term_width);
+	ft_dprintf(fd, "cur_line = %d\n", cmd_info->cur_line);
+	ft_dprintf(fd, "cur_col = %d\n", cmd_info->cur_col);
 	ft_dprintf(fd, "\n\n");
 	ft_dprintf(fd, "----\n");
 	print_buf(cmd_info, fd);

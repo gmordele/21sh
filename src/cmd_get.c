@@ -23,7 +23,7 @@ static void	init_cmd(t_cmd_info *cmd_info, int prompt_len, char *cmd_buf,
 	cmd_info->cmd_buf = cmd_buf;
 	cmd_info->prompt_len = prompt_len;
 	cmd_info->cur_line = 0;
-	cmd_info->cur_col = 0;
+	cmd_info->cur_col = prompt_len;
 	cmd_info->complet = 0;
 	cmd_info->buf_pos = 0;
 	cmd_info->nchar_buf = 0;
@@ -50,9 +50,9 @@ static void	cmd_handle_key(t_cmd_info *cmd_info, int key)
 	else if (key == KEY_BACKSPACE)
 		cmd_handle_key_backspace(cmd_info);
 	else if (key == KEY_LEFT || key == KEY_CTRL_B)
-		cmd_move_cursor_left(cmd_info);
+		cmd_handle_key_left(cmd_info);
 	else if (key == KEY_RIGHT || key == KEY_CTRL_F)
-		cmd_move_cursor_right(cmd_info);
+		cmd_handle_key_right(cmd_info);
 	else if (key == KEY_CTRL_D || key == KEY_DELETE)
 		cmd_handle_key_delete(cmd_info);
 	else if (key == KEY_SHIFT_UP)
