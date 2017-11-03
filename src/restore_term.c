@@ -18,7 +18,7 @@ void		restore_term(void)
 {
 	t_term_info *term;
 
-	exit_insert();
+	//exit_insert();
 	term = sta_term_info(NULL);
 	if (term != NULL && term->is_saved)
 		tcsetattr(0, TCSANOW, &term->saved_termios);

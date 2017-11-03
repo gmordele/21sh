@@ -107,7 +107,7 @@ t_env_lst		**env_lst_sta(t_env_lst **head_env);
 void			cmd_handle_key_char(t_cmd_info *cmd_info, int key);
 void			cmd_handle_char(t_cmd_info *cmd_info, int c);
 void			cmd_handle_key_return(t_cmd_info *cmd_info);
-void			cmd_insert_char(t_cmd_info *cmd_info, int c);
+void			cmd_insert_char(t_cmd_info *cmd_info, char c);
 void			cmd_handle_key_backspace(t_cmd_info *cmd_info);
 void			cmd_remove_char(t_cmd_info *cmd_info);
 int				cmd_prev_line_len(t_cmd_info *cmd_info);
@@ -128,5 +128,7 @@ void			cmd_handle_key_ctrl_x(t_cmd_info *cmd_info);
 unsigned short	cmd_get_term_width(void);
 void			cmd_handle_key_left(t_cmd_info *cmd_info);
 void			cmd_handle_key_right(t_cmd_info *cmd_info);
+void			cmd_print_characters(t_cmd_info *cmd_info);
+void			cmd_move_down(void);
 
 #endif

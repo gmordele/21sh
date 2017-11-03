@@ -42,6 +42,9 @@ static void	move_down(void)
 		err_exit("Error tputs");
 	if ((cap = tgetstr("cr", NULL)) == NULL)
 		err_exit("Error tgetstr");
+	if (tputs(cap, 1, tputc) < 0)
+		err_exit("Error tputs");
+
 }
 
 void		cmd_move_cursor_right(t_cmd_info *cmd_info)
@@ -54,7 +57,7 @@ void		cmd_move_cursor_right(t_cmd_info *cmd_info)
 		cmd_info->cur_col = 2;
 		++(cmd_info->cur_line);
 	}
-	else if ((cmd_info->cur_col +1 )% cmd_info->term_width == 0)
+	else if ((cmd_info->cur_col + 1) % cmd_info->term_width == 0)
 	{
 		move_down();
 		++(cmd_info->cur_col);

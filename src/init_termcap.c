@@ -21,5 +21,5 @@ void	init_termcap(void)
 		err_exit("Error env_lst_get_value");
 	if (tgetent(NULL, term_type) <= 0)
 		err_exit("Error tgetent");
-	enter_insert();
+	//enter_insert();
 }

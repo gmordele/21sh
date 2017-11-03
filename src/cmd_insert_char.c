@@ -12,23 +12,27 @@
 
 #include "header.h"
 
-void	cmd_insert_char(t_cmd_info *cmd_info, int c)
+void	cmd_insert_char(t_cmd_info *cmd_info, char c)
 {
 	int		pos;
 	char	tmp1;
 	char	tmp2;
 
-	pos = cmd_info->buf_pos;
-	tmp1 = cmd_info->cmd_buf[pos];
-	while (cmd_info->cmd_buf[pos + 1] != '\0')
+	if (cmd_info->cmd_buf[cmd_info->buf_pos] == '\0')
 	{
-		tmp2 = cmd_info->cmd_buf[pos + 1];
-		cmd_info->cmd_buf[pos + 1] = tmp1;
-		++pos;
+		cmd_info->cmd_buf[cmd_info->buf_pos] = c;
+		cmd_info->cmd_buf[cmd_info->buf_pos + 1] = '\0';
+		return ;
+	}
+	pos = cmd_info->buf_pos + 1;
+	tmp1 = cmd_info->cmd_buf[pos - 1];
+	while (cmd_info->cmd_buf[pos] != '\0')
+	{
+		tmp2 = cmd_info->cmd_buf[pos];
+		cmd_info->cmd_buf[pos++] = tmp1;
 		tmp1 = tmp2;
 	}
-	cmd_info->cmd_buf[pos + 1] = tmp1;
-	cmd_info->cmd_buf[pos + 2] = '\0';
-	cmd_info->cmd_buf[cmd_info->buf_pos++] = c;
-	++(cmd_info->nchar_buf);
+	cmd_info->cmd_buf[pos] = tmp1;
+	cmd_info->cmd_buf[pos + 1] = '\0';
+	cmd_info->cmd_buf[cmd_info->buf_pos] = c;
 }
