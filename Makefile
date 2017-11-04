@@ -6,7 +6,7 @@
 #    By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/17 00:00:01 by gmordele          #+#    #+#              #
-#    Updated: 2017/10/29 22:35:36 by gmordele         ###   ########.fr        #
+#    Updated: 2017/11/04 03:06:57 by gmordele         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -31,7 +31,7 @@ SRC				=	main.c				 			init_term.c							sta_term_info.c				\
 					cmd_handle_key_shift_right.c	cmd_move_next_line.c				cmd_move_cursor_begin.c		\
 					cmd_handle_key_ctrl_space.c		cmd_handle_key_ctrl_x.c				cmd_get_term_width.c		\
 					cmd_handle_key_left.c			cmd_handle_key_right.c				cmd_print_characters.c		\
-					cmd_move_down.c
+					cmd_move_down.c					cmd_show_hide_cursor.c
 
 OBJ				=	$(addprefix $(DEST_OBJ), $(SRC:%.c=%.o))
 
@@ -49,13 +49,13 @@ LIBFT			=	$(DEST_LIB)/libft.a
 
 all 			:	mklib $(NAME)
 
-$(NAME)			:	mkdir_obj $(LIBFT) $(OBJ) $(HEADERS)
+$(NAME)			:	$(DEST_OBJ) $(LIBFT) $(OBJ) $(HEADERS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) -I$(DEST_INC) -I$(DEST_LIB) -ltermcap
 
 $(DEST_OBJ)%.o	:	$(DEST_SRC)%.c $(HEADERS) $(LIBFT)
 	$(CC) $(CFLAGS) -c $< -o $@ -I$(DEST_INC) -I$(DEST_LIB)
 
-mkdir_obj		:
+$(DEST_OBJ)		:
 	mkdir -p $(DEST_OBJ)
 
 mklib			:

@@ -1,37 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_prev_line_len.c                                :+:      :+:    :+:   */
+/*   cmd_show_hide_cursor.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/18 01:15:44 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/04 02:29:50 by gmordele         ###   ########.fr       */
+/*   Created: 2017/11/03 23:49:53 by gmordele          #+#    #+#             */
+/*   Updated: 2017/11/03 23:56:38 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <term.h>
+#include <stdlib.h>
 #include "header.h"
 
-int		cmd_prev_line_len(t_cmd_info *cmd_info)
+void	cmd_hide_cursor(void)
 {
-	int		pos;
-	int		len;
+	char	*cap;
 
-	if (cmd_info->cur_line <= 0)
-		return (-1);
-	pos = cmd_info->buf_pos;
-	while (cmd_info->cmd_buf[--pos] != '\n')
-	{
-		if (pos < 0)
-			return (-1);
-	}
-	--pos;
-	len = 0;
-	while (cmd_info->cmd_buf[pos] != '\n' && pos >= 0)
-	{
-		++len;
-		--pos;
-	}
-	len += (cmd_info->cur_line == 1) ? cmd_info->prompt_len : 2;
-	return (len);
+	if ((cap = tgetstr("vi", NULL)) == NULL)
+		err_exit("Error tgetstr");
+	if (tputs(cap, 1, tputc) < 0)
+		err_exit("Error tputs");
+}
+
+void	cmd_show_cursor(void)
+{
+	char	*cap;
+
+	if ((cap = tgetstr("vs", NULL)) == NULL)
+		err_exit("Error tgetstr");
+	if (tputs(cap, 1, tputc) < 0)
+		err_exit("Error tputs");
 }

@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/10/29 22:40:52 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/04 04:02:29 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ void			init_signals(void);
 int				pressed_key(int n, char *read_buf);
 void			cmd_move_cursor_right(t_cmd_info *cmd_info);
 void			cmd_move_cursor_left(t_cmd_info *cmd_info);
-void			enter_insert(void);
-int				exit_insert(void);
+//void			enter_insert(void);
+//int				exit_insert(void);
 void			cmd_get(char *cmd_buf, int prompt_len, int options);
 int				env_lst_remove(t_env_lst **head, char *name);
 void			env_lst_add(t_env_lst **head, char *name, char *value);
@@ -130,5 +130,7 @@ void			cmd_handle_key_left(t_cmd_info *cmd_info);
 void			cmd_handle_key_right(t_cmd_info *cmd_info);
 void			cmd_print_characters(t_cmd_info *cmd_info);
 void			cmd_move_down(void);
+void			cmd_show_cursor(void);
+void			cmd_hide_cursor(void);
 
 #endif
