@@ -25,15 +25,17 @@ static int	delete_characters(t_cmd_info *cmd_info)
 	shift = 0;
 	while (cmd_info->cmd_buf[pos] != '\0')
 	{
-		if (((col + 1) % cmd_info->term_width == 0 && cmd_info->cmd_buf[pos + 1] != '\0') || cmd_info->cmd_buf[pos] == '\n')
+		if (tputs(cap_del, 1, tputc) < 0)
+			err_exit("Error tputs");
+		if (((col + 1) % cmd_info->term_width == 0
+			&& cmd_info->cmd_buf[pos + 1] != '\0')
+			|| cmd_info->cmd_buf[pos] == '\n')
 		{
 			cmd_move_down();
 			++shift;
 		}
-		if (tputs(cap_del, 1, tputc) < 0)
-			err_exit("Error tputs");
-		if (cmd_info->cmd_buf[pos++] == '\n')
-			col = delete_chev(cap_del);
+		col = cmd_info->cmd_buf[pos++] == '\n' ?
+			delete_chev(cap_del) : col + 1;
 	}
 	return (shift);
 }
@@ -62,7 +64,7 @@ void	cmd_delete_characters(t_cmd_info *cmd_info)
 {
 	int		shift;
 	int		cur_col;
-	
+
 	cur_col = cmd_info->cur_col % cmd_info->term_width;
 	shift = delete_characters(cmd_info);
 	restore(shift, cur_col);
