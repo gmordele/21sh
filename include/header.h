@@ -132,5 +132,6 @@ void			cmd_print_characters(t_cmd_info *cmd_info);
 void			cmd_move_down(void);
 void			cmd_show_cursor(void);
 void			cmd_hide_cursor(void);
+void			cmd_delete_characters(t_cmd_info *cmd_info);
 
 #endif

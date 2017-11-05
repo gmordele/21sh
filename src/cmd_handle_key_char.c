@@ -20,8 +20,9 @@ void		cmd_handle_key_char(t_cmd_info *cmd_info, int c)
 
 	if (cmd_info->nchar_buf < CMDBUFSIZE - 1)
 	{
+		cmd_hide_cursor();
+		cmd_delete_characters(cmd_info);
 		cmd_insert_char(cmd_info, c);
-//		cmd_hide_cursor();
 		cmd_print_characters(cmd_info);
 		cmd_info->buf_pos++;
 		cmd_info->nchar_buf++;
