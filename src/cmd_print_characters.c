@@ -3,75 +3,180 @@
 #include <unistd.h>
 #include "header.h"
 
-static void	delete_chev(char *cap_del)
+static int	delete_chev(char *cap_del)
 {
-	char	*cap;
-
-	if ((cap = tgetstr("do", NULL)) == NULL)
-		err_exit("Error tgetstr");
-	if (tputs(cap, 1, tputc) < 0)
-		err_exit("Error tputs");
-	if ((cap = tgetstr("cr", NULL)) == NULL)
-		err_exit("Error tgetstr");
-	if (tputs(cap, 1, tputc) < 0)
-		err_exit("Error tputs");
 	if (tputs(cap_del, 1, tputc) < 0)
 		err_exit("Error tputs");
 	if (tputs(cap_del, 1, tputc) < 0)
 		err_exit("Error tputs");
+	return (2);
 }
 
-static void	delete_characters(t_cmd_info *cmd_info)
+/* static int	delete_characters(t_cmd_info *cmd_info) */
+/* { */
+/* 	int		pos; */
+/* 	int		col; */
+/* 	char	*cap_del; */
+/* 	int		shift; */
+
+/* 	if ((cap_del = tgetstr("dc", NULL)) == NULL) */
+/* 		err_exit("Error tgetstr"); */
+/* 	pos = cmd_info->buf_pos; */
+/* 	col = cmd_info->cur_col; */
+/* 	shift = 0; */
+/* 	while (cmd_info->cmd_buf[pos] != '\0') */
+/* 	{ */
+/* 		++shift; */
+/* 		if(col % cmd_info->term_width == 0 || cmd_info->cmd_buf[pos] == '\n') */
+/* 			cmd_move_down(); */
+/* 		if (tputs(cap_del, 1, tputc) < 0) */
+/* 			err_exit("Error tputs"); */
+/* 		if (cmd_info->cmd_buf[pos] == '\n') */
+/* 		{ */
+/* 			delete_chev(cap_del); */
+/* 			col = 1; */
+/* 		} */
+/* 		++pos; */
+/* 		++col; */
+/* 	} */
+/* 	return (shift); */
+/* } */
+
+/* static int	print_characters(t_cmd_info *cmd_info) */
+/* { */
+/* 	int		pos; */
+/* 	int		col; */
+/* 	int		shift; */
+
+/* 	col = cmd_info->cur_col; */
+/* 	pos = cmd_info->buf_pos; */
+/* 	shift = 0; */
+/* 	while (cmd_info->cmd_buf[pos] != 0) */
+/* 	{ */
+/* 		if (cmd_info->cmd_buf[pos] !=  '\n') */
+/* 			write(1, cmd_info->cmd_buf + pos, 1); */
+/* 		else */
+/* 			{ */
+/* 			if (col % cmd_info->term_width == 0) */
+/* 				cmd_move_down(); */
+/* 			write(1, "\n> ", 3); */
+/* 			col = 1; */
+/* 		} */
+/* 		++pos; */
+/* 		++col; */
+/* 		++shift; */
+/* 	} */
+/* 	return (shift); */
+/* } */
+
+static int	delete_characters(t_cmd_info *cmd_info)
 {
 	int		pos;
+	int		col;
 	char	*cap_del;
+	int		shift;
 
 	if ((cap_del = tgetstr("dc", NULL)) == NULL)
 		err_exit("Error tgetstr");
 	pos = cmd_info->buf_pos;
+	col = cmd_info->cur_col;
+	shift = 0;
 	while (cmd_info->cmd_buf[pos] != '\0')
 	{
+		if (((col + 1) % cmd_info->term_width == 0 && cmd_info->cmd_buf[pos + 1] != '\0') || cmd_info->cmd_buf[pos] == '\n')
+		{
+			cmd_move_down();
+			++shift;
+		}
 		if (tputs(cap_del, 1, tputc) < 0)
 			err_exit("Error tputs");
-		if (cmd_info->cmd_buf[pos] == '\n')
-			delete_chev(cap_del);
-		++pos;
+		if (cmd_info->cmd_buf[pos++] == '\n')
+			col = delete_chev(cap_del);
 	}
+	return (shift);
 }
 
-static void	print_characters(t_cmd_info *cmd_info)
+static int	print_characters(t_cmd_info *cmd_info)
 {
 	int		pos;
+	int		col;
+	int		shift;
 
+	col = cmd_info->cur_col;
 	pos = cmd_info->buf_pos;
+	shift = 0;
 	while (cmd_info->cmd_buf[pos] != 0)
 	{
-		if (cmd_info->cmd_buf[pos] !=  '\n')
-			write(1, cmd_info->cmd_buf + pos, 1);
+		if (cmd_info->cmd_buf[pos++] !=  '\n'){
+			write(1, cmd_info->cmd_buf + pos - 1, 1); 
+			if ((++col) % cmd_info->term_width == 0
+				&& cmd_info->cmd_buf[pos] != '\0')
+				++shift;
+		}
 		else
+		{
+			if (col % cmd_info->term_width == 0)
+				cmd_move_down();
 			write(1, "\n> ", 3);
-		++pos;
+			col = 2;
+			++shift;
+		}
 	}
+	return (shift);
 }
 
+/* void		cmd_print_characters(t_cmd_info *cmd_info) */
+/* { */
+/* 	char	*cap_save; */
+/* 	char	*cap_restore; */
+
+/* 	if ((cap_save = tgetstr("sc", NULL)) == NULL) */
+/* 		err_exit("Error tgetstr"); */
+/* 	if (tputs(cap_save, 1, tputc) < 0) */
+/* 		err_exit("Error tputs"); */
+/* 	delete_characters(cmd_info); */
+/* 	if ((cap_restore = tgetstr("rc", NULL)) == NULL) */
+/* 		err_exit("Error tgetstr"); */
+/* 	if (tputs(cap_restore, 1, tputc) < 0) */
+/* 		err_exit("Error tputs"); */
+/* 	if (tputs(cap_save, 1, tputc) < 0) */
+/* 		err_exit("Error tputs"); */
+/* 	print_characters(cmd_info); */
+/* 	if (tputs(cap_restore, 1, tputc) < 0) */
+/* 		err_exit("Error tputs"); */
+
+/* } */
+
+static void	restore(int shift, int cur_col)
+{
+	char	*cap;
+
+	if ((cap = tgetstr("up", NULL)) == NULL)
+		err_exit("Error tgetstr");
+	while (shift-- > 0)
+		if(tputs(cap, 1, tputc) < 0)
+			err_exit("Error tputs");
+	if ((cap = tgetstr("cr", NULL)) == NULL)
+		err_exit("Error tgetstr");
+	if(tputs(cap, 1, tputc) < 0)
+		err_exit("Error tputs");
+	if ((cap = tgetstr("nd", NULL)) == NULL)
+		err_exit("Error tgetstr");
+	while (cur_col--)
+		if(tputs(cap, 1, tputc) < 0)
+			err_exit("Error tputs");
+}
+#include "libft.h"
 void		cmd_print_characters(t_cmd_info *cmd_info)
 {
-	char	*cap_save;
-	char	*cap_restore;
+	int		shift;
+	int		cur_col;
 
-	if ((cap_save = tgetstr("sc", NULL)) == NULL)
-		err_exit("Error tgetstr");
-	if (tputs(cap_save, 1, tputc) < 0)
-		err_exit("Error tputs");
-	delete_characters(cmd_info);
-	if ((cap_restore = tgetstr("rc", NULL)) == NULL)
-		err_exit("Error tgetstr");
-	if (tputs(cap_restore, 1, tputc) < 0)
-		err_exit("Error tputs");
-	if (tputs(cap_save, 1, tputc) < 0)
-		err_exit("Error tputs");
-	print_characters(cmd_info);
-	if (tputs(cap_restore, 1, tputc) < 0)
-		err_exit("Error tputs");
-	
+	cur_col = cmd_info->cur_col % cmd_info->term_width;
+	shift = delete_characters(cmd_info);
+	restore(shift, cur_col);
+	shift = print_characters(cmd_info);
+//	if (shift > 0)
+//		ft_printf("shift = %d\n", shift);
+	restore(shift, cur_col);
 }

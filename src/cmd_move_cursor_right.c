@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 19:33:27 by gmordele          #+#    #+#             */
-/*   Updated: 2017/07/20 19:16:17 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/05 00:30:47 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,6 @@ static void	move_next_line(void)
 		err_exit("Error tputs");
 }
 
-static void	move_down(void)
-{
-	char *cap;
-
-	if ((cap = tgetstr("do", NULL)) == NULL)
-		err_exit("Error tgetstr");
-	if (tputs(cap, 1, tputc) < 0)
-		err_exit("Error tputs");
-	if ((cap = tgetstr("cr", NULL)) == NULL)
-		err_exit("Error tgetstr");
-	if (tputs(cap, 1, tputc) < 0)
-		err_exit("Error tputs");
-
-}
-
 void		cmd_move_cursor_right(t_cmd_info *cmd_info)
 {
 	char	*cap;
@@ -59,7 +44,7 @@ void		cmd_move_cursor_right(t_cmd_info *cmd_info)
 	}
 	else if ((cmd_info->cur_col + 1) % cmd_info->term_width == 0)
 	{
-		move_down();
+		cmd_move_down();
 		++(cmd_info->cur_col);
 	}
 	else
