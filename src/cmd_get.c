@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 15:39:54 by gmordele          #+#    #+#             */
-/*   Updated: 2017/10/29 22:37:25 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/06 01:23:33 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void		cmd_get(char *cmd_buf, int prompt_len, int options)
 	{
 		if ((n = read(0, read_buf, READBUFSIZE)) <= 0)
 			err_exit("Error read");
-		key = pressed_key(n, read_buf);
+		key = cmd_pressed_key(n, read_buf);
 		cmd_handle_key(&cmd_info, key);
 	}
 }

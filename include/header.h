@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/04 04:02:29 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/06 03:48:28 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,9 @@ void			print_keys(void);
 int				tputc(int c);
 void			normal_exit(void);
 void			init_signals(void);
-int				pressed_key(int n, char *read_buf);
+int				cmd_pressed_key(int n, char *read_buf);
 void			cmd_move_cursor_right(t_cmd_info *cmd_info);
 void			cmd_move_cursor_left(t_cmd_info *cmd_info);
-//void			enter_insert(void);
-//int				exit_insert(void);
 void			cmd_get(char *cmd_buf, int prompt_len, int options);
 int				env_lst_remove(t_env_lst **head, char *name);
 void			env_lst_add(t_env_lst **head, char *name, char *value);
@@ -111,7 +109,6 @@ void			cmd_insert_char(t_cmd_info *cmd_info, char c);
 void			cmd_handle_key_backspace(t_cmd_info *cmd_info);
 void			cmd_remove_char(t_cmd_info *cmd_info);
 int				cmd_prev_line_len(t_cmd_info *cmd_info);
-int				cmd_next_line_len(t_cmd_info *cmd_info);
 void			cmd_move_cursor_end(t_cmd_info *cmd_info);
 int				cmd_print_line(char *s);
 void			cmd_move_prev_line(t_cmd_info *cmd_info);

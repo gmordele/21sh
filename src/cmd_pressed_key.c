@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pressed_key.c                                      :+:      :+:    :+:   */
+/*   cmd_pressed_key.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 11:55:17 by gmordele          #+#    #+#             */
-/*   Updated: 2017/10/29 22:42:38 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/06 01:24:34 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static int	n_6(char *read_buf)
 	return (0);
 }
 
-int			pressed_key(int n, char *read_buf)
+int			cmd_pressed_key(int n, char *read_buf)
 {
 	if (n == 1)
 		return (n_1(read_buf));

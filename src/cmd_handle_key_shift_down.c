@@ -6,79 +6,47 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 18:19:35 by gmordele          #+#    #+#             */
-/*   Updated: 2017/07/19 20:05:18 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/06 03:45:42 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <term.h>
-#include <stdlib.h>
 #include "header.h"
 
-static void	new_buf_pos(t_cmd_info *cmd_info, int add_pos)
+static int	is_last_line(t_cmd_info *cmd_info)
 {
-	while (cmd_info->cmd_buf[cmd_info->buf_pos] != '\n')
-		++(cmd_info->buf_pos);
-	cmd_info->buf_pos += add_pos;
-}
+	int		pos;
 
-static void	down_same_col(t_cmd_info *cmd_info)
-{
-	char	*cap;
-	int		col;
-
-	if ((cap = tgetstr("do", NULL)) == NULL)
-		err_exit("Error tgetstr");
-	if (tputs(cap, 1, tputc) < 0)
-		err_exit("Error tputs");
-	if ((cap = tgetstr("nd", NULL)) == NULL)
-		err_exit("Error tgetstr");
-	col = cmd_info->cur_col + 2;
-	if ((cap = tgetstr("nd", NULL)) == NULL)
-		err_exit("Error tgetstr");
-	while (col-- > 0)
-		if (tputs(cap, 1, tputc) < 0)
-			err_exit("Error tputs");
-}
-
-static void	down_col(int next_col)
-{
-	char	*cap;
-	int		col;
-
-	if ((cap = tgetstr("do", NULL)) == NULL)
-		err_exit("Error tgetstr");
-	if (tputs(cap, 1, tputc) < 0)
-		err_exit("Error tputs");
-	if ((cap = tgetstr("nd", NULL)) == NULL)
-		err_exit("Error tgetstr");
-	col = next_col + 2;
-	if ((cap = tgetstr("nd", NULL)) == NULL)
-		err_exit("Error tgetstr");
-	while (col-- > 0)
-		if (tputs(cap, 1, tputc) < 0)
-			err_exit("Error tputs");
+	pos = cmd_info->buf_pos;
+	while (cmd_info->cmd_buf[pos] != '\0')
+	{
+		if (cmd_info->cmd_buf[pos] == '\n')
+			return (1);
+		++pos;
+	}
+	return (0);
 }
 
 void		cmd_handle_key_shift_down(t_cmd_info *cmd_info)
 {
-	int		next_line_len;
+	int		col;
 
-	next_line_len = cmd_next_line_len(cmd_info);
-	if (next_line_len < 0)
-	{
-		cmd_move_cursor_end(cmd_info);
+	if (!is_last_line(cmd_info))
 		return ;
-	}
-	if (cmd_info->cur_col <= next_line_len)
+	col = cmd_info->cur_col;
+	col -= (cmd_info->cur_line) == 0 ? cmd_info->prompt_len : 2;
+	while (cmd_info->cmd_buf[cmd_info->buf_pos] != '\n')
 	{
-		down_same_col(cmd_info);
-		new_buf_pos(cmd_info, cmd_info->cur_col + 1);
+		cmd_move_cursor_right(cmd_info);
+		++(cmd_info->buf_pos);
 	}
-	else
+	
+	cmd_move_cursor_right(cmd_info);
+	++(cmd_info->buf_pos);
+
+	while (col-- > 0 && cmd_info->cmd_buf[cmd_info->buf_pos] != '\n'
+		   && cmd_info->cmd_buf[cmd_info->buf_pos] != '\0')
 	{
-		down_col(next_line_len);
-		new_buf_pos(cmd_info, next_line_len + 1);
-		cmd_info->cur_col = next_line_len;
+		cmd_move_cursor_right(cmd_info);
+		++(cmd_info->buf_pos);		
 	}
-	++(cmd_info->cur_line);
 }
