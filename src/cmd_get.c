@@ -33,12 +33,16 @@ static void	init_cmd(t_cmd_info *cmd_info, int prompt_len, char *cmd_buf,
 
 static void	cmd_handle_key2(t_cmd_info *cmd_info, int key)
 {
-	if (key == KEY_END || key == KEY_CTRL_E)
+	if (key == KEY_END)
 		cmd_move_cursor_end(cmd_info);
-	if (key == KEY_CTRL_SPACE)
+	else if (key == KEY_CTRL_SPACE)
 		cmd_handle_key_ctrl_space(cmd_info);
-	if (key == KEY_CTRL_X)
+	else if (key == KEY_CTRL_X)
 		cmd_handle_key_ctrl_x(cmd_info);
+	else if (key == KEY_CTRL_A)
+		cmd_handle_key_ctrl_a(cmd_info);
+	else if (key == KEY_CTRL_E)
+		cmd_handle_key_ctrl_e(cmd_info);
 }
 
 static void	cmd_handle_key(t_cmd_info *cmd_info, int key)
@@ -63,7 +67,7 @@ static void	cmd_handle_key(t_cmd_info *cmd_info, int key)
 		cmd_handle_key_shift_left(cmd_info);
 	else if (key == KEY_SHIFT_RIGHT)
 		cmd_handle_key_shift_right(cmd_info);
-	else if (key == KEY_HOME || key == KEY_CTRL_A)
+	else if (key == KEY_HOME)
 		cmd_move_cursor_begin(cmd_info);
 	else
 		cmd_handle_key2(cmd_info, key);

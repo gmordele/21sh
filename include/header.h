@@ -134,6 +134,7 @@ int				cmd_pressed_key_n_1(char *read_buf);
 int				cmd_pressed_key_n_3(char *read_buf);
 int				cmd_pressed_key_n_4(char *read_buf);
 int				cmd_pressed_key_n_6(char *read_buf);
-
+void			cmd_handle_key_ctrl_a(t_cmd_info *cmd_info);
+void			cmd_handle_key_ctrl_e(t_cmd_info *cmd_info);
 
 #endif

@@ -31,7 +31,8 @@ SRC				=	main.c				 			init_term.c							sta_term_info.c				\
 					cmd_handle_key_ctrl_space.c		cmd_handle_key_ctrl_x.c				cmd_get_term_width.c		\
 					cmd_handle_key_left.c			cmd_handle_key_right.c				cmd_print_characters.c		\
 					cmd_move_down.c					cmd_show_hide_cursor.c				cmd_delete_characters.c		\
-					cmd_handle_key_shift_down.c		cmd_pressed_key_n.c
+					cmd_handle_key_shift_down.c		cmd_pressed_key_n.c					cmd_handle_key_ctrl_a.c		\
+					cmd_handle_key_ctrl_e.c
 
 OBJ				=	$(addprefix $(DEST_OBJ), $(SRC:%.c=%.o))
 
