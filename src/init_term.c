@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/10 16:00:52 by gmordele          #+#    #+#             */
-/*   Updated: 2017/07/18 16:55:21 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/06 23:21:58 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void		init_termios(void)
 	buf.c_lflag &= ~(ECHO | ICANON);
 	buf.c_cc[VMIN] = 1;
 	buf.c_cc[VTIME] = 0;
+	buf.c_cc[VDSUSP] = _POSIX_VDISABLE;
 	if (tcsetattr(0, TCSANOW, &buf) < 0)
 		err_exit("Error tcsetattr");
 	tcgetattr(0, &buf);

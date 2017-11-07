@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 15:39:54 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/06 01:23:33 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/07 00:41:24 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	init_cmd(t_cmd_info *cmd_info, int prompt_len, char *cmd_buf,
 	cmd_info->buf_pos = 0;
 	cmd_info->nchar_buf = 0;
 	cmd_info->term_width = cmd_get_term_width();
-	cmd_info->clipboard = 0;
+	cmd_info->in_clipboard = 0;
 }
 
 static void	cmd_handle_key2(t_cmd_info *cmd_info, int key)

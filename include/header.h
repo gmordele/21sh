@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/06 03:48:28 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/07 00:45:04 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ typedef struct	s_cmd_info
 	char			*cmd_buf;
 	int				nchar_buf;
 	unsigned short	term_width;
-	int				clipboard;
+	int				in_clipboard;
+	char			*clip_buf;
 	int				clip1;
 	int				clip2;
 }				t_cmd_info;
@@ -135,5 +136,7 @@ int				cmd_pressed_key_n_4(char *read_buf);
 int				cmd_pressed_key_n_6(char *read_buf);
 void			cmd_handle_key_ctrl_a(t_cmd_info *cmd_info);
 void			cmd_handle_key_ctrl_e(t_cmd_info *cmd_info);
+void			cmd_enter_clipboard(t_cmd_info *cmd_info);
+void			cmd_exit_clipboard(t_cmd_info *cmd_info);
 
 #endif

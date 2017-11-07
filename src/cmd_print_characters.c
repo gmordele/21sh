@@ -60,6 +60,8 @@ void		cmd_print_characters(t_cmd_info *cmd_info)
 	int		cur_col;
 
 	cur_col = cmd_info->cur_col % cmd_info->term_width;
+	cmd_hide_cursor();
 	shift = print_characters(cmd_info);
 	restore(shift, cur_col);
+	cmd_show_cursor();
 }

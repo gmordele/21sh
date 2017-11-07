@@ -6,7 +6,7 @@
 #    By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/17 00:00:01 by gmordele          #+#    #+#              #
-#    Updated: 2017/11/06 03:49:06 by gmordele         ###   ########.fr        #
+#    Updated: 2017/11/06 23:55:52 by gmordele         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -32,7 +32,7 @@ SRC				=	main.c				 			init_term.c							sta_term_info.c				\
 					cmd_handle_key_left.c			cmd_handle_key_right.c				cmd_print_characters.c		\
 					cmd_move_down.c					cmd_show_hide_cursor.c				cmd_delete_characters.c		\
 					cmd_handle_key_shift_down.c		cmd_pressed_key_n.c					cmd_handle_key_ctrl_a.c		\
-					cmd_handle_key_ctrl_e.c
+					cmd_handle_key_ctrl_e.c			cmd_enter_exit_clipboard.c
 
 OBJ				=	$(addprefix $(DEST_OBJ), $(SRC:%.c=%.o))
 

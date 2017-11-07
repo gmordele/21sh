@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 21:06:48 by gmordele          #+#    #+#             */
-/*   Updated: 2017/07/18 16:50:35 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/06 23:03:43 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	cmd_insert_char(t_cmd_info *cmd_info, char c)
 	{
 		cmd_info->cmd_buf[cmd_info->buf_pos] = c;
 		cmd_info->cmd_buf[cmd_info->buf_pos + 1] = '\0';
+		++(cmd_info->nchar_buf);
 		return ;
 	}
 	pos = cmd_info->buf_pos + 1;
@@ -35,4 +36,5 @@ void	cmd_insert_char(t_cmd_info *cmd_info, char c)
 	cmd_info->cmd_buf[pos] = tmp1;
 	cmd_info->cmd_buf[pos + 1] = '\0';
 	cmd_info->cmd_buf[cmd_info->buf_pos] = c;
+	++(cmd_info->nchar_buf);
 }
