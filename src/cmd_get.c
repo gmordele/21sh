@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 15:39:54 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/07 18:50:31 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/07 19:11:22 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ static void	cmd_handle_key2(t_cmd_info *cmd_info, int key)
 		cmd_handle_key_alt_w(cmd_info);
 	else if (key == KEY_CTRL_Y)
 		cmd_handle_key_ctrl_y(cmd_info);
+	else if (key == KEY_CTRL_W)
+		cmd_handle_key_ctrl_w(cmd_info);
 }
 
 static void	cmd_handle_key(t_cmd_info *cmd_info, int key)

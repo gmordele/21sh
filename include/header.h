@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/07 18:07:31 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/07 19:55:55 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@
 # define KEY_CTRL_G			25
 # define KEY_ALT_W			26
 # define KEY_CTRL_Y			27
+# define KEY_CTRL_W			28
 
 typedef struct	s_term_info
 {
@@ -146,5 +147,7 @@ void			cmd_handle_key_alt_w(t_cmd_info *cmd_info);
 void			cmd_copy_clipboard(t_cmd_info *cmd_info);
 void			cmd_handle_key_ctrl_y(t_cmd_info *cmd_info);
 void			cmd_insert_n_char(t_cmd_info *cmd_info, char *src, int n);
+void			cmd_handle_key_ctrl_w(t_cmd_info *cmd_info);
+void			cmd_remove_n_char(t_cmd_info *cmd_info, int n);
 
 #endif
