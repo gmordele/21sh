@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/07 16:12:13 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/07 18:07:31 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@
 # define KEY_CTRL_SPACE		23
 # define KEY_CTRL_X			24
 # define KEY_CTRL_G			25
+# define KEY_ALT_W			26
+# define KEY_CTRL_Y			27
 
 typedef struct	s_term_info
 {
@@ -64,9 +66,9 @@ typedef struct	s_cmd_info
 	int				nchar_buf;
 	unsigned short	term_width;
 	int				in_clipboard;
-	char			*clip_buf;
 	int				clip1;
 	int				clip2;
+	char			clip_buf[CMDBUFSIZE];
 }				t_cmd_info;
 
 typedef struct	s_cmd
@@ -140,5 +142,9 @@ void			cmd_handle_key_ctrl_e(t_cmd_info *cmd_info);
 void			cmd_enter_clipboard(t_cmd_info *cmd_info);
 void			cmd_exit_clipboard(t_cmd_info *cmd_info);
 void			cmd_handle_key_ctrl_g(t_cmd_info *cmd_info);
+void			cmd_handle_key_alt_w(t_cmd_info *cmd_info);
+void			cmd_copy_clipboard(t_cmd_info *cmd_info);
+void			cmd_handle_key_ctrl_y(t_cmd_info *cmd_info);
+void			cmd_insert_n_char(t_cmd_info *cmd_info, char *src, int n);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 22:34:15 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/07 16:45:52 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/07 17:28:29 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ static void	print_cmd_debug(t_cmd_info *cmd_info, int fd)
 	ft_dprintf(fd, "in_clipboard = %d\n", cmd_info->in_clipboard);
 	ft_dprintf(fd, "clip1 = %d\nclip2 = %d\n", cmd_info->clip1,
 			cmd_info->clip2);
+	ft_dprintf(fd, "clip_buf = '%s'\n", cmd_info->clip_buf);
 	ft_dprintf(fd, "\n\n");
 	ft_dprintf(fd, "----\n");
 	print_buf(cmd_info, fd);

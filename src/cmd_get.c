@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 15:39:54 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/07 16:11:12 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/07 18:50:31 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 static void	init_cmd(t_cmd_info *cmd_info, int prompt_len, char *cmd_buf,
 					int options)
 {
+	static int start = 1;
+
 	cmd_info->options = options;
 	ft_memset(cmd_buf, 0, CMDBUFSIZE);
 	cmd_info->cmd_buf = cmd_buf;
@@ -29,6 +31,11 @@ static void	init_cmd(t_cmd_info *cmd_info, int prompt_len, char *cmd_buf,
 	cmd_info->nchar_buf = 0;
 	cmd_info->term_width = cmd_get_term_width();
 	cmd_info->in_clipboard = 0;
+	if (start == 1)
+	{
+		start = 2;
+		ft_memset(cmd_info->clip_buf, 0, CMDBUFSIZE);
+	}
 }
 
 static void	cmd_handle_key2(t_cmd_info *cmd_info, int key)
@@ -45,6 +52,10 @@ static void	cmd_handle_key2(t_cmd_info *cmd_info, int key)
 		cmd_handle_key_ctrl_e(cmd_info);
 	else if (key == KEY_CTRL_G)
 		cmd_handle_key_ctrl_g(cmd_info);
+	else if (key == KEY_ALT_W)
+		cmd_handle_key_alt_w(cmd_info);
+	else if (key == KEY_CTRL_Y)
+		cmd_handle_key_ctrl_y(cmd_info);
 }
 
 static void	cmd_handle_key(t_cmd_info *cmd_info, int key)

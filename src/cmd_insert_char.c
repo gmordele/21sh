@@ -6,11 +6,28 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 21:06:48 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/06 23:03:43 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/07 18:53:58 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+#include "libft.h"
+
+void	cmd_insert_n_char(t_cmd_info *cmd_info, char *src, int n)
+{
+	if (cmd_info->cmd_buf[cmd_info->buf_pos] == '\0')
+	{
+		ft_strncpy(cmd_info->cmd_buf + cmd_info->buf_pos, src, n);
+		cmd_info->cmd_buf[cmd_info->buf_pos + n] = '\0';
+		cmd_info->nchar_buf += n;
+		return ;
+	}
+	ft_memmove(cmd_info->cmd_buf + cmd_info->buf_pos + n
+			, cmd_info->cmd_buf + cmd_info->buf_pos
+			, cmd_info->nchar_buf - cmd_info->buf_pos + 1);
+	ft_strncpy(cmd_info->cmd_buf + cmd_info->buf_pos, src, n);
+	cmd_info->nchar_buf += n;
+}
 
 void	cmd_insert_char(t_cmd_info *cmd_info, char c)
 {
