@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 20:38:37 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/07 00:19:11 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/07 17:06:02 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void		cmd_handle_key_char(t_cmd_info *cmd_info, int c)
 {
 	char	*cap;
 
+	if (cmd_info->in_clipboard)
+		cmd_exit_clipboard(cmd_info);
 	if (cmd_info->nchar_buf < CMDBUFSIZE - 1)
 	{
 		cmd_delete_characters(cmd_info);

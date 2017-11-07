@@ -1,7 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cmd_pressed_key_n.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/11/07 16:09:16 by gmordele          #+#    #+#             */
+/*   Updated: 2017/11/07 16:10:28 by gmordele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "header.h"
 #include "libft.h"
 
-int	cmd_pressed_key_n_1(char *read_buf)
+static int cmd_pressed_key_n_1_(char *read_buf)
+{
+	if (read_buf[0] == 7)
+		return (KEY_CTRL_G);
+	return (0);
+}
+
+int			cmd_pressed_key_n_1(char *read_buf)
 {
 	if (ft_isprint(read_buf[0]))
 		return (read_buf[0]);
@@ -27,10 +46,10 @@ int	cmd_pressed_key_n_1(char *read_buf)
 		return (KEY_ESCAPE);
 	if (read_buf[0] == 24)
 		return (KEY_CTRL_X);
-	return (0);
+	return cmd_pressed_key_n_1_(read_buf);
 }
 
-int	cmd_pressed_key_n_3(char *read_buf)
+int			cmd_pressed_key_n_3(char *read_buf)
 {
 	if (read_buf[0] == 27 && read_buf[1] == 91)
 	{
@@ -50,7 +69,7 @@ int	cmd_pressed_key_n_3(char *read_buf)
 	return (0);
 }
 
-int	cmd_pressed_key_n_4(char *read_buf)
+int			cmd_pressed_key_n_4(char *read_buf)
 {
 	if (read_buf[0] == 27 && read_buf[1] == 91 && read_buf[2] == 51
 		&& read_buf[3] == 126)
@@ -58,7 +77,7 @@ int	cmd_pressed_key_n_4(char *read_buf)
 	return (0);
 }
 
-int	cmd_pressed_key_n_6(char *read_buf)
+int			cmd_pressed_key_n_6(char *read_buf)
 {
 	if (read_buf[0] == 27 && read_buf[1] == 91 && read_buf[2] == 49
 		&& read_buf[3] == 59 && read_buf[4] == 50)

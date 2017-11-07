@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 22:34:15 by gmordele          #+#    #+#             */
-/*   Updated: 2017/10/30 00:48:48 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/07 16:45:52 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,9 @@ static void	print_cmd_debug(t_cmd_info *cmd_info, int fd)
 	ft_dprintf(fd, "term_width = %u\n", cmd_info->term_width);
 	ft_dprintf(fd, "cur_line = %d\n", cmd_info->cur_line);
 	ft_dprintf(fd, "cur_col = %d\n", cmd_info->cur_col);
+	ft_dprintf(fd, "in_clipboard = %d\n", cmd_info->in_clipboard);
+	ft_dprintf(fd, "clip1 = %d\nclip2 = %d\n", cmd_info->clip1,
+			cmd_info->clip2);
 	ft_dprintf(fd, "\n\n");
 	ft_dprintf(fd, "----\n");
 	print_buf(cmd_info, fd);

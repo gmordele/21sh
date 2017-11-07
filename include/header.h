@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/07 00:45:04 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/07 16:12:13 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@
 # define KEY_CTRL_E			22
 # define KEY_CTRL_SPACE		23
 # define KEY_CTRL_X			24
+# define KEY_CTRL_G			25
 
 typedef struct	s_term_info
 {
@@ -138,5 +139,6 @@ void			cmd_handle_key_ctrl_a(t_cmd_info *cmd_info);
 void			cmd_handle_key_ctrl_e(t_cmd_info *cmd_info);
 void			cmd_enter_clipboard(t_cmd_info *cmd_info);
 void			cmd_exit_clipboard(t_cmd_info *cmd_info);
+void			cmd_handle_key_ctrl_g(t_cmd_info *cmd_info);
 
 #endif
