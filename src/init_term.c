@@ -31,7 +31,9 @@ void		init_termios(void)
 	buf.c_lflag &= ~(ECHO | ICANON);
 	buf.c_cc[VMIN] = 1;
 	buf.c_cc[VTIME] = 0;
+#ifndef linux
 	buf.c_cc[VDSUSP] = _POSIX_VDISABLE;
+#endif
 	if (tcsetattr(0, TCSANOW, &buf) < 0)
 		err_exit("Error tcsetattr");
 	tcgetattr(0, &buf);

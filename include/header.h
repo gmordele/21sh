@@ -72,10 +72,12 @@ typedef struct	s_cmd_info
 	char			clip_buf[CMDBUFSIZE];
 }				t_cmd_info;
 
-typedef struct	s_cmd
+typedef struct	s_hist_lst
 {
-	int truc;
-}				t_cmd;
+	char				cmd_buf[CMDBUFSIZE];
+	struct s_hist_lst	*next;
+	struct s_hist_lst	*last;
+}				t_hist_lst;
 
 typedef struct	s_env_lst
 {
