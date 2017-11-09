@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:05:04 by gmordele          #+#    #+#             */
-/*   Updated: 2017/10/29 22:37:52 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/08 19:49:21 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int			main(int argc, char *argv[])
 	env_lst_get();
 	init_termcap();
 	init_termios();
+	hist_lst_init();
 //	init_signals();
 	if (options & OPT_KEYS)
 		print_keys();

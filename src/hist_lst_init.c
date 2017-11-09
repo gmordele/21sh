@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_termcap.c                                     :+:      :+:    :+:   */
+/*   hist_lst_init.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/10 19:24:43 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/08 20:02:46 by gmordele         ###   ########.fr       */
+/*   Created: 2017/11/08 19:08:56 by gmordele          #+#    #+#             */
+/*   Updated: 2017/11/09 04:17:29 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <term.h>
+#include <stdlib.h>
 #include "header.h"
+#include "libft.h"
 
-void	init_termcap(void)
+void	hist_lst_init(void)
 {
-	char	*term_type;
+	static t_hist_lst	*head = NULL;
 
-	if ((term_type = env_lst_get_value("TERM")) == NULL)
-		err_exit("Error env_lst_get_value");
-	if (tgetent(NULL, term_type) <= 0)
-		err_exit("Error tgetent");
+	hist_lst_sta(&head);
+	hist_lst_get();
 }

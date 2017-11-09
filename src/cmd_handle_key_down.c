@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   normal_exit.c                                      :+:      :+:    :+:   */
+/*   cmd_handle_key_down.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/11 10:53:43 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/09 03:05:11 by gmordele         ###   ########.fr       */
+/*   Created: 2017/11/09 02:20:37 by gmordele          #+#    #+#             */
+/*   Updated: 2017/11/09 02:30:09 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "header.h"
 
-void	normal_exit(void)
+void		cmd_handle_key_down(t_cmd_info *cmd_info)
 {
-	env_lst_free();
-	hist_lst_save();
-	hist_lst_free();
-	restore_term();
-	exit(EXIT_SUCCESS);
+	if (cmd_info->hist_lst == NULL || cmd_info->in_main_buf == 1)
+		return ;
+	if (cmd_info->hist_lst->next != NULL)
+	{
+		cmd_change_buf(cmd_info,
+					cmd_info->hist_lst->next->cmd, cmd_info->hist_lst->cmd);
+		cmd_info->hist_lst = cmd_info->hist_lst->next;
+	}
+	else
+	{
+		cmd_change_buf(cmd_info, cmd_info->main_buf, cmd_info->hist_lst->cmd);
+		cmd_info->in_main_buf = 1;
+	}
 }

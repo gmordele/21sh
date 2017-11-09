@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/07 19:55:55 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/09 04:16:30 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 
 # define CMDBUFSIZE			1024
 # define READBUFSIZE		16
+# define HISTMAX			100
+# define HISTRDBUFSIZE		1024
 
 # define KEY_UP				1
 # define KEY_DOWN			2
@@ -47,12 +49,22 @@
 # define KEY_ALT_W			26
 # define KEY_CTRL_Y			27
 # define KEY_CTRL_W			28
+# define KEY_CTRL_P			29
+# define KEY_CTRL_N			30
 
 typedef struct	s_term_info
 {
 	struct termios	saved_termios;
 	int				is_saved;
 }				t_term_info;
+
+typedef struct	s_hist_lst
+{
+	char				cmd[CMDBUFSIZE];
+	char				cmd_unchanged[CMDBUFSIZE];
+	struct s_hist_lst	*next;
+	struct s_hist_lst	*prev;
+}				t_hist_lst;
 
 typedef struct	s_cmd_info
 {
@@ -70,14 +82,10 @@ typedef struct	s_cmd_info
 	int				clip1;
 	int				clip2;
 	char			clip_buf[CMDBUFSIZE];
+	t_hist_lst		*hist_lst;
+	int				in_main_buf;
+	char			main_buf[CMDBUFSIZE];
 }				t_cmd_info;
-
-typedef struct	s_hist_lst
-{
-	char				cmd_buf[CMDBUFSIZE];
-	struct s_hist_lst	*next;
-	struct s_hist_lst	*last;
-}				t_hist_lst;
 
 typedef struct	s_env_lst
 {
@@ -151,5 +159,15 @@ void			cmd_handle_key_ctrl_y(t_cmd_info *cmd_info);
 void			cmd_insert_n_char(t_cmd_info *cmd_info, char *src, int n);
 void			cmd_handle_key_ctrl_w(t_cmd_info *cmd_info);
 void			cmd_remove_n_char(t_cmd_info *cmd_info, int n);
+void			hist_lst_free(void);
+t_hist_lst		**hist_lst_sta(t_hist_lst **head_hist);
+void			hist_lst_add(const char *cmd);
+void			hist_lst_init(void);
+void			cmd_handle_key_up(t_cmd_info *cmd_info);
+void			cmd_change_buf(t_cmd_info *cmd_info, char *cpy_buf,
+							char *save_buf);
+void			cmd_handle_key_down(t_cmd_info *cmd_info);
+void			hist_lst_save(void);
+void			hist_lst_get(void);
 
 #endif

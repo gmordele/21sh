@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 16:09:16 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/07 19:10:47 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/08 20:11:49 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,11 @@ static int cmd_pressed_key_n_1_(char *read_buf)
 		return (KEY_CTRL_Y);
 	if (read_buf[0] == 23)
 		return (KEY_CTRL_W);
-	return (-1);
+	if (read_buf[0] == 16)
+		return (KEY_CTRL_P);
+	if (read_buf[0] == 14)
+		return (KEY_CTRL_N);
+	return (0);
 }
 
 int			cmd_pressed_key_n_1(char *read_buf)

@@ -6,11 +6,12 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 20:51:01 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/06 23:01:12 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/09 03:01:05 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include "libft.h"
 #include "header.h"
 
 static void	find_match(char **buf, char c, int *open)
@@ -50,6 +51,15 @@ static int	is_complet(t_cmd_info *cmd_info)
 	return (!open);
 }
 
+static void	return_hist_handle(t_cmd_info *cmd_info)
+{
+	if (cmd_info->cmd_buf[0] != '\0')
+		hist_lst_add(cmd_info->cmd_buf);
+	if (!cmd_info->in_main_buf && cmd_info->hist_lst != NULL)
+		ft_memcpy(cmd_info->hist_lst->cmd, cmd_info->hist_lst->cmd_unchanged,
+			CMDBUFSIZE);
+}
+
 void		cmd_handle_key_return(t_cmd_info *cmd_info)
 {
 	cmd_move_cursor_end(cmd_info);
@@ -57,6 +67,7 @@ void		cmd_handle_key_return(t_cmd_info *cmd_info)
 	if (is_complet(cmd_info))
 	{
 		cmd_info->complet = 1;
+		return_hist_handle(cmd_info);
 		write(1, "\n", 1);
 	}
 	else
