@@ -169,5 +169,9 @@ void			cmd_change_buf(t_cmd_info *cmd_info, char *cpy_buf,
 void			cmd_handle_key_down(t_cmd_info *cmd_info);
 void			hist_lst_save(void);
 void			hist_lst_get(void);
+int				print_prompt(void);
+void			init_cmd(t_cmd_info *cmd_info, int prompt_len, char *cmd_buf,
+					 int options);
+t_cmd_info		*cmd_info_sta(t_cmd_info *cmd_info);
 
 #endif

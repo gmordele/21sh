@@ -16,6 +16,11 @@
 #include "libft.h"
 #include "header.h"
 
+int			print_prompt(void)
+{
+	return (ft_printf("21sh> "));
+}
+
 static void	main_loop(int options)
 {
 	char	cmd_buf[CMDBUFSIZE];
@@ -23,7 +28,7 @@ static void	main_loop(int options)
 
 	while (42)
 	{
-		prompt_len = ft_printf("21sh> ");
+		prompt_len = print_prompt();
 		cmd_get(cmd_buf, prompt_len, options);
 		ft_printf("{MAG}%s{RES}\n", cmd_buf);
 		//to remove
@@ -41,7 +46,7 @@ int			main(int argc, char *argv[])
 	init_termcap();
 	init_termios();
 	hist_lst_init();
-//	init_signals();
+	init_signals();
 	if (options & OPT_KEYS)
 		print_keys();
 	else

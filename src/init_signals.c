@@ -11,12 +11,22 @@
 /* ************************************************************************** */
 
 #include <signal.h>
+#include <unistd.h>
 #include "header.h"
+#include "libft.h"
 
 static void	sigint_handler(int sig)
 {
+	t_cmd_info	*cmd_info;
+	int			prompt_len;
+
 	(void)sig;
-	normal_exit();
+	cmd_info = cmd_info_sta(NULL);
+	if (cmd_info == NULL)
+		err_exit("Error cmd_info_sta");
+	write(1, "^C\n", 3);
+	prompt_len = print_prompt();
+	init_cmd(cmd_info, prompt_len, cmd_info->cmd_buf, cmd_info->options);
 }
 
 void		init_signals(void)
@@ -26,7 +36,7 @@ void		init_signals(void)
 	sig = 1;
 	while (sig <= 31)
 	{
-		if (sig != 9 && sig != 17)
+		if (sig != SIGKILL && sig != SIGSTOP)
 			if (signal(sig, SIG_IGN) == SIG_ERR)
 				err_exit("Error signal");
 		++sig;

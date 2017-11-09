@@ -15,7 +15,7 @@
 #include "header.h"
 #include "libft.h"
 
-static void	init_cmd(t_cmd_info *cmd_info, int prompt_len, char *cmd_buf,
+void		init_cmd(t_cmd_info *cmd_info, int prompt_len, char *cmd_buf,
 					int options)
 {
 	static int start = 1;
@@ -101,7 +101,9 @@ void		cmd_get(char *cmd_buf, int prompt_len, int options)
 	int			key;
 	int			n;
 	t_cmd_info	cmd_info;
+
 	init_cmd(&cmd_info, prompt_len, cmd_buf, options);
+	cmd_info_sta(&cmd_info);
 	while (!cmd_info.complet)
 	{
 		if ((n = read(0, read_buf, READBUFSIZE)) <= 0)

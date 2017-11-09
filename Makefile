@@ -36,7 +36,7 @@ SRC				=	main.c				 			init_term.c							sta_term_info.c				\
 					cmd_handle_key_alt_w.c			cmd_copy_clipboard.c				cmd_handle_key_ctrl_y.c		\
 					cmd_handle_key_ctrl_w.c			hist_lst.c							hist_lst_init.c				\
 					cmd_handle_key_up.c				cmd_change_buf.c					cmd_handle_key_down.c		\
-					hist_lst_save_get.c
+					hist_lst_save_get.c				cmd_info_sta.c
 
 OBJ				=	$(addprefix $(DEST_OBJ), $(SRC:%.c=%.o))
 
