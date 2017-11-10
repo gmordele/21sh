@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/09 22:48:28 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/10 04:00:18 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@
 # define KEY_CTRL_P			29
 # define KEY_CTRL_N			30
 # define KEY_CTRL_L			31
+# define KEY_CTRL_K			200
+# define KEY_CTRL_U			201
 
 typedef struct	s_term_info
 {
@@ -177,5 +179,7 @@ t_cmd_info		*cmd_info_sta(t_cmd_info *cmd_info);
 void			cmd_handle_key_ctrl_l(t_cmd_info *cmd_info);
 void			sigint_handler(int sig);
 void			sigwinch_handler(int sig);
+void			cmd_handle_key_ctrl_k(t_cmd_info *cmd_info);
+void			cmd_handle_key_ctrl_u(t_cmd_info *cmd_info);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 15:39:54 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/09 20:12:13 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/10 04:03:42 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,16 @@ void		init_cmd(t_cmd_info *cmd_info, int prompt_len, char *cmd_buf,
 	ft_memset(cmd_info->main_buf, 0, CMDBUFSIZE);
 }
 
+static void	cmd_handle_key3(t_cmd_info *cmd_info, int key)
+{
+	if (key == KEY_CTRL_L)
+		cmd_handle_key_ctrl_l(cmd_info);
+	else if (key == KEY_CTRL_K)
+		cmd_handle_key_ctrl_k(cmd_info);
+	else if (key == KEY_CTRL_U)
+		cmd_handle_key_ctrl_u(cmd_info);
+}
+
 static void	cmd_handle_key2(t_cmd_info *cmd_info, int key)
 {
 	if (key == KEY_END)
@@ -65,8 +75,8 @@ static void	cmd_handle_key2(t_cmd_info *cmd_info, int key)
 		cmd_handle_key_up(cmd_info);
 	else if (key == KEY_DOWN || key == KEY_CTRL_N)
 		cmd_handle_key_down(cmd_info);
-	else if (key == KEY_CTRL_L)
-		cmd_handle_key_ctrl_l(cmd_info);
+	else
+		cmd_handle_key3(cmd_info, key);
 }
 
 static void	cmd_handle_key(t_cmd_info *cmd_info, int key)
