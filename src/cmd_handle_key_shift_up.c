@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 13:19:28 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/06 03:11:16 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/10 02:15:09 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	prev_line_lenght(t_cmd_info *cmd_info)
 	}
 	--pos;
 	len = 1;
-	while (cmd_info->cmd_buf[pos] != '\n' && pos >= 0)
+	while (pos >= 0 && cmd_info->cmd_buf[pos] != '\n')
 	{
 		++len;
 		--pos;
