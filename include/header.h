@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/09 04:16:30 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/09 22:48:28 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@
 # define KEY_CTRL_W			28
 # define KEY_CTRL_P			29
 # define KEY_CTRL_N			30
+# define KEY_CTRL_L			31
 
 typedef struct	s_term_info
 {
@@ -170,8 +171,11 @@ void			cmd_handle_key_down(t_cmd_info *cmd_info);
 void			hist_lst_save(void);
 void			hist_lst_get(void);
 int				print_prompt(void);
-void			init_cmd(t_cmd_info *cmd_info, int prompt_len, char *cmd_buf,
+void			cmd_info_init(t_cmd_info *cmd_info, int prompt_len, char *cmd_buf,
 					 int options);
 t_cmd_info		*cmd_info_sta(t_cmd_info *cmd_info);
+void			cmd_handle_key_ctrl_l(t_cmd_info *cmd_info);
+void			sigint_handler(int sig);
+void			sigwinch_handler(int sig);
 
 #endif

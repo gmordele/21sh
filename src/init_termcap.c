@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/10 19:24:43 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/08 20:02:46 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/09 20:07:09 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init_termcap(void)
 	char	*term_type;
 
 	if ((term_type = env_lst_get_value("TERM")) == NULL)
-		err_exit("Error env_lst_get_value");
+		term_type = "xterm-256color";
 	if (tgetent(NULL, term_type) <= 0)
 		err_exit("Error tgetent");
 }
