@@ -17,6 +17,8 @@ void	cmd_handle_key_ctrl_u(t_cmd_info *cmd_info)
 	int		pos;
 	int		len;
 
+	(void)pos;
+	(void)len;
 	if (cmd_info->buf_pos == 0 || cmd_info->cmd_buf[cmd_info->buf_pos] == '\n')
 	{}
 }
