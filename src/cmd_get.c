@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 15:39:54 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/10 04:03:42 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/14 18:24:02 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ static void	cmd_handle_key3(t_cmd_info *cmd_info, int key)
 		cmd_handle_key_ctrl_k(cmd_info);
 	else if (key == KEY_CTRL_U)
 		cmd_handle_key_ctrl_u(cmd_info);
+	else if (key == KEY_CTRL_D)
+		cmd_handle_key_ctrl_d(cmd_info);
 }
 
 static void	cmd_handle_key2(t_cmd_info *cmd_info, int key)
@@ -91,7 +93,7 @@ static void	cmd_handle_key(t_cmd_info *cmd_info, int key)
 		cmd_handle_key_left(cmd_info);
 	else if (key == KEY_RIGHT || key == KEY_CTRL_F)
 		cmd_handle_key_right(cmd_info);
-	else if (key == KEY_CTRL_D || key == KEY_DELETE)
+	else if (key == KEY_DELETE)
 		cmd_handle_key_delete(cmd_info);
 	else if (key == KEY_SHIFT_UP)
 		cmd_handle_key_shift_up(cmd_info);

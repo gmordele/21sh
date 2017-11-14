@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/10 04:00:18 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/14 18:20:17 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,5 +181,6 @@ void			sigint_handler(int sig);
 void			sigwinch_handler(int sig);
 void			cmd_handle_key_ctrl_k(t_cmd_info *cmd_info);
 void			cmd_handle_key_ctrl_u(t_cmd_info *cmd_info);
+void			cmd_handle_key_ctrl_d(t_cmd_info *cmd_info);
 
 #endif
