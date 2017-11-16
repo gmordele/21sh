@@ -111,10 +111,10 @@ static void	cmd_handle_key(t_cmd_info *cmd_info, int key)
 
 void		cmd_get(char *cmd_buf, int prompt_len, int options)
 {
-	char		read_buf[READBUFSIZE];
-	int			key;
-	int			n;
-	t_cmd_info	cmd_info;
+	char				read_buf[READBUFSIZE];
+	int					key;
+	int					n;
+	static t_cmd_info	cmd_info;
 
 	cmd_info_init(&cmd_info, prompt_len, cmd_buf, options);
 	cmd_info_sta(&cmd_info);
