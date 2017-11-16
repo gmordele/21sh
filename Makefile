@@ -6,7 +6,7 @@
 #    By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/17 00:00:01 by gmordele          #+#    #+#              #
-#    Updated: 2017/11/16 03:33:25 by gmordele         ###   ########.fr        #
+#    Updated: 2017/11/16 23:23:03 by gmordele         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -25,9 +25,9 @@ SRC				=	main.c				 			init_term.c							sta_term_info.c				\
 					env_lst_get.c					env_lst_get_value.c					env_lst_set_value.c			\
 					env_lst_sta.c					cmd_handle_key_return.c				cmd_insert_char.c			\
 					cmd_move_cursor_right.c			cmd_move_cursor_left.c				cmd_remove_char.c			\
-					cmd_prev_line_len.c				cmd_move_cursor_end.c				cmd_print_line.c			\
-					cmd_move_prev_line.c			cmd_handle_key_delete.c				cmd_handle_key_shift_up.c	\
-					cmd_handle_key_shift_right.c	cmd_move_next_line.c				cmd_move_cursor_begin.c		\
+					cmd_prev_line_len.c				cmd_move_cursor_end.c							\
+								cmd_handle_key_delete.c				cmd_handle_key_shift_up.c	\
+					cmd_handle_key_shift_right.c					cmd_move_cursor_begin.c		\
 					cmd_handle_key_ctrl_space.c		cmd_handle_key_ctrl_x.c				cmd_get_term_width.c		\
 					cmd_handle_key_left.c			cmd_handle_key_right.c				cmd_print_characters.c		\
 					cmd_move_down.c					cmd_show_hide_cursor.c				cmd_delete_characters.c		\
