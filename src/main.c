@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:05:04 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/08 19:49:21 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/16 03:33:01 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int			main(int argc, char *argv[])
 	init_signals();
 	if (options & OPT_KEYS)
 		print_keys();
+	else if (options & OPT_HELP)
+		print_help();
 	else
 		main_loop(options);
 

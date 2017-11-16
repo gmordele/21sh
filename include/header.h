@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/14 18:20:17 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/16 03:33:13 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 # define OPT_KEYS			1
 # define OPT_DEBUG			2
+# define OPT_HELP			4
 
 # define CMDBUFSIZE			1024
 # define READBUFSIZE		16
@@ -182,5 +183,6 @@ void			sigwinch_handler(int sig);
 void			cmd_handle_key_ctrl_k(t_cmd_info *cmd_info);
 void			cmd_handle_key_ctrl_u(t_cmd_info *cmd_info);
 void			cmd_handle_key_ctrl_d(t_cmd_info *cmd_info);
+void			print_help(void);
 
 #endif
