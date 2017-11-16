@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:05:04 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/16 03:33:01 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/16 23:52:04 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,6 @@ static void	main_loop(int options)
 		prompt_len = print_prompt();
 		cmd_get(cmd_buf, prompt_len, options);
 		ft_printf("{MAG}%s{RES}\n", cmd_buf);
-		//to remove
-		if (ft_strcmp("exit", cmd_buf) == 0)
-			normal_exit();
 	}
 }
 
@@ -53,6 +50,5 @@ int			main(int argc, char *argv[])
 		print_help();
 	else
 		main_loop(options);
-
 	normal_exit();
 }

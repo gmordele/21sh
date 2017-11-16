@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 20:51:01 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/09 03:01:05 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/16 23:43:55 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ static void	return_hist_handle(t_cmd_info *cmd_info)
 void		cmd_handle_key_return(t_cmd_info *cmd_info)
 {
 	cmd_move_cursor_end(cmd_info);
-
 	if (is_complet(cmd_info))
 	{
 		cmd_info->complet = 1;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cmd_delete_characters.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/11/16 23:45:47 by gmordele          #+#    #+#             */
+/*   Updated: 2017/11/16 23:46:20 by gmordele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <term.h>
 #include <stdlib.h>
 #include "header.h"
@@ -47,20 +59,20 @@ static void	restore(int shift, int cur_col)
 	if ((cap = tgetstr("up", NULL)) == NULL)
 		err_exit("Error tgetstr");
 	while (shift-- > 0)
-		if(tputs(cap, 1, tputc) < 0)
+		if (tputs(cap, 1, tputc) < 0)
 			err_exit("Error tputs");
 	if ((cap = tgetstr("cr", NULL)) == NULL)
 		err_exit("Error tgetstr");
-	if(tputs(cap, 1, tputc) < 0)
+	if (tputs(cap, 1, tputc) < 0)
 		err_exit("Error tputs");
 	if ((cap = tgetstr("nd", NULL)) == NULL)
 		err_exit("Error tgetstr");
 	while (cur_col--)
-		if(tputs(cap, 1, tputc) < 0)
+		if (tputs(cap, 1, tputc) < 0)
 			err_exit("Error tputs");
 }
 
-void	cmd_delete_characters(t_cmd_info *cmd_info)
+void		cmd_delete_characters(t_cmd_info *cmd_info)
 {
 	int		shift;
 	int		cur_col;

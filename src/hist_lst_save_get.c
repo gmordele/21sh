@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 03:03:53 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/09 04:34:04 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/16 23:27:46 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static t_hist_lst	*get_hist(void)
 	tmp = hist_lst_sta(NULL);
 	if (tmp == NULL)
 		return (NULL);
-	return *tmp;
+	return (*tmp);
 }
 
 void				hist_lst_save(void)
@@ -50,7 +50,7 @@ void				hist_lst_save(void)
 	close(fd);
 }
 
-static void 		get(char *cmd_buf, char *read_buf, int fd, int num)
+static void			get(char *cmd_buf, char *read_buf, int fd, int num)
 {
 	int		i;
 	int		j;

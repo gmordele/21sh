@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 19:33:27 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/07 02:47:18 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/16 23:51:52 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	handle_clipboard(t_cmd_info *cmd_info)
 	{
 		if (cmd_info->clip1 <= cmd_info->clip2)
 			ft_printf("{BG_WHI}{BLA}%c{RES}",
-					  cmd_info->cmd_buf[cmd_info->buf_pos]);
+					cmd_info->cmd_buf[cmd_info->buf_pos]);
 		else
 			write(1, cmd_info->cmd_buf + cmd_info->buf_pos, 1);
 		if ((cap = tgetstr("le", NULL)) == NULL)

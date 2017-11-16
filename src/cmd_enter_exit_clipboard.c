@@ -6,12 +6,13 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 23:55:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/07 17:02:13 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/16 23:48:01 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 #include "libft.h"
+
 void		cmd_enter_clipboard(t_cmd_info *cmd_info)
 {
 	cmd_info->in_clipboard = 1;
@@ -41,7 +42,7 @@ static void	delete_clip2(t_cmd_info *cmd_info)
 	cmd_print_characters(cmd_info);
 }
 
-void 		cmd_exit_clipboard(t_cmd_info *cmd_info)
+void		cmd_exit_clipboard(t_cmd_info *cmd_info)
 {
 	if (!cmd_info->in_clipboard)
 		return ;

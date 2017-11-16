@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 01:15:44 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/10 00:39:38 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/16 23:40:26 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int		cmd_prev_line_len(t_cmd_info *cmd_info)
 {
 	int		pos;
 	int		len;
-
 
 	if (cmd_info->cur_line <= 0)
 		return (-1);

@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/10 16:00:52 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/06 23:21:58 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/16 23:30:06 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static void	save_term(t_term_info *term, struct termios to_save)
 	sta_term_info(term);
 }
 
+#ifndef linux
+
 void		init_termios(void)
 {
 	struct termios		buf;
@@ -31,9 +33,7 @@ void		init_termios(void)
 	buf.c_lflag &= ~(ECHO | ICANON);
 	buf.c_cc[VMIN] = 1;
 	buf.c_cc[VTIME] = 0;
-#ifndef linux
 	buf.c_cc[VDSUSP] = _POSIX_VDISABLE;
-#endif
 	if (tcsetattr(0, TCSANOW, &buf) < 0)
 		err_exit("Error tcsetattr");
 	tcgetattr(0, &buf);
@@ -41,3 +41,26 @@ void		init_termios(void)
 		|| buf.c_cc[VTIME] != 0)
 		err_exit("Error tcgetattr");
 }
+
+#else
+
+void		init_termios(void)
+{
+	struct termios		buf;
+	static t_term_info	term;
+
+	if (tcgetattr(0, &buf) < 0)
+		err_exit("Error tcgetattr");
+	save_term(&term, buf);
+	buf.c_lflag &= ~(ECHO | ICANON);
+	buf.c_cc[VMIN] = 1;
+	buf.c_cc[VTIME] = 0;
+	if (tcsetattr(0, TCSANOW, &buf) < 0)
+		err_exit("Error tcsetattr");
+	tcgetattr(0, &buf);
+	if ((buf.c_lflag & (ECHO | ICANON)) || buf.c_cc[VMIN] != 1
+		|| buf.c_cc[VTIME] != 0)
+		err_exit("Error tcgetattr");
+}
+
+#endif

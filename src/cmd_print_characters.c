@@ -1,9 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cmd_print_characters.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/11/16 23:34:51 by gmordele          #+#    #+#             */
+/*   Updated: 2017/11/16 23:37:57 by gmordele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <term.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include "header.h"
-
-
 
 static int	print_characters(t_cmd_info *cmd_info)
 {
@@ -15,8 +25,8 @@ static int	print_characters(t_cmd_info *cmd_info)
 	pos = cmd_info->buf_pos;
 	shift = 0;
 	while (cmd_info->cmd_buf[pos] != 0)
-	{
-		if (cmd_info->cmd_buf[pos++] !=  '\n'){
+		if (cmd_info->cmd_buf[pos++] != '\n')
+		{
 			write(1, cmd_info->cmd_buf + pos - 1, 1);
 			if ((++col) % cmd_info->term_width == 0
 				&& cmd_info->cmd_buf[pos] != '\0')
@@ -30,7 +40,6 @@ static int	print_characters(t_cmd_info *cmd_info)
 			col = 2;
 			++shift;
 		}
-	}
 	return (shift);
 }
 
@@ -41,16 +50,16 @@ static void	restore(int shift, int cur_col)
 	if ((cap = tgetstr("up", NULL)) == NULL)
 		err_exit("Error tgetstr");
 	while (shift-- > 0)
-		if(tputs(cap, 1, tputc) < 0)
+		if (tputs(cap, 1, tputc) < 0)
 			err_exit("Error tputs");
 	if ((cap = tgetstr("cr", NULL)) == NULL)
 		err_exit("Error tgetstr");
-	if(tputs(cap, 1, tputc) < 0)
+	if (tputs(cap, 1, tputc) < 0)
 		err_exit("Error tputs");
 	if ((cap = tgetstr("nd", NULL)) == NULL)
 		err_exit("Error tgetstr");
 	while (cur_col--)
-		if(tputs(cap, 1, tputc) < 0)
+		if (tputs(cap, 1, tputc) < 0)
 			err_exit("Error tputs");
 }
 

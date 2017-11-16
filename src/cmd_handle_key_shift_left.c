@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 23:37:59 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/06 02:29:05 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/16 23:47:18 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ static void	init_skip(t_cmd_info *cmd_info)
 {
 	if (!ft_isspace(cmd_info->cmd_buf[cmd_info->buf_pos])
 		&& cmd_info->buf_pos > 0)
-		{
-			cmd_move_cursor_left(cmd_info);
-			--(cmd_info->buf_pos);
-		}
+	{
+		cmd_move_cursor_left(cmd_info);
+		--(cmd_info->buf_pos);
+	}
 }
 
 void		cmd_handle_key_shift_left(t_cmd_info *cmd_info)

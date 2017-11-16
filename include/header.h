@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/16 23:23:18 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/16 23:26:34 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,8 +171,8 @@ void			cmd_handle_key_down(t_cmd_info *cmd_info);
 void			hist_lst_save(void);
 void			hist_lst_get(void);
 int				print_prompt(void);
-void			cmd_info_init(t_cmd_info *cmd_info, int prompt_len, char *cmd_buf,
-					 int options);
+void			cmd_info_init(t_cmd_info *cmd_info, int prompt_len,
+							char *cmd_buf, int options);
 t_cmd_info		*cmd_info_sta(t_cmd_info *cmd_info);
 void			cmd_handle_key_ctrl_l(t_cmd_info *cmd_info);
 void			sigint_handler(int sig);
