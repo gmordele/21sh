@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/16 23:26:34 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/21 04:03:48 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,5 +181,6 @@ void			cmd_handle_key_ctrl_k(t_cmd_info *cmd_info);
 void			cmd_handle_key_ctrl_u(t_cmd_info *cmd_info);
 void			cmd_handle_key_ctrl_d(t_cmd_info *cmd_info);
 void			print_help(void);
+int				lexer(char *cmd);
 
 #endif

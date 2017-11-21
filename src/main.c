@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:05:04 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/16 23:52:04 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/11/21 04:01:03 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void	main_loop(int options)
 		prompt_len = print_prompt();
 		cmd_get(cmd_buf, prompt_len, options);
 		ft_printf("{MAG}%s{RES}\n", cmd_buf);
+		lexer(cmd_buf);
 	}
 }
 
