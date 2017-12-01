@@ -6,7 +6,7 @@
 #    By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/17 00:00:01 by gmordele          #+#    #+#              #
-#    Updated: 2017/11/21 04:01:45 by gmordele         ###   ########.fr        #
+#    Updated: 2017/12/01 05:20:32 by gmordele         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -14,7 +14,7 @@ NAME			=	21sh
 
 CC				=	gcc
 
-CFLAGS			=	-Wall -Werror -Wextra -fsanitize=address
+CFLAGS			=	-Wall -Werror -Wextra #-fsanitize=address
 
 SRC				=	main.c				 			init_term.c							sta_term_info.c				\
 					err_exit.c						cmd_handle_key_char.c				restore_term.c				\
@@ -25,9 +25,9 @@ SRC				=	main.c				 			init_term.c							sta_term_info.c				\
 					env_lst_get.c					env_lst_get_value.c					env_lst_set_value.c			\
 					env_lst_sta.c					cmd_handle_key_return.c				cmd_insert_char.c			\
 					cmd_move_cursor_right.c			cmd_move_cursor_left.c				cmd_remove_char.c			\
-					cmd_prev_line_len.c				cmd_move_cursor_end.c							\
+					cmd_prev_line_len.c				cmd_move_cursor_end.c				lexer_is_op_char.c			\
 					lexer.c							cmd_handle_key_delete.c				cmd_handle_key_shift_up.c	\
-					cmd_handle_key_shift_right.c					cmd_move_cursor_begin.c		\
+					cmd_handle_key_shift_right.c	token_lst.c							cmd_move_cursor_begin.c		\
 					cmd_handle_key_ctrl_space.c		cmd_handle_key_ctrl_x.c				cmd_get_term_width.c		\
 					cmd_handle_key_left.c			cmd_handle_key_right.c				cmd_print_characters.c		\
 					cmd_move_down.c					cmd_show_hide_cursor.c				cmd_delete_characters.c		\
@@ -39,7 +39,8 @@ SRC				=	main.c				 			init_term.c							sta_term_info.c				\
 					hist_lst_save_get.c				cmd_info_sta.c						cmd_info_init.c				\
 					cmd_handle_key_ctrl_l.c			sigint_handler.c					sigwinch_handler.c			\
 					cmd_handle_key_ctrl_k.c			cmd_handle_key_ctrl_u.c				cmd_handle_key_ctrl_d.c		\
-					print_help.c
+					print_help.c					lexer_token_word_number.c			lexer_token_op.c			\
+					token_lst_print.c
 
 OBJ				=	$(addprefix $(DEST_OBJ), $(SRC:%.c=%.o))
 

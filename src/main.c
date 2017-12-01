@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:05:04 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/21 04:01:03 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/01 05:11:53 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,18 @@ int			print_prompt(void)
 
 static void	main_loop(int options)
 {
-	char	cmd_buf[CMDBUFSIZE];
-	int		prompt_len;
+	char		cmd_buf[CMDBUFSIZE];
+	int			prompt_len;
+	t_token_lst *token_lst;
 
 	while (42)
 	{
 		prompt_len = print_prompt();
 		cmd_get(cmd_buf, prompt_len, options);
 		ft_printf("{MAG}%s{RES}\n", cmd_buf);
-		lexer(cmd_buf);
+		token_lst = lexer(cmd_buf);
+		token_lst_print(token_lst);
+		token_lst_free(&token_lst);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/21 04:03:48 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/01 04:56:42 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,20 @@
 # define KEY_CTRL_K			200
 # define KEY_CTRL_U			201
 
+# define WORD				1
+# define IO_NUMBER			2
+# define AND_IF				3
+# define OR_IF				4
+# define DLESS				5
+# define DGREAT				6
+# define LESSAND			7
+# define GREATAND			8
+# define SEMI				9
+# define AND				10
+# define OR					11
+# define GREAT				12
+# define LESS				13
+
 typedef struct	s_term_info
 {
 	struct termios	saved_termios;
@@ -97,6 +111,18 @@ typedef struct	s_env_lst
 	char				*value;
 	struct s_env_lst	*next;
 }				t_env_lst;
+
+typedef struct	s_token
+{
+	int					type;
+	char				*value;
+}				t_token;
+
+typedef struct	s_token_lst
+{
+	t_token				*token;
+	struct s_token_lst	*next;
+}				t_token_lst;
 
 t_term_info		*sta_term_info(t_term_info *term);
 void			err_exit(char *str);
@@ -181,6 +207,13 @@ void			cmd_handle_key_ctrl_k(t_cmd_info *cmd_info);
 void			cmd_handle_key_ctrl_u(t_cmd_info *cmd_info);
 void			cmd_handle_key_ctrl_d(t_cmd_info *cmd_info);
 void			print_help(void);
-int				lexer(char *cmd);
+t_token_lst		*lexer(char *cmd);
+void			token_lst_add(t_token_lst **token_lst, t_token *token);
+void			token_lst_free(t_token_lst **token_lst);
+int				lexer_is_op_char(char c);
+t_token			*lexer_token_op(char **cmd);
+t_token			*lexer_token_word(char **cmd);
+t_token			*lexer_token_number(char **cmd);
+void			token_lst_print(t_token_lst *token_lst);
 
 #endif
