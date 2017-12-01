@@ -25,8 +25,11 @@ t_token		*lexer_token_word(char **cmd)
 	while (!lexer_is_op_char(**cmd) && **cmd != '\0' && !ft_isspace(**cmd))
 	{
 		if ((c = **cmd) == '\"' || c == '\'' || c == '`')
+		{
+			++(*cmd);
 			while (**cmd != c && **cmd != '\0')
-				++(cmd);
+				++(*cmd);
+		}
 		if (**cmd != '\0')
 			++(*cmd);
 	}
