@@ -215,5 +215,6 @@ t_token			*lexer_token_op(char **cmd);
 t_token			*lexer_token_word(char **cmd);
 t_token			*lexer_token_number(char **cmd);
 void			token_lst_print(t_token_lst *token_lst);
+char			*exp_variable(char *str);
 
 #endif

@@ -40,7 +40,7 @@ SRC				=	main.c				 			init_term.c							sta_term_info.c				\
 					cmd_handle_key_ctrl_l.c			sigint_handler.c					sigwinch_handler.c			\
 					cmd_handle_key_ctrl_k.c			cmd_handle_key_ctrl_u.c				cmd_handle_key_ctrl_d.c		\
 					print_help.c					lexer_token_word_number.c			lexer_token_op.c			\
-					token_lst_print.c
+					token_lst_print.c				exp_variable.c
 
 OBJ				=	$(addprefix $(DEST_OBJ), $(SRC:%.c=%.o))
 
