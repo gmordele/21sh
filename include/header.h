@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/01 04:56:42 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/07 03:12:39 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,5 +216,6 @@ t_token			*lexer_token_word(char **cmd);
 t_token			*lexer_token_number(char **cmd);
 void			token_lst_print(t_token_lst *token_lst);
 char			*exp_variable(char *str);
+char			*exp_remove_quotes(char *str);
 
 #endif

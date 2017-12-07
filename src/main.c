@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:05:04 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/01 05:11:53 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/07 03:17:59 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,17 @@ static void	main_loop(int options)
 	}
 }
 
+void test()
+{
+
+}
+
 int			main(int argc, char *argv[])
 {
 	int				options;
 
+	test();
+	return 0;
 	options = get_options(argc, argv);
 	env_lst_get();
 	init_termcap();

@@ -6,7 +6,7 @@
 #    By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/17 00:00:01 by gmordele          #+#    #+#              #
-#    Updated: 2017/12/01 05:20:32 by gmordele         ###   ########.fr        #
+#    Updated: 2017/12/07 03:11:30 by gmordele         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -14,7 +14,7 @@ NAME			=	21sh
 
 CC				=	gcc
 
-CFLAGS			=	-Wall -Werror -Wextra #-fsanitize=address
+CFLAGS			=	-Wall -Werror -Wextra -fsanitize=address
 
 SRC				=	main.c				 			init_term.c							sta_term_info.c				\
 					err_exit.c						cmd_handle_key_char.c				restore_term.c				\
@@ -40,7 +40,7 @@ SRC				=	main.c				 			init_term.c							sta_term_info.c				\
 					cmd_handle_key_ctrl_l.c			sigint_handler.c					sigwinch_handler.c			\
 					cmd_handle_key_ctrl_k.c			cmd_handle_key_ctrl_u.c				cmd_handle_key_ctrl_d.c		\
 					print_help.c					lexer_token_word_number.c			lexer_token_op.c			\
-					token_lst_print.c				exp_variable.c
+					token_lst_print.c				exp_variable.c						exp_remove_quotes.c
 
 OBJ				=	$(addprefix $(DEST_OBJ), $(SRC:%.c=%.o))
 
