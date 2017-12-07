@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/07 03:12:39 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/07 04:51:16 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@
 # define GREAT				12
 # define LESS				13
 
+# define COMMANDE_NODE		1
+
 typedef struct	s_term_info
 {
 	struct termios	saved_termios;
@@ -123,6 +125,22 @@ typedef struct	s_token_lst
 	t_token				*token;
 	struct s_token_lst	*next;
 }				t_token_lst;
+
+typedef struct	s_word_lst
+{
+	char				*word;
+	struct s_word_lst	*next;
+}				t_word_lst;
+
+typedef struct	s_ast_cmd_node
+{
+	int						type;
+	t_word_lst				*word_lst;
+	//redir
+	struct s_ast_cmd_node	*next_pipe;
+}				t_ast_cmd_node;
+
+typedef struct s_ast_
 
 t_term_info		*sta_term_info(t_term_info *term);
 void			err_exit(char *str);
