@@ -6,7 +6,7 @@
 #    By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/17 00:00:01 by gmordele          #+#    #+#              #
-#    Updated: 2017/12/07 03:11:30 by gmordele         ###   ########.fr        #
+#    Updated: 2017/12/08 05:44:58 by gmordele         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -40,7 +40,9 @@ SRC				=	main.c				 			init_term.c							sta_term_info.c				\
 					cmd_handle_key_ctrl_l.c			sigint_handler.c					sigwinch_handler.c			\
 					cmd_handle_key_ctrl_k.c			cmd_handle_key_ctrl_u.c				cmd_handle_key_ctrl_d.c		\
 					print_help.c					lexer_token_word_number.c			lexer_token_op.c			\
-					token_lst_print.c				exp_variable.c						exp_remove_quotes.c
+					token_lst_print.c				exp_variable.c						exp_remove_quotes.c			\
+					parser.c						parser_complete_command.c			parser_eat.c				\
+					parser_list.c
 
 OBJ				=	$(addprefix $(DEST_OBJ), $(SRC:%.c=%.o))
 

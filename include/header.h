@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/08 03:45:05 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/08 05:44:50 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,7 +207,7 @@ typedef struct	s_ast_andor_node
 	union u_ast_node	*right;
 }				t_ast_andor_node;
 
-typedef struct	s_ast_list
+typedef struct	s_ast_lst
 {
 	union u_ast_node	*ast_node;
 	struct s_ast_list	*next;
@@ -313,5 +313,9 @@ t_token			*lexer_token_number(char **cmd);
 void			token_lst_print(t_token_lst *token_lst);
 char			*exp_variable(char *str);
 char			*exp_remove_quotes(char *str);
+t_ast_lst		*parser(t_token_lst *token_lst);
+t_ast_lst		*parser_complete_command(t_token_lst **cur_token, int *error);
+int				parser_eat(t_token_lst **cur_token, int token_type);
+t_ast_lst		*parser_list(t_token_lst **cur_token, int *error);
 
 #endif
