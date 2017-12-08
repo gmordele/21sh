@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/07 04:51:16 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/08 03:45:05 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@
 # define GREAT				12
 # define LESS				13
 
-# define COMMANDE_NODE		1
+# define CMD_NODE			1
+# define ANDOR_NODE			2
 
 typedef struct	s_term_info
 {
@@ -132,15 +133,92 @@ typedef struct	s_word_lst
 	struct s_word_lst	*next;
 }				t_word_lst;
 
+typedef struct	s_redir_in
+{
+	int		type;
+	char	*n;
+	char	*word;
+}				t_redir_in;
+
+typedef struct	s_redir_out
+{
+	int		type;
+	char	*n;
+	char	*word;
+}				t_redir_out;
+
+typedef struct	s_redir_out_app
+{
+	int		type;
+	char	*n;
+	char	*word;
+}				t_redir_out_app;
+
+typedef struct	s_redir_heredoc
+{
+	int		type;
+	char	*n;
+	char	*word;
+}				t_redir_heredoc;
+
+typedef struct	s_redir_dup_out
+{
+	int		type;
+	char	*n;
+	char	*word;
+}				t_redir_dup_out;
+
+typedef struct	s_redir_dup_in
+{
+	int		type;
+	char	*n;
+	char	*word;
+}				t_redir_dup_in;
+
+typedef union	u_redir
+{
+	int					type;
+	t_redir_in			redir_in;
+	t_redir_out			redir_out;
+	t_redir_out_app		redir_out_add;
+	t_redir_heredoc		redir_heredoc;
+	t_redir_dup_out		redir_dup_out;
+	t_redir_dup_in		redir_dup_in;
+}				t_redir;
+
+typedef struct	s_redir_lst
+{
+	t_redir				redir;
+	struct s_redir_lst	*next;
+}				t_redir_lst;
+
 typedef struct	s_ast_cmd_node
 {
 	int						type;
 	t_word_lst				*word_lst;
-	//redir
+	t_redir_lst				*redir_lst;
 	struct s_ast_cmd_node	*next_pipe;
 }				t_ast_cmd_node;
 
-typedef struct s_ast_
+typedef struct	s_ast_andor_node
+{
+	int					type;
+	union u_ast_node	*left;
+	union u_ast_node	*right;
+}				t_ast_andor_node;
+
+typedef struct	s_ast_list
+{
+	union u_ast_node	*ast_node;
+	struct s_ast_list	*next;
+}				t_ast_lst;
+
+typedef union	u_ast_node
+{
+	int					type;
+	t_ast_cmd_node		*ast_cmd_node;
+	t_ast_andor_node	*ast_andor_node;
+}				t_ast_node;
 
 t_term_info		*sta_term_info(t_term_info *term);
 void			err_exit(char *str);
