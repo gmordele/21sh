@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/08 05:44:50 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/08 20:30:49 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,9 @@
 # define KEY_CTRL_K			200
 # define KEY_CTRL_U			201
 
+# ifndef EOF
+#  define EOF 				-1
+# endif
 # define WORD				1
 # define IO_NUMBER			2
 # define AND_IF				3
@@ -194,15 +197,16 @@ typedef struct	s_redir_lst
 
 typedef struct	s_ast_cmd_node
 {
-	int						type;
-	t_word_lst				*word_lst;
-	t_redir_lst				*redir_lst;
-	struct s_ast_cmd_node	*next_pipe;
+	int					type;
+	t_word_lst			*word_lst;
+	t_redir_lst			*redir_lst;
+	union u_ast_node	*next_pipe;
 }				t_ast_cmd_node;
 
 typedef struct	s_ast_andor_node
 {
 	int					type;
+	int					andor_type;
 	union u_ast_node	*left;
 	union u_ast_node	*right;
 }				t_ast_andor_node;
@@ -210,14 +214,14 @@ typedef struct	s_ast_andor_node
 typedef struct	s_ast_lst
 {
 	union u_ast_node	*ast_node;
-	struct s_ast_list	*next;
+	struct s_ast_lst	*next;
 }				t_ast_lst;
 
 typedef union	u_ast_node
 {
 	int					type;
-	t_ast_cmd_node		*ast_cmd_node;
-	t_ast_andor_node	*ast_andor_node;
+	t_ast_cmd_node		ast_cmd_node;
+	t_ast_andor_node	ast_andor_node;
 }				t_ast_node;
 
 t_term_info		*sta_term_info(t_term_info *term);
@@ -317,5 +321,9 @@ t_ast_lst		*parser(t_token_lst *token_lst);
 t_ast_lst		*parser_complete_command(t_token_lst **cur_token, int *error);
 int				parser_eat(t_token_lst **cur_token, int token_type);
 t_ast_lst		*parser_list(t_token_lst **cur_token, int *error);
+t_ast_node		*parser_andor(t_token_lst **cur_token, int *error);
+t_ast_node		*parser_pipe_sequence(t_token_lst **cur_token, int *error);
+void			parser_command(t_ast_node *cmd_node, t_token_lst **cur_token,
+							int *error);
 
 #endif
