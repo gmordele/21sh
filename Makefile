@@ -6,7 +6,7 @@
 #    By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/17 00:00:01 by gmordele          #+#    #+#              #
-#    Updated: 2017/12/08 20:16:50 by gmordele         ###   ########.fr        #
+#    Updated: 2017/12/09 05:21:02 by gmordele         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -43,7 +43,7 @@ SRC				=	main.c				 			init_term.c							sta_term_info.c				\
 					token_lst_print.c				exp_variable.c						exp_remove_quotes.c			\
 					parser.c						parser_complete_command.c			parser_eat.c				\
 					parser_list.c					parser_andor.c						parser_pipe_sequence.c		\
-					parser_command.c
+					parser_command.c				parser_command_add_redir.c			parser_redir.c				\
 
 OBJ				=	$(addprefix $(DEST_OBJ), $(SRC:%.c=%.o))
 

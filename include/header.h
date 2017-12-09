@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/08 20:30:49 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/09 05:20:12 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,7 +191,7 @@ typedef union	u_redir
 
 typedef struct	s_redir_lst
 {
-	t_redir				redir;
+	t_redir				*redir;
 	struct s_redir_lst	*next;
 }				t_redir_lst;
 
@@ -325,5 +325,8 @@ t_ast_node		*parser_andor(t_token_lst **cur_token, int *error);
 t_ast_node		*parser_pipe_sequence(t_token_lst **cur_token, int *error);
 void			parser_command(t_ast_node *cmd_node, t_token_lst **cur_token,
 							int *error);
+void			parser_command_add_redir(t_ast_node *cmd_node,
+										 t_token_lst **cur_token, int *error);
+t_redir			*parser_redir(char *n, t_token_lst **cur_token, int *error);
 
 #endif
