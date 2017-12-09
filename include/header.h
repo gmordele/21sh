@@ -136,57 +136,11 @@ typedef struct	s_word_lst
 	struct s_word_lst	*next;
 }				t_word_lst;
 
-typedef struct	s_redir_in
+typedef struct	u_redir
 {
 	int		type;
 	char	*n;
 	char	*word;
-}				t_redir_in;
-
-typedef struct	s_redir_out
-{
-	int		type;
-	char	*n;
-	char	*word;
-}				t_redir_out;
-
-typedef struct	s_redir_out_app
-{
-	int		type;
-	char	*n;
-	char	*word;
-}				t_redir_out_app;
-
-typedef struct	s_redir_heredoc
-{
-	int		type;
-	char	*n;
-	char	*word;
-}				t_redir_heredoc;
-
-typedef struct	s_redir_dup_out
-{
-	int		type;
-	char	*n;
-	char	*word;
-}				t_redir_dup_out;
-
-typedef struct	s_redir_dup_in
-{
-	int		type;
-	char	*n;
-	char	*word;
-}				t_redir_dup_in;
-
-typedef union	u_redir
-{
-	int					type;
-	t_redir_in			redir_in;
-	t_redir_out			redir_out;
-	t_redir_out_app		redir_out_add;
-	t_redir_heredoc		redir_heredoc;
-	t_redir_dup_out		redir_dup_out;
-	t_redir_dup_in		redir_dup_in;
 }				t_redir;
 
 typedef struct	s_redir_lst

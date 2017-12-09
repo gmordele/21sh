@@ -22,19 +22,21 @@ t_redir	*parser_redir_in(char *n, t_token_lst **cur_token, int *error)
 	
 }
 
-static t_redir	*redir_type(char *n, t_token_lst **cur_token, int *error)
+static t_redir	*get_redir(char *n, t_token_lst **cur_token, int *error)
 {
 		t_redir	*redir;
 		int		token_type;
+		char	*word;
 
 		token_type = *cur_token == NULL ? EOF : (*cur_token)->token->type;
-		if (token_type == LESS)
+		parser_eat(cur_token, token_type);
+		if (!parser_eat(cur_token, WORD))
 		{
-			parser_eat(cur_token, WORD);
-			redir = parser_redir_in(n, cur_token, error);
-		}
-		if (*error)
+			*error = 1;
 			return (NULL);
+		}
+		if ((word = (*cur_token)->token->value) == NULL)
+			err_exit("Error get_redir");
 		return (redir);
 }
 
@@ -44,7 +46,7 @@ t_redir			*parser_redir(char *n, t_token_lst **cur_token, int *error)
 	t_redir	*redir;
 
 	token_type = *cur_token == NULL ? EOF : (*cur_token)->token->type;
-	redir = redir_type(n, cur_token, error);
+	redir = get_redir(n, cur_token, error);
 	if (*error)
 		return (NULL);
 	return (redir);
