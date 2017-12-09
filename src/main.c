@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:05:04 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/08 04:23:59 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/09 19:34:13 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static void	main_loop(int options)
 		token_lst_print(token_lst);
 		ast_lst = parser(token_lst);
 		token_lst_free(&token_lst);
+		parser_free(&ast_lst);
 	}
 }
 

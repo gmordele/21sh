@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 04:22:22 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/08 19:53:21 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/09 19:58:14 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_ast_lst	*parser(t_token_lst *token_lst)
 					   cur_token->token->value);
 		else
 			ft_dprintf(2, "21sh: syntax error: unexpected end of file\n");
-		//free
+		parser_free(&ast_lst);
 		return (NULL);
 	}
 	return (ast_lst);

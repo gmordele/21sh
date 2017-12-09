@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/09 05:20:12 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/09 19:50:00 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,13 @@
 # define CMD_NODE			1
 # define ANDOR_NODE			2
 
+# define REDIR_IN			1
+# define REDIR_OUT			2
+# define REDIR_OUT_APP		3
+# define REDIR_HERE			4
+# define REDIR_DUP_IN		5
+# define REDIR_DUP_OUT		6
+
 typedef struct	s_term_info
 {
 	struct termios	saved_termios;
@@ -136,7 +143,7 @@ typedef struct	s_word_lst
 	struct s_word_lst	*next;
 }				t_word_lst;
 
-typedef struct	u_redir
+typedef struct	s_redir
 {
 	int		type;
 	char	*n;
@@ -282,5 +289,7 @@ void			parser_command(t_ast_node *cmd_node, t_token_lst **cur_token,
 void			parser_command_add_redir(t_ast_node *cmd_node,
 										 t_token_lst **cur_token, int *error);
 t_redir			*parser_redir(char *n, t_token_lst **cur_token, int *error);
+void			parser_print(t_ast_lst *ast_lst);
+void			parser_free(t_ast_lst **ast_lst);
 
 #endif

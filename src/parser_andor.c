@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 17:27:16 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/08 19:37:59 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/09 18:06:54 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_ast_node*parser_andor(t_token_lst **cur_token, int *error)
 			return (ast_node);
 		}
 		ast_node = new_andor_node(token_type, ast_node);
-		ast_node->ast_andor_node.left = parser_pipe_sequence(cur_token, error);
+		ast_node->ast_andor_node.right = parser_pipe_sequence(cur_token, error);
 		if (*error)
 			return (ast_node);
 		token_type = *cur_token == NULL ? EOF : (*cur_token)->token->type;
