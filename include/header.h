@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/09 19:50:00 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/10 02:38:44 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -291,5 +291,8 @@ void			parser_command_add_redir(t_ast_node *cmd_node,
 t_redir			*parser_redir(char *n, t_token_lst **cur_token, int *error);
 void			parser_print(t_ast_lst *ast_lst);
 void			parser_free(t_ast_lst **ast_lst);
+void			exec(t_ast_lst *ast_lst);
+int				exec_ast_node(t_ast_node *ast_node);
+int				exec_cmd(t_ast_cmd_node cmd_node);
 
 #endif
