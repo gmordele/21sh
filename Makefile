@@ -46,7 +46,8 @@ SRC				=	main.c				 			init_term.c							sta_term_info.c				\
 					parser_command.c				parser_command_add_redir.c			parser_redir.c				\
 					parser_print.c					parser_free.c						exec.c						\
 					exec_cmd.c						exec_words_to_string_arr.c			builtin_echo.c				\
-					exec_save_restore_fd.c			env_lst_to_string_arr.c
+					exec_save_restore_fd.c			env_lst_to_string_arr.c				exec_fork_cmd.c				\
+					exec_execve_error.c				exec_path_search.c
 
 OBJ				=	$(addprefix $(DEST_OBJ), $(SRC:%.c=%.o))
 

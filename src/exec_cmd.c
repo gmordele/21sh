@@ -53,29 +53,6 @@ static t_exec_data	init_exec_data(void)
 	return (exec_data);
 }
 
-static void			cmd(t_ast_cmd_node cmd_node, t_exec_data *exec_data)
-{
-	exec_data->last_exec = EXEC_CMD;
-	++(exec_data->n_exec);
-	exec_data->last_pid = fork();
-	if (exec_data->last_pid == 0)
-	{
-		close(exec_data->fildes[0]);
-		dup2(exec_data->fd_in, 0);
-		if (cmd_node.next_pipe != NULL)
-			dup2(exec_data->fildes[1], 1);
-		if (exec_data->words[0] == NULL)
-			exit(0);
-		execve(exec_data->words[0], exec_data->words, exec_data->env);
-		err_exit("error execve");
-	}
-	else
-	{
-		close(exec_data->fildes[1]);
-		exec_data->fd_in = exec_data->fildes[0];
-	}
-}
-
 static int			wait_ret(t_exec_data exec_data)
 {
 	int		status;
@@ -98,7 +75,6 @@ int					exec_cmd(t_ast_cmd_node cmd_node)
 	t_exec_data exec_data;
 
 	exec_data = init_exec_data();
-	restore_term();
 	while (42)
 	{
 		exec_data.words = exec_words_to_string_arr(cmd_node.word_lst);
@@ -107,7 +83,7 @@ int					exec_cmd(t_ast_cmd_node cmd_node)
 			(pbuiltin = get_builtin(exec_data.words[0])) != NULL)
 			exec_builtin(pbuiltin, &exec_data);
 		else
-			cmd(cmd_node, &exec_data);
+			exec_fork_cmd(cmd_node, &exec_data);
 		free_string_arr(exec_data.words);
 		if (cmd_node.next_pipe != NULL)
 			cmd_node = cmd_node.next_pipe->ast_cmd_node;
@@ -115,6 +91,5 @@ int					exec_cmd(t_ast_cmd_node cmd_node)
 			break ;
 	}
 	free_string_arr(exec_data.env);
-	init_termios();	
 	return (wait_ret(exec_data));
 }

@@ -15,7 +15,11 @@
 
 static int			exec_cmd_node(t_ast_node *ast_node)
 {
-	return exec_cmd(ast_node->ast_cmd_node);
+	int ret;
+
+	ret = exec_cmd(ast_node->ast_cmd_node);
+	return (ret);
+	
 }
 
 static int			exec_andor_node(t_ast_node *ast_node)
@@ -62,10 +66,12 @@ void		exec(t_ast_lst *ast_lst)
 
 	if (ast_lst == NULL)
 		return ;
+	restore_term();	
 	p = ast_lst;
 	while (p != NULL)
 	{
 		exec_ast_node(p->ast_node);
 		p = p->next;
 	}
+	init_termios();	
 }

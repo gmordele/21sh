@@ -322,5 +322,8 @@ int				builtin_echo(char **argv);
 void			exec_save_fd(int fd[3]);
 void			exec_restore_fd(int fd[3]);
 char			**env_lst_to_string_arr(void);
+void			exec_fork_cmd(t_ast_cmd_node cmd_node, t_exec_data *exec_data);
+void			exec_execve_error(void);
+char			*exec_path_search(char *word);
 
 #endif
