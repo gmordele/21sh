@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/10 02:38:44 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/11 17:54:14 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,6 +185,25 @@ typedef union	u_ast_node
 	t_ast_andor_node	ast_andor_node;
 }				t_ast_node;
 
+typedef int	(*t_pbuiltin)(char **);
+
+typedef struct	s_name_builtin
+{
+	char		*name;
+	t_pbuiltin	pbuiltin;
+}				t_name_builtin;
+
+typedef struct	s_exec_data
+{
+	int		fildes[2];
+	int		fd_in;
+	int		n_exec;
+	pid_t	last_pid;
+	char	**words;
+	char	**env;
+	int		bi_ret;
+}				t_exec_data;
+
 t_term_info		*sta_term_info(t_term_info *term);
 void			err_exit(char *str);
 void			restore_term(void);
@@ -287,12 +306,17 @@ t_ast_node		*parser_pipe_sequence(t_token_lst **cur_token, int *error);
 void			parser_command(t_ast_node *cmd_node, t_token_lst **cur_token,
 							int *error);
 void			parser_command_add_redir(t_ast_node *cmd_node,
-										 t_token_lst **cur_token, int *error);
+										t_token_lst **cur_token, int *error);
 t_redir			*parser_redir(char *n, t_token_lst **cur_token, int *error);
 void			parser_print(t_ast_lst *ast_lst);
 void			parser_free(t_ast_lst **ast_lst);
 void			exec(t_ast_lst *ast_lst);
 int				exec_ast_node(t_ast_node *ast_node);
 int				exec_cmd(t_ast_cmd_node cmd_node);
+char			**exec_words_to_string_arr(t_word_lst *word_lst);
+int				builtin_echo(char **argv);
+void			exec_save_fd(int fd[3]);
+void			exec_restore_fd(int fd[3]);
+char			**env_lst_to_string_arr(void);
 
 #endif

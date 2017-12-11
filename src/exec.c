@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/10 01:53:16 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/10 02:37:14 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/11 12:33:50 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,17 @@ static int			exec_andor_node(t_ast_node *ast_node)
 	ret_left = exec_ast_node(ast_node->ast_andor_node.left);
 	if (ast_node->ast_andor_node.andor_type == AND_IF)
 	{
-		if (ret_left)
-			return (exec_ast_node(ast_node->ast_andor_node.right));
-		else
-			return (0);
-	}
-	else if (ast_node->ast_andor_node.andor_type == OR_IF)
-	{
 		if (!ret_left)
 			return (exec_ast_node(ast_node->ast_andor_node.right));
 		else
-			return (0);
+			return (1);
+	}
+	else if (ast_node->ast_andor_node.andor_type == OR_IF)
+	{
+		if (ret_left)
+			return (exec_ast_node(ast_node->ast_andor_node.right));
+		else
+			return (1);
 	}
 	err_exit("Error exec_andor_node");
 	return (0);
