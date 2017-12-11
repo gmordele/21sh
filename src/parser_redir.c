@@ -107,10 +107,8 @@ static t_redir	*get_redir(char *n, t_token_lst **cur_token, int *error)
 
 t_redir			*parser_redir(char *n, t_token_lst **cur_token, int *error)
 {
-	int		token_type;
 	t_redir	*redir;
 
-	token_type = *cur_token == NULL ? EOF : (*cur_token)->token->type;
 	redir = get_redir(n, cur_token, error);
 	if (*error)
 		return (NULL);
