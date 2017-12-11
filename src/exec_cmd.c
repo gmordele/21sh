@@ -12,6 +12,7 @@
 
 #include <unistd.h>
 #include <sys/wait.h>
+#include <stdlib.h>
 #include "libft.h"
 #include "header.h"
 
@@ -36,6 +37,7 @@ static void			exec_builtin(t_pbuiltin pbuiltin, t_exec_data *exec_data)
 {
 	int	fd[3];
 
+	exec_data->last_exec = EXEC_BUILTIN;
 	exec_save_fd(fd);
 	exec_data->bi_ret = pbuiltin(exec_data->words);
 	exec_restore_fd(fd);
@@ -53,6 +55,7 @@ static t_exec_data	init_exec_data(void)
 
 static void			cmd(t_ast_cmd_node cmd_node, t_exec_data *exec_data)
 {
+	exec_data->last_exec = EXEC_CMD;
 	++(exec_data->n_exec);
 	exec_data->last_pid = fork();
 	if (exec_data->last_pid == 0)
@@ -71,6 +74,22 @@ static void			cmd(t_ast_cmd_node cmd_node, t_exec_data *exec_data)
 		close(exec_data->fildes[1]);
 		exec_data->fd_in = exec_data->fildes[0];
 	}
+}
+
+static int			wait_ret(t_exec_data exec_data)
+{
+	int		status;
+
+	if (exec_data.last_exec == EXEC_CMD)
+	{
+		waitpid(exec_data.last_pid, &status, 0);
+		while (--(exec_data.n_exec) > 0)
+			wait(NULL);
+		return (status);
+	}
+	while ((exec_data.n_exec)-- > 0)
+		wait(NULL);
+	return (exec_data.bi_ret);
 }
 
 int					exec_cmd(t_ast_cmd_node cmd_node)
@@ -95,9 +114,7 @@ int					exec_cmd(t_ast_cmd_node cmd_node)
 		else
 			break ;
 	}
-	while (exec_data.n_exec-- > 0)
-		wait(NULL);
 	free_string_arr(exec_data.env);
 	init_termios();	
-	return 0;
+	return (wait_ret(exec_data));
 }

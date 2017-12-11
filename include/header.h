@@ -83,6 +83,9 @@
 # define REDIR_DUP_IN		5
 # define REDIR_DUP_OUT		6
 
+# define EXEC_BUILTIN		1
+# define EXEC_CMD			2
+
 typedef struct	s_term_info
 {
 	struct termios	saved_termios;
@@ -202,6 +205,7 @@ typedef struct	s_exec_data
 	char	**words;
 	char	**env;
 	int		bi_ret;
+	int		last_exec;
 }				t_exec_data;
 
 t_term_info		*sta_term_info(t_term_info *term);
