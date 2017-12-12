@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec_path_search.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/12/12 00:30:59 by gmordele          #+#    #+#             */
+/*   Updated: 2017/12/12 03:02:44 by gmordele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include <unistd.h>
 #include "header.h"
@@ -24,7 +36,7 @@ static char	*add_path(char *path, char *word)
 		++j;
 		++i;
 	}
-	return (search);	
+	return (search);
 }
 
 char		*exec_path_search(char *word)

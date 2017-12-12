@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec_fork_cmd.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/12/12 00:29:17 by gmordele          #+#    #+#             */
+/*   Updated: 2017/12/12 02:49:14 by gmordele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include <unistd.h>
-#include <errno.h>
 #include "header.h"
 #include "libft.h"
 
@@ -11,7 +22,7 @@ static void		cmd(t_exec_data *exec_data)
 	if (ft_strchr(exec_data->words[0], '/') != NULL)
 	{
 		execve(exec_data->words[0], exec_data->words, exec_data->env);
-		exec_execve_error();
+		exec_execve_error(exec_data->words[0]);
 		exit(126);
 	}
 	path = exec_path_search(exec_data->words[0]);
@@ -21,7 +32,7 @@ static void		cmd(t_exec_data *exec_data)
 		exit(127);
 	}
 	execve(path, exec_data->words, exec_data->env);
-	exec_execve_error();
+	exec_execve_error(exec_data->words[0]);
 	exit(127);
 }
 
@@ -36,11 +47,10 @@ void			exec_fork_cmd(t_ast_cmd_node cmd_node, t_exec_data *exec_data)
 		dup2(exec_data->fd_in, 0);
 		if (cmd_node.next_pipe != NULL)
 			dup2(exec_data->fildes[1], 1);
+		exec_redir(exec_data->redir_lst, 0);
 		if (exec_data->words[0] == NULL)
 			exit(0);
 		cmd(exec_data);
-		execve(exec_data->words[0], exec_data->words, exec_data->env);
-		exit(1);
 	}
 	else
 	{

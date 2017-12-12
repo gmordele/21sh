@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/10 02:37:23 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/11 18:01:44 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/12 03:01:20 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 
 static t_pbuiltin	get_builtin(char *word)
 {
-	static t_name_builtin 	name_builtin[] = {{"echo", builtin_echo}};
+	static t_name_builtin	name_builtin[] = {
+		{"echo", builtin_echo}
+	};
 	int						i;
 	int						size;
 
@@ -39,6 +41,7 @@ static void			exec_builtin(t_pbuiltin pbuiltin, t_exec_data *exec_data)
 
 	exec_data->last_exec = EXEC_BUILTIN;
 	exec_save_fd(fd);
+	exec_redir(exec_data->redir_lst, 1);
 	exec_data->bi_ret = pbuiltin(exec_data->words);
 	exec_restore_fd(fd);
 }
@@ -78,6 +81,7 @@ int					exec_cmd(t_ast_cmd_node cmd_node)
 	while (42)
 	{
 		exec_data.words = exec_words_to_string_arr(cmd_node.word_lst);
+		exec_data.redir_lst = cmd_node.redir_lst;
 		pipe(exec_data.fildes);
 		if (exec_data.words[0] != NULL &&
 			(pbuiltin = get_builtin(exec_data.words[0])) != NULL)

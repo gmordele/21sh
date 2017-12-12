@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:08:26 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/11 17:58:11 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/12 02:58:23 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char	*env_to_string(t_env_lst env)
 	return (ret);
 }
 
-char	**env_lst_to_string_arr(void)
+char		**env_lst_to_string_arr(void)
 {
 	size_t		lst_len;
 	char		**string_arr;

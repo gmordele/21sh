@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 20:18:29 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/09 05:00:39 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/12 03:20:42 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,9 @@ static t_word_lst	*new_word_lst(char *word)
 	return (new);
 }
 
-static void			_add_word(t_word_lst **word_lst, char *word)
+static void			l_add_word(t_word_lst **word_lst, char *word)
 {
 	t_word_lst	*p;
-	
 
 	if (word_lst == NULL)
 		err_exit("Error _add_word");
@@ -57,14 +56,14 @@ static void			add_word(t_ast_node *cmd_node, t_token_lst **cur_token)
 	if (*exp_word != '\0')
 	{
 		unquoted_word = exp_remove_quotes(exp_word);
-		_add_word(&(cmd_node->ast_cmd_node.word_lst), unquoted_word);
+		l_add_word(&(cmd_node->ast_cmd_node.word_lst), unquoted_word);
 	}
 	free(exp_word);
 	parser_eat(cur_token, WORD);
 }
 
-void				parser_command(t_ast_node *cmd_node, t_token_lst **cur_token,
-							int *error)
+void				parser_command(t_ast_node *cmd_node,
+								t_token_lst **cur_token, int *error)
 {
 	int			token_type;
 

@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 13:12:39 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/11 15:53:38 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/12 03:14:58 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "header.h"
 #include "libft.h"
 
-static int words_lst_len(t_word_lst *word_lst)
+static int	words_lst_len(t_word_lst *word_lst)
 {
 	int		len;
 
@@ -27,7 +27,7 @@ static int words_lst_len(t_word_lst *word_lst)
 	return (len);
 }
 
-char	**exec_words_to_string_arr(t_word_lst *word_lst)
+char		**exec_words_to_string_arr(t_word_lst *word_lst)
 {
 	int		len;
 	char	**arr;

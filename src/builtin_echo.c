@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 14:50:19 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/11 16:41:35 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/12 02:57:50 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	write_echo(char *arg)
 static int	print_error(void)
 {
 	if (errno == EBADF)
-		ft_dprintf(2,"21sh: echo: write error: Bad file descriptor\n");
+		ft_dprintf(2, "21sh: echo: write error: Bad file descriptor\n");
 	else
 		ft_dprintf(2, "21sh: echo: Unknown error\n");
 	return (0);
@@ -47,8 +47,10 @@ int			builtin_echo(char **argv)
 			if (start == 1)
 				start = 0;
 			else
+			{
 				if (!write_echo(" "))
 					return (print_error());
+			}
 			if (!write_echo(*argv))
 				return (print_error());
 			++argv;

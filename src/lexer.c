@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 04:01:18 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/01 03:34:19 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/12 03:24:29 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "header.h"
 #include "libft.h"
 
-static void	skip_whitespace(char **cmd)
+static void		skip_whitespace(char **cmd)
 {
 	while (ft_isspace(**cmd) && **cmd != '\0')
 		++(*cmd);
@@ -33,7 +33,7 @@ static t_token	*get_next_token(char **cmd)
 		return (lexer_token_word(cmd));
 }
 
-t_token_lst	*lexer(char *cmd_buf)
+t_token_lst		*lexer(char *cmd_buf)
 {
 	char		*cmd;
 	t_token_lst	*token_lst;

@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_execve_error.c                                :+:      :+:    :+:   */
+/*   exec_open_error.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/12 00:31:13 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/12 00:41:47 by gmordele         ###   ########.fr       */
+/*   Created: 2017/12/12 01:15:08 by gmordele          #+#    #+#             */
+/*   Updated: 2017/12/12 01:35:18 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <errno.h>
+#include <stdlib.h>
 #include "libft.h"
 
-void		exec_execve_error(char *word)
+void	exec_open_error(char *word)
 {
-	char	*strerr;
+	char	*str;
 
 	if (errno == EACCES)
-		strerr = "Permission denied";
+		str = "Permission denied";
+	else if (errno == EEXIST)
+		str = "File exists";
+	else if (errno == EISDIR)
+		str = "Is a directory";
 	else if (errno == ENOENT)
-		strerr = "No such file or directory";
-	else if (errno == ENOEXEC)
-		strerr = "Exec format error";
+		str = "No such file or directory";
 	else if (errno == ENOTDIR)
-		strerr = "Not a directory";
+		str = "Not a directory";
 	else
-		strerr = "Error execve";
-	ft_dprintf(2, "21sh: %s: %s\n", word, strerr);
+		str = "Error open";
+	ft_dprintf(2, "21sh: %s: %s\n", word, str);
+	exit(1);
 }

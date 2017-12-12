@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 04:22:22 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/09 19:58:14 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/12 03:18:37 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_ast_lst	*parser(t_token_lst *token_lst)
 	t_token_lst	*cur_token;
 	int			error;
 	t_ast_lst	*ast_lst;
-	
+
 	if (token_lst == NULL)
 		return (NULL);
 	cur_token = token_lst;
@@ -28,7 +28,7 @@ t_ast_lst	*parser(t_token_lst *token_lst)
 	{
 		if (cur_token != NULL)
 			ft_dprintf(2, "21sh: syntax error near unexpected token `%s'\n",
-					   cur_token->token->value);
+					cur_token->token->value);
 		else
 			ft_dprintf(2, "21sh: syntax error: unexpected end of file\n");
 		parser_free(&ast_lst);

@@ -6,14 +6,14 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 19:34:30 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/09 19:54:46 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/12 03:21:40 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "header.h"
 
-static void free_redir_lst(t_redir_lst *redir_lst)
+static void	free_redir_lst(t_redir_lst *redir_lst)
 {
 	if (redir_lst == NULL)
 		return ;
@@ -29,7 +29,7 @@ static void free_redir_lst(t_redir_lst *redir_lst)
 	free(redir_lst);
 }
 
-static void free_word_lst(t_word_lst *word_lst)
+static void	free_word_lst(t_word_lst *word_lst)
 {
 	if (word_lst == NULL)
 		return ;

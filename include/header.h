@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/11 17:54:14 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/12 03:23:24 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,14 +198,15 @@ typedef struct	s_name_builtin
 
 typedef struct	s_exec_data
 {
-	int		fildes[2];
-	int		fd_in;
-	int		n_exec;
-	pid_t	last_pid;
-	char	**words;
-	char	**env;
-	int		bi_ret;
-	int		last_exec;
+	int			fildes[2];
+	int			fd_in;
+	int			n_exec;
+	pid_t		last_pid;
+	char		**words;
+	char		**env;
+	int			bi_ret;
+	int			last_exec;
+	t_redir_lst *redir_lst;
 }				t_exec_data;
 
 t_term_info		*sta_term_info(t_term_info *term);
@@ -298,7 +299,6 @@ int				lexer_is_op_char(char c);
 t_token			*lexer_token_op(char **cmd);
 t_token			*lexer_token_word(char **cmd);
 t_token			*lexer_token_number(char **cmd);
-void			token_lst_print(t_token_lst *token_lst);
 char			*exp_variable(char *str);
 char			*exp_remove_quotes(char *str);
 t_ast_lst		*parser(t_token_lst *token_lst);
@@ -312,7 +312,6 @@ void			parser_command(t_ast_node *cmd_node, t_token_lst **cur_token,
 void			parser_command_add_redir(t_ast_node *cmd_node,
 										t_token_lst **cur_token, int *error);
 t_redir			*parser_redir(char *n, t_token_lst **cur_token, int *error);
-void			parser_print(t_ast_lst *ast_lst);
 void			parser_free(t_ast_lst **ast_lst);
 void			exec(t_ast_lst *ast_lst);
 int				exec_ast_node(t_ast_node *ast_node);
@@ -323,7 +322,14 @@ void			exec_save_fd(int fd[3]);
 void			exec_restore_fd(int fd[3]);
 char			**env_lst_to_string_arr(void);
 void			exec_fork_cmd(t_ast_cmd_node cmd_node, t_exec_data *exec_data);
-void			exec_execve_error(void);
+void			exec_execve_error(char *word);
 char			*exec_path_search(char *word);
+void			exec_redir(t_redir_lst *redir_lst, int in_builtin);
+int				exec_redir_is_num(char *str);
+void			exec_open_error(char *word);
+void			exec_handle_redir_in(char *n, char *word);
+void			exec_handle_redir_out(char *n, char *word);
+void			exec_handle_redir_out_app(char *n, char *word);
+void			exec_handle_redir_dup(char *n, char *word);
 
 #endif

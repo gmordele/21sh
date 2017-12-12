@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 05:20:23 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/09 17:36:04 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/12 03:16:47 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int		get_type(int token_type)
 static char		*get_n(char *n, int token_type)
 {
 	char	*ret_n;
-	
+
 	if (n != NULL)
 	{
 		if ((ret_n = ft_strdup(n)) == NULL)
@@ -81,28 +81,28 @@ static char		*exp_word(char *word, int type)
 
 static t_redir	*get_redir(char *n, t_token_lst **cur_token, int *error)
 {
-		t_redir	*redir;
-		int		token_type;
-		char	*word;
+	t_redir	*redir;
+	int		token_type;
+	char	*word;
 
-		token_type = *cur_token == NULL ? EOF : (*cur_token)->token->type;
-		parser_eat(cur_token, token_type);
-		word = *cur_token == NULL ? NULL : (*cur_token)->token->value;
-		if (!parser_eat(cur_token, WORD))
-		{
-			*error = 1;
-			return (NULL);
-		}
-		if (word == NULL)
-			err_exit("Error get_redir");
-		if ((redir = malloc(sizeof(t_redir))) == NULL)
-			err_exit("Error malloc");
-		if ((redir->word = ft_strdup(word)) == NULL)
-			err_exit("Error ft_strdup");
-		redir->n = get_n(n, token_type);
-		redir->type = get_type(token_type);
-		redir->word = exp_word(redir->word, redir->type);
-		return (redir);
+	token_type = *cur_token == NULL ? EOF : (*cur_token)->token->type;
+	parser_eat(cur_token, token_type);
+	word = *cur_token == NULL ? NULL : (*cur_token)->token->value;
+	if (!parser_eat(cur_token, WORD))
+	{
+		*error = 1;
+		return (NULL);
+	}
+	if (word == NULL)
+		err_exit("Error get_redir");
+	if ((redir = malloc(sizeof(t_redir))) == NULL)
+		err_exit("Error malloc");
+	if ((redir->word = ft_strdup(word)) == NULL)
+		err_exit("Error ft_strdup");
+	redir->n = get_n(n, token_type);
+	redir->type = get_type(token_type);
+	redir->word = exp_word(redir->word, redir->type);
+	return (redir);
 }
 
 t_redir			*parser_redir(char *n, t_token_lst **cur_token, int *error)

@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 17:27:16 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/09 18:06:54 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/12 03:20:05 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static t_ast_node	*new_andor_node(int type, t_ast_node *left)
 {
 	t_ast_node *andor_node;
 
-	if((andor_node = malloc(sizeof(t_ast_node))) == NULL)
+	if ((andor_node = malloc(sizeof(t_ast_node))) == NULL)
 		err_exit("Error malloc");
 	andor_node->type = ANDOR_NODE;
 	andor_node->ast_andor_node.left = left;
@@ -26,7 +26,7 @@ static t_ast_node	*new_andor_node(int type, t_ast_node *left)
 	return (andor_node);
 }
 
-t_ast_node*parser_andor(t_token_lst **cur_token, int *error)
+t_ast_node			*parser_andor(t_token_lst **cur_token, int *error)
 {
 	t_ast_node	*ast_node;
 	int			token_type;

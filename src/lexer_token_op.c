@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 03:33:42 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/01 05:19:18 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/12 03:25:31 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static t_token		*lexer_token_op3(char **cmd, t_token **new_token)
 		else if (**cmd == '>')
 		{
 			++(*cmd);
-			(*new_token)->type = DGREAT;;
+			(*new_token)->type = DGREAT;
 			(*new_token)->value = ft_strdup(">>");
 			return (*new_token);
 		}
@@ -110,5 +110,3 @@ t_token				*lexer_token_op(char **cmd)
 	}
 	return (lexer_token_op2(cmd, &new_token));
 }
-
-

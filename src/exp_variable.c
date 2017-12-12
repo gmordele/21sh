@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 02:54:25 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/07 02:54:27 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/12 03:29:18 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,5 @@ char		*exp_variable(char *str)
 	free(tmp);
 	free(new);
 	new = tmp1;
-	return new;
+	return (new);
 }
