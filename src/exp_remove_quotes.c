@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 02:54:30 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/12 03:28:13 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/12 03:45:26 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 static void	init(int *i, char **new, char *str)
 {
 	*i = 0;
-	if ((*new = malloc(ft_strlen(str))) == NULL)
+	if ((*new = ft_strnew(ft_strlen(str))) == NULL)
 		err_exit("Error malloc");
 }
 
