@@ -62,6 +62,8 @@ static void	return_hist_handle(t_cmd_info *cmd_info)
 
 void		cmd_handle_key_return(t_cmd_info *cmd_info)
 {
+	if (cmd_info->in_clipboard)
+		cmd_exit_clipboard(cmd_info);
 	cmd_move_cursor_end(cmd_info);
 	if (is_complet(cmd_info))
 	{
