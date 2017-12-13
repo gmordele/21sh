@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/10 02:37:23 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/12 03:01:20 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/13 04:08:21 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,10 @@ static void			exec_builtin(t_pbuiltin pbuiltin, t_exec_data *exec_data)
 
 	exec_data->last_exec = EXEC_BUILTIN;
 	exec_save_fd(fd);
-	exec_redir(exec_data->redir_lst, 1);
-	exec_data->bi_ret = pbuiltin(exec_data->words);
+	if (exec_redir_bi(exec_data->redir_lst))
+		exec_data->bi_ret = pbuiltin(exec_data->words);
+	else
+		exec_data->bi_ret = 1;
 	exec_restore_fd(fd);
 }
 

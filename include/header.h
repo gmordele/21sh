@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/13 02:06:28 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/13 04:18:05 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -324,13 +324,18 @@ char			**env_lst_to_string_arr(void);
 void			exec_fork_cmd(t_ast_cmd_node cmd_node, t_exec_data *exec_data);
 void			exec_execve_error(char *word);
 char			*exec_path_search(char *word);
-void			exec_redir(t_redir_lst *redir_lst, int in_builtin);
+void			exec_redir(t_redir_lst *redir_lst);
+int				exec_redir_bi(t_redir_lst *redir_lst);
 int				exec_redir_is_num(char *str);
 void			exec_open_error(char *word);
 void			exec_handle_redir_in(char *n, char *word);
 void			exec_handle_redir_out(char *n, char *word);
 void			exec_handle_redir_out_app(char *n, char *word);
 void			exec_handle_redir_dup(char *n, char *word);
+int				exec_handle_redir_in_bi(char *n, char *word);
+int				exec_handle_redir_out_bi(char *n, char *word);
+int				exec_handle_redir_out_app_bi(char *n, char *word);
+int				exec_handle_redir_dup_bi(char *n, char *word);
 void			sigint_handle_exec(int sig);
 
 #endif

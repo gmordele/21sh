@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_redir.c                                       :+:      :+:    :+:   */
+/*   exec_redir_bi.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/12 00:53:17 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/13 04:01:48 by gmordele         ###   ########.fr       */
+/*   Created: 2017/12/13 04:09:03 by gmordele          #+#    #+#             */
+/*   Updated: 2017/12/13 04:20:01 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,21 @@
 #include "header.h"
 #include "libft.h"
 
-static void	handle_redir(t_redir *redir)
+static int	handle_redir_bi(t_redir *redir)
 {
 	if (redir->type == REDIR_IN)
-		exec_handle_redir_in(redir->n, redir->word);
+		return (exec_handle_redir_in_bi(redir->n, redir->word));
 	else if (redir->type == REDIR_OUT)
-		exec_handle_redir_out(redir->n, redir->word);
+		return (exec_handle_redir_out_bi(redir->n, redir->word));
 	else if (redir->type == REDIR_OUT_APP)
-		exec_handle_redir_out_app(redir->n, redir->word);
+		return (exec_handle_redir_out_app_bi(redir->n, redir->word));
 	else if (redir->type == REDIR_DUP_OUT || redir->type == REDIR_DUP_IN)
-		exec_handle_redir_dup(redir->n, redir->word);
+		return (exec_handle_redir_dup_bi(redir->n, redir->word));
+	else
+		return (0);
 }
 
-void		exec_redir(t_redir_lst *redir_lst)
+int		exec_redir_bi(t_redir_lst *redir_lst)
 {
 	t_redir	*redir;
 	int		n;
@@ -38,9 +40,11 @@ void		exec_redir(t_redir_lst *redir_lst)
 		if (n >= 4860)
 		{
 			ft_dprintf(2, "21sh: Bad file descriptor\n");
-			exit(1);
+			return (0);
 		}
-		handle_redir(redir);
+		if (!handle_redir_bi(redir))
+			return (0);
 		redir_lst = redir_lst->next;
 	}
+	return (1);
 }

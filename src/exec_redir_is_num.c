@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 01:06:27 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/12 02:37:27 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/13 04:02:45 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@ int		exec_redir_is_num(char *str)
 {
 	if (*str == '\0')
 		return (0);
-	while (*str > '0' && *str < '9')
+	while (*str >= '0' && *str <= '9')
 		++str;
 	return (*str == '\0') ? 1 : 0;
 }

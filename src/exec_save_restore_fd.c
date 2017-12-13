@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 16:42:58 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/11 16:49:27 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/13 04:05:25 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 void	exec_save_fd(int fd[3])
 {
-	fd[0] = dup(0);
-	fd[1] = dup(1);
-	fd[2] = dup(2);
+	fd[0] = dup2(0, 4860);
+	fd[1] = dup2(1, 4861);
+	fd[2] = dup2(2, 4862);
 }
 
 void	exec_restore_fd(int fd[3])

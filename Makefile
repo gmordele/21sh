@@ -6,7 +6,7 @@
 #    By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/17 00:00:01 by gmordele          #+#    #+#              #
-#    Updated: 2017/12/12 03:34:33 by gmordele         ###   ########.fr        #
+#    Updated: 2017/12/13 04:12:14 by gmordele         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -40,11 +40,11 @@ SRC				=	main.c				 			init_term.c							sta_term_info.c				\
 					cmd_handle_key_ctrl_l.c			sigint_handler.c					sigwinch_handler.c			\
 					cmd_handle_key_ctrl_k.c			cmd_handle_key_ctrl_u.c				cmd_handle_key_ctrl_d.c		\
 					print_help.c					lexer_token_word_number.c			lexer_token_op.c			\
-								exp_variable.c						exp_remove_quotes.c			\
+					exec_redir_bi.c					exp_variable.c						exp_remove_quotes.c			\
 					parser.c						parser_complete_command.c			parser_eat.c				\
 					parser_list.c					parser_andor.c						parser_pipe_sequence.c		\
 					parser_command.c				parser_command_add_redir.c			parser_redir.c				\
-										parser_free.c						exec.c						\
+					exec_handle_redir_bi.c			parser_free.c						exec.c						\
 					exec_cmd.c						exec_words_to_string_arr.c			builtin_echo.c				\
 					exec_save_restore_fd.c			env_lst_to_string_arr.c				exec_fork_cmd.c				\
 					exec_execve_error.c				exec_path_search.c					exec_redir.c				\

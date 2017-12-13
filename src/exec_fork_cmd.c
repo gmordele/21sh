@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 00:29:17 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/13 02:06:50 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/13 03:52:27 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void			exec_fork_cmd(t_ast_cmd_node cmd_node, t_exec_data *exec_data)
 		dup2(exec_data->fd_in, 0);
 		if (cmd_node.next_pipe != NULL)
 			dup2(exec_data->fildes[1], 1);
-		exec_redir(exec_data->redir_lst, 0);
+		exec_redir(exec_data->redir_lst);
 		if (exec_data->words[0] == NULL)
 			exit(0);
 		cmd(exec_data);
