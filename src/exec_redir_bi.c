@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 04:09:03 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/13 04:20:01 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/13 23:53:37 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	handle_redir_bi(t_redir *redir)
 		return (0);
 }
 
-int		exec_redir_bi(t_redir_lst *redir_lst)
+int			exec_redir_bi(t_redir_lst *redir_lst)
 {
 	t_redir	*redir;
 	int		n;

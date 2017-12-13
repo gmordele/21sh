@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 22:46:31 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/13 02:05:34 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/13 23:54:29 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,5 @@ void	sigint_handler(int sig)
 void	sigint_handle_exec(int sig)
 {
 	(void)sig;
-
 	write(1, "\n", 1);
 }
