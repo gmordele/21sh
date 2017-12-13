@@ -12,6 +12,7 @@
 
 #include <stdlib.h>
 #include <unistd.h>
+#include <signal.h>
 #include "header.h"
 #include "libft.h"
 
