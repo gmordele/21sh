@@ -60,6 +60,8 @@ void		exec_handle_redir_out_app(char *n, char *word)
 
 void		exec_handle_redir_dup(char *n, char *word)
 {
+	int		int_word;
+
 	if (ft_strcmp("-", word) == 0)
 	{
 		close(ft_atoi(n));
@@ -70,7 +72,8 @@ void		exec_handle_redir_dup(char *n, char *word)
 		ft_dprintf(2, "21sh: %s: ambiguous redirect\n", word);
 		exit(1);
 	}
-	if (dup2(ft_atoi(word), ft_atoi(n)) < 0)
+	int_word = ft_atoi(word);
+	if (int_word >= 1000 || dup2(int_word, ft_atoi(n)) < 0)
 	{
 		ft_dprintf(2, "21sh: Bad file descriptor\n");
 		exit(1);
