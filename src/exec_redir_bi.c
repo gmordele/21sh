@@ -37,7 +37,7 @@ int		exec_redir_bi(t_redir_lst *redir_lst)
 	{
 		redir = redir_lst->redir;
 		n = ft_atoi(redir->n);
-		if (n >= 4860)
+		if (n >= 1000)
 		{
 			ft_dprintf(2, "21sh: Bad file descriptor\n");
 			return (0);

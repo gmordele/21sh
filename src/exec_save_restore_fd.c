@@ -16,9 +16,12 @@
 
 void	exec_save_fd(int fd[3])
 {
-	fd[0] = dup2(0, 4860);
-	fd[1] = dup2(1, 4861);
-	fd[2] = dup2(2, 4862);
+	if ((fd[0] = dup2(0, 1000)) < 0)
+		err_exit("Error dup2");
+	if ((fd[1] = dup2(1, 1001)) < 0)
+		err_exit("Error dup2");
+	if ((fd[2] = dup2(2, 1002)) < 0)
+		err_exit("Error dup2");
 }
 
 void	exec_restore_fd(int fd[3])
