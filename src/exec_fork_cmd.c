@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 00:29:17 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/12 02:49:14 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/13 02:06:50 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,14 @@ static void		cmd(t_exec_data *exec_data)
 	exit(127);
 }
 
+static void		restore_signals(void)
+{
+	if (signal(SIGWINCH, SIG_DFL) == SIG_ERR)
+		err_exit("Error signal");
+	if (signal(SIGINT, SIG_DFL) == SIG_ERR)
+		err_exit("Error signal");
+}
+
 void			exec_fork_cmd(t_ast_cmd_node cmd_node, t_exec_data *exec_data)
 {
 	exec_data->last_exec = EXEC_CMD;
@@ -43,6 +51,7 @@ void			exec_fork_cmd(t_ast_cmd_node cmd_node, t_exec_data *exec_data)
 	exec_data->last_pid = fork();
 	if (exec_data->last_pid == 0)
 	{
+		restore_signals();
 		close(exec_data->fildes[0]);
 		dup2(exec_data->fd_in, 0);
 		if (cmd_node.next_pipe != NULL)

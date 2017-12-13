@@ -6,11 +6,12 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/10 01:53:16 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/12 03:02:07 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/13 02:08:13 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <signal.h>
 #include "header.h"
 
 static int			exec_cmd_node(t_ast_node *ast_node)
@@ -59,6 +60,14 @@ int					exec_ast_node(t_ast_node *ast_node)
 	return (0);
 }
 
+static void			init_signal_exec(void)
+{
+	if (signal(SIGINT, sigint_handle_exec) == SIG_ERR)
+		err_exit("Error signal");
+	if (signal(SIGWINCH, SIG_IGN) == SIG_ERR)
+		err_exit("Error signal");
+}
+
 void				exec(t_ast_lst *ast_lst)
 {
 	t_ast_lst	*p;
@@ -66,6 +75,7 @@ void				exec(t_ast_lst *ast_lst)
 	if (ast_lst == NULL)
 		return ;
 	restore_term();
+	init_signal_exec();
 	p = ast_lst;
 	while (p != NULL)
 	{
@@ -73,4 +83,5 @@ void				exec(t_ast_lst *ast_lst)
 		p = p->next;
 	}
 	init_termios();
+	init_signals();
 }

@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 22:46:31 by gmordele          #+#    #+#             */
-/*   Updated: 2017/11/09 22:48:08 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/13 02:05:34 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,11 @@ void	sigint_handler(int sig)
 	write(1, "\n", 1);
 	prompt_len = print_prompt();
 	cmd_info_init(cmd_info, prompt_len, cmd_info->cmd_buf, cmd_info->options);
+}
+
+void	sigint_handle_exec(int sig)
+{
+	(void)sig;
+
+	write(1, "\n", 1);
 }
