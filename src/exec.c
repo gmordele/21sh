@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/10 01:53:16 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/13 02:08:13 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/14 03:02:37 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void				exec(t_ast_lst *ast_lst)
 		exec_ast_node(p->ast_node);
 		p = p->next;
 	}
+	exec_close_fildes();
 	init_termios();
 	init_signals();
 }

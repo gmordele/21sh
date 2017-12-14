@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/10 02:37:23 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/14 02:44:48 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/14 03:01:56 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,5 @@ int					exec_cmd(t_ast_cmd_node cmd_node)
 			break ;
 	}
 	free_string_arr(exec_data.env);
-	exec_close_fildes();
 	return (wait_ret(exec_data));
 }
