@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/10 02:37:23 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/13 04:08:21 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/14 02:44:48 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,22 @@ static t_pbuiltin	get_builtin(char *word)
 	return (NULL);
 }
 
-static void			exec_builtin(t_pbuiltin pbuiltin, t_exec_data *exec_data)
+static void			exec_builtin(t_ast_cmd_node cmd_node,
+								t_pbuiltin pbuiltin, t_exec_data *exec_data)
 {
 	int	fd[3];
 
 	exec_data->last_exec = EXEC_BUILTIN;
 	exec_save_fd(fd);
+	dup2(exec_data->fd_in, 0);
+	if (cmd_node.next_pipe != NULL)
+		dup2(exec_data->fildes[1], 1);
 	if (exec_redir_bi(exec_data->redir_lst))
 		exec_data->bi_ret = pbuiltin(exec_data->words);
 	else
 		exec_data->bi_ret = 1;
+	close(exec_data->fildes[1]);
+	exec_data->fd_in = exec_data->fildes[0];
 	exec_restore_fd(fd);
 }
 
@@ -87,7 +93,7 @@ int					exec_cmd(t_ast_cmd_node cmd_node)
 		pipe(exec_data.fildes);
 		if (exec_data.words[0] != NULL &&
 			(pbuiltin = get_builtin(exec_data.words[0])) != NULL)
-			exec_builtin(pbuiltin, &exec_data);
+			exec_builtin(cmd_node, pbuiltin, &exec_data);
 		else
 			exec_fork_cmd(cmd_node, &exec_data);
 		free_string_arr(exec_data.words);
@@ -97,5 +103,6 @@ int					exec_cmd(t_ast_cmd_node cmd_node)
 			break ;
 	}
 	free_string_arr(exec_data.env);
+	exec_close_fildes();
 	return (wait_ret(exec_data));
 }

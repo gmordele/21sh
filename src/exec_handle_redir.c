@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 03:07:31 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/13 01:36:26 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/14 02:46:23 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ void		exec_handle_redir_out_app(char *n, char *word)
 
 void		exec_handle_redir_dup(char *n, char *word)
 {
-	int		int_word;
-
 	if (ft_strcmp("-", word) == 0)
 	{
 		close(ft_atoi(n));
@@ -72,8 +70,7 @@ void		exec_handle_redir_dup(char *n, char *word)
 		ft_dprintf(2, "21sh: %s: ambiguous redirect\n", word);
 		exit(1);
 	}
-	int_word = ft_atoi(word);
-	if (int_word >= 1000 || dup2(int_word, ft_atoi(n)) < 0)
+	if (dup2(ft_atoi(word), ft_atoi(n)) < 0)
 	{
 		ft_dprintf(2, "21sh: Bad file descriptor\n");
 		exit(1);

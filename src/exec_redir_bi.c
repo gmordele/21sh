@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 04:09:03 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/13 23:53:37 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/14 02:39:25 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,14 @@ int			exec_redir_bi(t_redir_lst *redir_lst)
 {
 	t_redir	*redir;
 	int		n;
+	int		word_int;
 
 	while (redir_lst != NULL)
 	{
 		redir = redir_lst->redir;
 		n = ft_atoi(redir->n);
-		if (n >= 1000)
+		word_int = ft_atoi(redir->word);
+		if (n > 2 || word_int > 2)
 		{
 			ft_dprintf(2, "21sh: Bad file descriptor\n");
 			return (0);

@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/13 04:18:05 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/14 02:43:25 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -337,5 +337,6 @@ int				exec_handle_redir_out_bi(char *n, char *word);
 int				exec_handle_redir_out_app_bi(char *n, char *word);
 int				exec_handle_redir_dup_bi(char *n, char *word);
 void			sigint_handle_exec(int sig);
+void			exec_close_fildes(void);
 
 #endif
