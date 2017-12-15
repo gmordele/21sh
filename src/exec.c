@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/10 01:53:16 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/14 03:02:37 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/15 04:36:02 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,13 @@ static void			init_signal_exec(void)
 
 void				exec(t_ast_lst *ast_lst)
 {
-	t_ast_lst	*p;
+	t_ast_lst		*p;
+	t_heredoc_lst	*heredoc_lst;
 
 	if (ast_lst == NULL)
 		return ;
+	heredoc_lst_get(&heredoc_lst, ast_lst);
+	heredoc(heredoc_lst);
 	restore_term();
 	init_signal_exec();
 	p = ast_lst;
@@ -83,6 +86,7 @@ void				exec(t_ast_lst *ast_lst)
 		p = p->next;
 	}
 	exec_close_fildes();
+	heredoc_lst_free(heredoc_lst);
 	init_termios();
 	init_signals();
 }

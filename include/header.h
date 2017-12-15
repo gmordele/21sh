@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/14 02:43:25 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/15 04:10:11 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,6 +209,13 @@ typedef struct	s_exec_data
 	t_redir_lst *redir_lst;
 }				t_exec_data;
 
+typedef struct	s_heredoc_lst
+{
+	int						fildes[2];
+	char					*word;
+	struct s_heredoc_lst	*next;
+}				t_heredoc_lst;
+
 t_term_info		*sta_term_info(t_term_info *term);
 void			err_exit(char *str);
 void			restore_term(void);
@@ -338,5 +345,8 @@ int				exec_handle_redir_out_app_bi(char *n, char *word);
 int				exec_handle_redir_dup_bi(char *n, char *word);
 void			sigint_handle_exec(int sig);
 void			exec_close_fildes(void);
+void			heredoc_lst_add(t_heredoc_lst **heredoc_lst, char *word);
+void			heredoc_lst_free(t_heredoc_lst *heredoc_lst);
+void			heredoc_lst_get(t_heredoc_lst **heredoc_lst, t_ast_lst *ast_lst);
 
 #endif

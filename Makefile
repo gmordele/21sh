@@ -6,7 +6,7 @@
 #    By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/17 00:00:01 by gmordele          #+#    #+#              #
-#    Updated: 2017/12/14 02:43:07 by gmordele         ###   ########.fr        #
+#    Updated: 2017/12/15 04:37:15 by gmordele         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -14,7 +14,7 @@ NAME			=	21sh
 
 CC				=	gcc
 
-CFLAGS			=	-Wall -Werror -Wextra #-fsanitize=address
+CFLAGS			=	-Wall -Werror -Wextra -fsanitize=address
 
 SRC				=	main.c				 			init_term.c							sta_term_info.c				\
 					err_exit.c						cmd_handle_key_char.c				restore_term.c				\
@@ -49,7 +49,8 @@ SRC				=	main.c				 			init_term.c							sta_term_info.c				\
 					exec_save_restore_fd.c			env_lst_to_string_arr.c				exec_fork_cmd.c				\
 					exec_execve_error.c				exec_path_search.c					exec_redir.c				\
 					exec_redir_is_num.c				exec_open_error.c					exec_handle_redir.c			\
-					exec_close_fildes.c
+					exec_close_fildes.c				heredoc_lst.c						heredoc_lst_get.c			\
+					heredoc.c
 
 OBJ				=	$(addprefix $(DEST_OBJ), $(SRC:%.c=%.o))
 
