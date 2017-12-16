@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 03:07:31 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/14 02:46:23 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/16 04:26:14 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,16 @@
 #include <stdlib.h>
 #include "header.h"
 #include "libft.h"
+
+void		exec_handle_redir_here(char *n, int fildes[2])
+{
+	if (dup2(fildes[0], ft_atoi(n)) < 0)
+	{
+		ft_dprintf(2, "21sh: Bad file descriptor\n");
+		exit(1);
+	}
+	close(fildes[0]);
+}
 
 void		exec_handle_redir_in(char *n, char *word)
 {

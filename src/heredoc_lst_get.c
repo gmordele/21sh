@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 04:09:15 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/15 04:31:50 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/16 04:16:22 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,16 @@
 
 static void	get_heredoc(t_heredoc_lst **heredoc_lst, t_redir_lst *redir_lst)
 {
+	int		fildes[2];
+
 	while (redir_lst != NULL)
 	{
 		if (redir_lst->redir->type == REDIR_HERE)
-			heredoc_lst_add(heredoc_lst, redir_lst->redir->word);
+		{
+			heredoc_lst_add(heredoc_lst, redir_lst->redir->word, fildes);
+			redir_lst->redir->here_fildes[0] = fildes[0];
+			redir_lst->redir->here_fildes[1] = fildes[1];
+		}
 		redir_lst = redir_lst->next;
 	}
 }
