@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/16 04:17:40 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/22 00:21:35 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -351,5 +351,6 @@ void			heredoc_lst_free(t_heredoc_lst *heredoc_lst);
 void			heredoc_lst_get(t_heredoc_lst **heredoc_lst, t_ast_lst *ast_lst);
 void			heredoc(t_heredoc_lst *heredoc_lst);
 void			exec_handle_redir_here(char *n, int fildes[2]);
+void			heredoc_handle_key_char(t_cmd_info *cmd_info, int c);
 
 #endif

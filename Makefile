@@ -6,7 +6,7 @@
 #    By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/17 00:00:01 by gmordele          #+#    #+#              #
-#    Updated: 2017/12/15 04:37:15 by gmordele         ###   ########.fr        #
+#    Updated: 2017/12/22 00:21:51 by gmordele         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -50,7 +50,7 @@ SRC				=	main.c				 			init_term.c							sta_term_info.c				\
 					exec_execve_error.c				exec_path_search.c					exec_redir.c				\
 					exec_redir_is_num.c				exec_open_error.c					exec_handle_redir.c			\
 					exec_close_fildes.c				heredoc_lst.c						heredoc_lst_get.c			\
-					heredoc.c
+					heredoc.c						heredoc_handle_key_char.c
 
 OBJ				=	$(addprefix $(DEST_OBJ), $(SRC:%.c=%.o))
 
