@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/22 00:21:35 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/22 02:57:05 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -352,5 +352,15 @@ void			heredoc_lst_get(t_heredoc_lst **heredoc_lst, t_ast_lst *ast_lst);
 void			heredoc(t_heredoc_lst *heredoc_lst);
 void			exec_handle_redir_here(char *n, int fildes[2]);
 void			heredoc_handle_key_char(t_cmd_info *cmd_info, int c);
+void			heredoc_handle_key_left(t_cmd_info *cmd_info);
+void			heredoc_move_cursor_left(void);
+void			heredoc_handle_key_return(t_cmd_info *cmd_info);
+void			init_cmd(t_cmd_info *cmd_info, int prompt_len, char *cmd_buf,
+					 int options);
+void			heredoc_handle_key_backspace(t_cmd_info *cmd_info);
+void			heredoc_handle_key_delete(t_cmd_info *cmd_info);
+void			heredoc_handle_key_right(t_cmd_info *cmd_info);
+void			heredoc_move_cursor_right(void);
+void			heredoc_handle_key_ctrl_d(t_cmd_info *cmd_info);
 
 #endif

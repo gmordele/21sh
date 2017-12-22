@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heredoc_handle_key_char.c                          :+:      :+:    :+:   */
+/*   heredoc_move_cursor.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/22 00:19:02 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/22 01:56:37 by gmordele         ###   ########.fr       */
+/*   Created: 2017/12/22 01:35:04 by gmordele          #+#    #+#             */
+/*   Updated: 2017/12/22 02:54:19 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <term.h>
 #include "header.h"
 
-void	heredoc_handle_key_char(t_cmd_info *cmd_info, int c)
+void	heredoc_move_cursor_right(void)
 {
-	if (cmd_info->nchar_buf < CMDBUFSIZE - 1)
-	{
-		cmd_insert_char(cmd_info, c);
-		write(1, &c, 1);
-		cmd_info->buf_pos++;
-		++(cmd_info->cur_col);
-	}
+	char	*cap;
+
+	if ((cap = tgetstr("nd", NULL)) == NULL)
+		err_exit("Error tgetstr");
+	if (tputs(cap, 1, tputc) < 0)
+		err_exit("Error tputs");
+}
+
+void	heredoc_move_cursor_left(void)
+{
+	char	*cap;
+
+	if ((cap = tgetstr("le", NULL)) == NULL)
+		err_exit("Error tgetstr");
+	if (tputs(cap, 1, tputc) < 0)
+		err_exit("Error tputs");
 }

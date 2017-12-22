@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heredoc_handle_key_char.c                          :+:      :+:    :+:   */
+/*   heredoc_handle_key_backspace.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/22 00:19:02 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/22 01:56:37 by gmordele         ###   ########.fr       */
+/*   Created: 2017/12/22 02:29:50 by gmordele          #+#    #+#             */
+/*   Updated: 2017/12/22 02:34:56 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <term.h>
+#include <stdlib.h>
 #include "header.h"
 
-void	heredoc_handle_key_char(t_cmd_info *cmd_info, int c)
+void	heredoc_handle_key_backspace(t_cmd_info *cmd_info)
 {
-	if (cmd_info->nchar_buf < CMDBUFSIZE - 1)
+	char	*cap;
+
+	if (cmd_info->buf_pos > 0)
 	{
-		cmd_insert_char(cmd_info, c);
-		write(1, &c, 1);
-		cmd_info->buf_pos++;
-		++(cmd_info->cur_col);
+		heredoc_move_cursor_left();
+		--(cmd_info->buf_pos);
+		cmd_remove_char(cmd_info);
+		if ((cap = tgetstr("dc", NULL)) == NULL)
+			err_exit("Error tgetstr");
+		if (tputs(cap, 1, tputc) < 0)
+			err_exit("Error tputs");
 	}
 }

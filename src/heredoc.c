@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 04:36:24 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/22 00:26:33 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/12/22 02:55:51 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static void	enter_heredoc(void)
 {
 	char	*cap;
 
+	if (signal(SIGINT, SIG_IGN) == SIG_ERR)
+		err_exit("Error signal");	
 	if (signal(SIGWINCH, SIG_IGN) == SIG_ERR)
 		err_exit("Error signal");
 	if ((cap = tgetstr("im", NULL)) == NULL)
@@ -33,8 +35,7 @@ static void	exit_heredoc(void)
 {
 	char	*cap;
 
-	if (signal(SIGWINCH, sigwinch_handler) == SIG_ERR)
-		err_exit("Error signal");
+	init_signals();
 	if ((cap = tgetstr("ei", NULL)) == NULL)
 		err_exit("Error tgetstr");
 	if (tputs(cap, 1, tputc) < 0)
@@ -45,26 +46,51 @@ static void	heredoc_handle_key(t_cmd_info *cmd_info, int key)
 {
 	if (ft_isprint(key))
 		heredoc_handle_key_char(cmd_info, key);
+	else if (key == KEY_LEFT || key == KEY_CTRL_B)
+		heredoc_handle_key_left(cmd_info);
+	else if (key == KEY_RIGHT || key == KEY_CTRL_F)
+		heredoc_handle_key_right(cmd_info);
+	else if (key == KEY_RETURN)
+		heredoc_handle_key_return(cmd_info);
+	else if (key == KEY_BACKSPACE)
+		heredoc_handle_key_backspace(cmd_info);
+	else if (key == KEY_DELETE)
+		heredoc_handle_key_delete(cmd_info);
+	else if (key == KEY_CTRL_D)
+		heredoc_handle_key_ctrl_d(cmd_info);
+}
+
+static void	get_inputs(t_cmd_info *cmd_info)
+{
+	int			key;
+	int			n;
+	char		read_buf[READBUFSIZE];
+
+	while (!cmd_info->complet)
+	{
+		if ((n = read(0, read_buf, READBUFSIZE)) <= 0)
+			err_exit("Error read");
+		key = cmd_pressed_key(n, read_buf);
+		heredoc_handle_key(cmd_info, key);
+	}
 }
 
 void		heredoc(t_heredoc_lst *heredoc_lst)
 {
 	t_cmd_info	cmd_info;	
 	char		cmd_buf[CMDBUFSIZE];
-	int			key;
-	int			n;
-	char				read_buf[READBUFSIZE];
+	int			complet;
 
-	cmd_info_init(&cmd_info, 2, cmd_buf, 0);
 	enter_heredoc();
 	while (heredoc_lst != NULL)
 	{
-		while (!cmd_info.complet)
+		complet = 0;
+		while (!complet)
 		{
-			if ((n = read(0, read_buf, READBUFSIZE)) <= 0)
-				err_exit("Error read");
-			key = cmd_pressed_key(n, read_buf);
-			heredoc_handle_key(&cmd_info, key);
+			init_cmd(&cmd_info, 2, cmd_buf, 0);
+			write(1, "> ", 2);
+			get_inputs(&cmd_info);
+			cmd_move_down();
 		}
 		close(heredoc_lst->fildes[1]);
 		heredoc_lst = heredoc_lst->next;
