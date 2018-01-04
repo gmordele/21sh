@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/22 02:57:05 by gmordele         ###   ########.fr       */
+/*   Updated: 2018/01/04 00:58:43 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -362,5 +362,7 @@ void			heredoc_handle_key_delete(t_cmd_info *cmd_info);
 void			heredoc_handle_key_right(t_cmd_info *cmd_info);
 void			heredoc_move_cursor_right(void);
 void			heredoc_handle_key_ctrl_d(t_cmd_info *cmd_info);
+int				heredoc_check(char **buf, char *cmd_buf,
+							t_heredoc_lst *heredoc_lst);
 
 #endif

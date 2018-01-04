@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 04:36:24 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/22 02:55:51 by gmordele         ###   ########.fr       */
+/*   Updated: 2018/01/04 00:58:51 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,13 @@ void		heredoc(t_heredoc_lst *heredoc_lst)
 	t_cmd_info	cmd_info;	
 	char		cmd_buf[CMDBUFSIZE];
 	int			complet;
+	char		*buf;
 
 	enter_heredoc();
 	while (heredoc_lst != NULL)
 	{
+		if ((buf = ft_strdup("")) == NULL)
+			err_exit("Error ft_strdup");
 		complet = 0;
 		while (!complet)
 		{
@@ -91,6 +94,7 @@ void		heredoc(t_heredoc_lst *heredoc_lst)
 			write(1, "> ", 2);
 			get_inputs(&cmd_info);
 			cmd_move_down();
+			complet = heredoc_check(&buf, cmd_buf, heredoc_lst);
 		}
 		close(heredoc_lst->fildes[1]);
 		heredoc_lst = heredoc_lst->next;
