@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 04:09:15 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/16 04:16:22 by gmordele         ###   ########.fr       */
+/*   Updated: 2018/01/04 02:19:25 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,11 @@ static void	heredoc_get_node(t_heredoc_lst **heredoc_lst, t_ast_node *ast_node)
 		heredoc_get_node(heredoc_lst, ast_node->ast_andor_node.right);
 	}
 	else if (ast_node->type == CMD_NODE)
-		get_heredoc(heredoc_lst, ast_node->ast_cmd_node.redir_lst);
+		while (ast_node != NULL)
+		{
+			get_heredoc(heredoc_lst, ast_node->ast_cmd_node.redir_lst);
+			ast_node = ast_node->ast_cmd_node.next_pipe;
+		}
 	else
 		err_exit("Error exec_ast_node");
 }

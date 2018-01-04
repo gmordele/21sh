@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2018/01/04 00:58:43 by gmordele         ###   ########.fr       */
+/*   Updated: 2018/01/04 17:10:28 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -346,9 +346,11 @@ int				exec_handle_redir_out_app_bi(char *n, char *word);
 int				exec_handle_redir_dup_bi(char *n, char *word);
 void			sigint_handle_exec(int sig);
 void			exec_close_fildes(void);
-void			heredoc_lst_add(t_heredoc_lst **heredoc_lst, char *word, int fildes[2]);
+void			heredoc_lst_add(t_heredoc_lst **heredoc_lst,
+								char *word, int fildes[2]);
 void			heredoc_lst_free(t_heredoc_lst *heredoc_lst);
-void			heredoc_lst_get(t_heredoc_lst **heredoc_lst, t_ast_lst *ast_lst);
+void			heredoc_lst_get(t_heredoc_lst **heredoc_lst,
+								t_ast_lst *ast_lst);
 void			heredoc(t_heredoc_lst *heredoc_lst);
 void			exec_handle_redir_here(char *n, int fildes[2]);
 void			heredoc_handle_key_char(t_cmd_info *cmd_info, int c);
@@ -356,7 +358,7 @@ void			heredoc_handle_key_left(t_cmd_info *cmd_info);
 void			heredoc_move_cursor_left(void);
 void			heredoc_handle_key_return(t_cmd_info *cmd_info);
 void			init_cmd(t_cmd_info *cmd_info, int prompt_len, char *cmd_buf,
-					 int options);
+					int options);
 void			heredoc_handle_key_backspace(t_cmd_info *cmd_info);
 void			heredoc_handle_key_delete(t_cmd_info *cmd_info);
 void			heredoc_handle_key_right(t_cmd_info *cmd_info);

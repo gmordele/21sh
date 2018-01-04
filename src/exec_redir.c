@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 00:53:17 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/16 04:17:22 by gmordele         ###   ########.fr       */
+/*   Updated: 2018/01/04 17:15:10 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	handle_redir(t_redir *redir)
 		exec_handle_redir_out_app(redir->n, redir->word);
 	else if (redir->type == REDIR_DUP_OUT || redir->type == REDIR_DUP_IN)
 		exec_handle_redir_dup(redir->n, redir->word);
-	else if(redir->type == REDIR_HERE)
+	else if (redir->type == REDIR_HERE)
 		exec_handle_redir_here(redir->n, redir->here_fildes);
 }
 

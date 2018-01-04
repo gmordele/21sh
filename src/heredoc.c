@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 04:36:24 by gmordele          #+#    #+#             */
-/*   Updated: 2018/01/04 00:58:51 by gmordele         ###   ########.fr       */
+/*   Updated: 2018/01/04 17:11:22 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	enter_heredoc(void)
 	char	*cap;
 
 	if (signal(SIGINT, SIG_IGN) == SIG_ERR)
-		err_exit("Error signal");	
+		err_exit("Error signal");
 	if (signal(SIGWINCH, SIG_IGN) == SIG_ERR)
 		err_exit("Error signal");
 	if ((cap = tgetstr("im", NULL)) == NULL)
@@ -77,7 +77,7 @@ static void	get_inputs(t_cmd_info *cmd_info)
 
 void		heredoc(t_heredoc_lst *heredoc_lst)
 {
-	t_cmd_info	cmd_info;	
+	t_cmd_info	cmd_info;
 	char		cmd_buf[CMDBUFSIZE];
 	int			complet;
 	char		*buf;

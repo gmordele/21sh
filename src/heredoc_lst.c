@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 03:31:23 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/16 04:14:47 by gmordele         ###   ########.fr       */
+/*   Updated: 2018/01/04 17:13:21 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void					heredoc_lst_add(t_heredoc_lst **heredoc_lst, char *word,
 	else
 	{
 		p = *heredoc_lst;
-		while(p->next != NULL)
+		while (p->next != NULL)
 			p = p->next;
 		p->next = new;
 	}
