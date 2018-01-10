@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:08:26 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/12 02:58:23 by gmordele         ###   ########.fr       */
+/*   Updated: 2018/01/10 02:56:13 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,12 @@ char		**env_lst_to_string_arr(void)
 	char		**string_arr;
 	int			i;
 	t_env_lst	*env_lst;
+	t_env_lst	**p;
 
 	env_lst = *env_lst_sta(NULL);
-	if (env_lst == NULL)
+	if ((p = env_lst_sta(NULL)) == NULL)
 		err_exit("Error env_lst_sta");
+	env_lst = *p;
 	lst_len = env_lst_len(env_lst);
 	if ((string_arr = (char **)malloc(sizeof(char *) * (lst_len + 1))) == NULL)
 		return (NULL);

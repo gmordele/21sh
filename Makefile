@@ -6,7 +6,7 @@
 #    By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/17 00:00:01 by gmordele          #+#    #+#              #
-#    Updated: 2018/01/04 17:09:05 by gmordele         ###   ########.fr        #
+#    Updated: 2018/01/10 00:38:27 by gmordele         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -53,7 +53,7 @@ SRC				=	main.c				 			init_term.c							sta_term_info.c					\
 					heredoc.c						heredoc_handle_key_char.c			heredoc_handle_key_left.c		\
 					heredoc_move_cursor.c			heredoc_handle_key_return.c			heredoc_handle_key_backspace.c	\
 					heredoc_handle_key_delete.c		heredoc_handle_key_right.c			heredoc_handle_key_ctrl_d.c		\
-					heredoc_check.c
+					heredoc_check.c					builtin_setenv.c
 
 OBJ				=	$(addprefix $(DEST_OBJ), $(SRC:%.c=%.o))
 
