@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/10 02:37:23 by gmordele          #+#    #+#             */
-/*   Updated: 2018/01/10 00:37:23 by gmordele         ###   ########.fr       */
+/*   Updated: 2018/01/11 02:41:45 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ static t_pbuiltin	get_builtin(char *word)
 {
 	static t_name_builtin	name_builtin[] = {
 		{"echo", builtin_echo},
-		{"setenv", builtin_setenv}
+		{"setenv", builtin_setenv},
+		{"unsetenv", builtin_unsetenv},
+		{"env", builtin_env}
 	};
 	int						i;
 	int						size;

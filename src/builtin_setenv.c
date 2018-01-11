@@ -6,13 +6,26 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 00:38:57 by gmordele          #+#    #+#             */
-/*   Updated: 2018/01/10 02:48:29 by gmordele         ###   ########.fr       */
+/*   Updated: 2018/01/11 02:59:30 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 #include "header.h"
+
+static int	valid_name(char *name)
+{
+	if (*name == '\0' || ft_isdigit(*name))
+		return (0);
+	while (*name != '\0')
+	{
+		if (*name != '_' && !ft_isalnum(*name))
+			return (0);
+		++name;
+	}
+	return (1);
+}
 
 static void	get_name_value(char *arg, char **name, char **value)
 {
@@ -25,6 +38,8 @@ static void	get_name_value(char *arg, char **name, char **value)
 		return ;
 	if ((*name = ft_strndup(arg, i)) == NULL)
 		err_exit("Error ft_strndup");
+	if (!valid_name(*name))
+		return ;
 	if (arg[i] == '=')
 	{
 		++i;
@@ -33,34 +48,54 @@ static void	get_name_value(char *arg, char **name, char **value)
 	}
 }
 
-static void set_env(char *arg, t_env_lst **env_lst)
+static int	set_env(char *arg, t_env_lst **env_lst)
 {
 	char	*name;
 	char	*value;
+	int		ret;
 
 	name = NULL;
 	value = NULL;
 	get_name_value(arg, &name, &value);
 	if (value != NULL)
+	{
+		ret = 0;
 		env_lst_set_value(name, value, env_lst);
+	}
+	else
+	{
+		ft_dprintf(2, "setenv: invalid argument: `%s`\n", arg);
+		ret = 1;
+	}
 	ft_strdel(&name);
 	ft_strdel(&value);
+	return (ret);
 }
 
 int			builtin_setenv(char **argv)
 {
-	(void)argv;
 	t_env_lst	**env_lst;
 	char		**arg;
+	int			ret;
 
 	env_lst = env_lst_sta(NULL);
 	if (env_lst == NULL)
 		err_exit("Error env_lst_sta");
-	arg = argv;
+	if ((arg = argv) == NULL)
+		return (1);
+	++arg;
+	if (*arg == NULL)
+	{
+		ret = 1;
+		ft_dprintf(2, "setenv: not enough arguments\n");
+	}
+	else
+		ret = 0;
 	while (*arg != NULL)
 	{
-		set_env(*arg, env_lst);
+		if (set_env(*arg, env_lst) == 1)
+			ret = 1;
 		++arg;
 	}
-	return (0);
+	return (ret);
 }
