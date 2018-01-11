@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:05:04 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/12 03:29:36 by gmordele         ###   ########.fr       */
+/*   Updated: 2018/01/11 04:06:54 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ static void	main_loop(int options)
 		cmd_get(cmd_buf, prompt_len, options);
 		token_lst = lexer(cmd_buf);
 		ast_lst = parser(token_lst);
-		exec(ast_lst);
+		ast_lst_sta(&ast_lst, 0);
 		token_lst_free(&token_lst);
+		exec(ast_lst);
 		parser_free(&ast_lst);
+		ast_lst_sta(NULL, 1);
 	}
 }
 

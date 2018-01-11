@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2018/01/11 02:42:06 by gmordele         ###   ########.fr       */
+/*   Updated: 2018/01/11 04:11:17 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -369,5 +369,7 @@ int				heredoc_check(char **buf, char *cmd_buf,
 int				builtin_setenv(char **argv);
 int				builtin_unsetenv(char **argv);
 int				builtin_env(char **argv);
+int				builtin_exit(char **argv);
+t_ast_lst		**ast_lst_sta(t_ast_lst **ast_lst, int freed);
 
 #endif

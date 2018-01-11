@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   normal_exit.c                                      :+:      :+:    :+:   */
+/*   ast_lst_sta.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/11 10:53:43 by gmordele          #+#    #+#             */
-/*   Updated: 2018/01/11 04:10:55 by gmordele         ###   ########.fr       */
+/*   Created: 2018/01/11 04:00:55 by gmordele          #+#    #+#             */
+/*   Updated: 2018/01/11 04:11:09 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "header.h"
 
-void	normal_exit(void)
+t_ast_lst	**ast_lst_sta(t_ast_lst **ast_lst, int freed)
 {
-	t_ast_lst	**ast_lst;
+	static t_ast_lst	**sta= NULL;
 
-	ast_lst = ast_lst_sta(NULL, 0);
+	if (freed == 1)
+	{
+		sta = NULL;
+		return (NULL);
+	}
 	if (ast_lst != NULL)
-		parser_free(ast_lst);
-	env_lst_free();
-	hist_lst_save();
-	hist_lst_free();
-	restore_term();
-	exit(EXIT_SUCCESS);
+	{
+		sta = ast_lst;
+		return (NULL);
+	}
+	return (ast_lst);
 }

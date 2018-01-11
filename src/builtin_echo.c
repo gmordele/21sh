@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 14:50:19 by gmordele          #+#    #+#             */
-/*   Updated: 2017/12/12 02:57:50 by gmordele         ###   ########.fr       */
+/*   Updated: 2018/01/11 04:15:12 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	print_error(void)
 		ft_dprintf(2, "21sh: echo: write error: Bad file descriptor\n");
 	else
 		ft_dprintf(2, "21sh: echo: Unknown error\n");
-	return (0);
+	return (1);
 }
 
 int			builtin_echo(char **argv)
@@ -58,5 +58,5 @@ int			builtin_echo(char **argv)
 	}
 	if (!write_echo("\n"))
 		return (print_error());
-	return (1);
+	return (0);
 }
