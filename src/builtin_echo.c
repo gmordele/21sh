@@ -34,10 +34,11 @@ static int	print_error(void)
 	return (1);
 }
 
-int			builtin_echo(char **argv)
+int			builtin_echo(char **argv, char **env)
 {
 	int		start;
 
+	(void)env;
 	start = 1;
 	if (*argv != NULL)
 	{

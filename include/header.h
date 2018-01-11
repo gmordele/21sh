@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 18:09:55 by gmordele          #+#    #+#             */
-/*   Updated: 2018/01/11 04:11:17 by gmordele         ###   ########.fr       */
+/*   Updated: 2018/01/11 19:35:22 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,7 +189,7 @@ typedef union	u_ast_node
 	t_ast_andor_node	ast_andor_node;
 }				t_ast_node;
 
-typedef int	(*t_pbuiltin)(char **);
+typedef int	(*t_pbuiltin)(char **, char **);
 
 typedef struct	s_name_builtin
 {
@@ -325,7 +325,7 @@ void			exec(t_ast_lst *ast_lst);
 int				exec_ast_node(t_ast_node *ast_node);
 int				exec_cmd(t_ast_cmd_node cmd_node);
 char			**exec_words_to_string_arr(t_word_lst *word_lst);
-int				builtin_echo(char **argv);
+int				builtin_echo(char **argv, char **env);
 void			exec_save_fd(int fd[3]);
 void			exec_restore_fd(int fd[3]);
 char			**env_lst_to_string_arr(void);
@@ -366,10 +366,11 @@ void			heredoc_move_cursor_right(void);
 void			heredoc_handle_key_ctrl_d(t_cmd_info *cmd_info);
 int				heredoc_check(char **buf, char *cmd_buf,
 							t_heredoc_lst *heredoc_lst);
-int				builtin_setenv(char **argv);
-int				builtin_unsetenv(char **argv);
-int				builtin_env(char **argv);
-int				builtin_exit(char **argv);
+int				builtin_setenv(char **argv, char **env);
+int				builtin_unsetenv(char **argv, char **env);
+int				builtin_env(char **argv, char **env);
+int				builtin_exit(char **argv, char **env);
 t_ast_lst		**ast_lst_sta(t_ast_lst **ast_lst, int freed);
+int				builtin_cd(char **argv, char **env);
 
 #endif

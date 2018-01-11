@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/10 02:37:23 by gmordele          #+#    #+#             */
-/*   Updated: 2018/01/11 03:35:16 by gmordele         ###   ########.fr       */
+/*   Updated: 2018/01/11 19:33:35 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static t_pbuiltin	get_builtin(char *word)
 		{"setenv", builtin_setenv},
 		{"unsetenv", builtin_unsetenv},
 		{"env", builtin_env},
-		{"exit", builtin_exit}
+		{"exit", builtin_exit},
+		{"cd", builtin_cd}
 	};
 	int						i;
 	int						size;
@@ -50,7 +51,7 @@ static void			exec_builtin(t_ast_cmd_node cmd_node,
 	if (cmd_node.next_pipe != NULL)
 		dup2(exec_data->fildes[1], 1);
 	if (exec_redir_bi(exec_data->redir_lst))
-		exec_data->bi_ret = pbuiltin(exec_data->words);
+		exec_data->bi_ret = pbuiltin(exec_data->words, exec_data->env);
 	else
 		exec_data->bi_ret = 1;
 	close(exec_data->fildes[1]);

@@ -14,12 +14,13 @@
 #include "header.h"
 #include "libft.h"
 
-int				builtin_env(char **argv)
+int				builtin_env(char **argv, char **env)
 {
 	t_env_lst	**env_lst;
 	t_env_lst	*p;
 
 	(void)argv;
+	(void)env;
 	env_lst = env_lst_sta(NULL);
 	if (env_lst == NULL)
 		err_exit("Error env_lst_sta");

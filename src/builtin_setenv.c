@@ -72,12 +72,13 @@ static int	set_env(char *arg, t_env_lst **env_lst)
 	return (ret);
 }
 
-int			builtin_setenv(char **argv)
+int			builtin_setenv(char **argv, char **env)
 {
 	t_env_lst	**env_lst;
 	char		**arg;
 	int			ret;
 
+	(void)env;
 	env_lst = env_lst_sta(NULL);
 	if (env_lst == NULL)
 		err_exit("Error env_lst_sta");
