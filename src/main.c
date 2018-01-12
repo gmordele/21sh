@@ -18,7 +18,7 @@
 
 int			print_prompt(void)
 {
-	return (ft_printf("21sh> "));
+	return (ft_printf("21sh:%s$ ", env_lst_get_value("PWD")));
 }
 
 static void	main_loop(int options)
