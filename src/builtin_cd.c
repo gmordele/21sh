@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 19:34:48 by gmordele          #+#    #+#             */
-/*   Updated: 2018/01/11 21:15:16 by gmordele         ###   ########.fr       */
+/*   Updated: 2018/01/12 20:34:16 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ int			builtin_cd(char **argv, char **env)
 		{
 			ft_dprintf(2, "21sh: cd: OLDPWD not set\n");
 			return (1);
-		}			
+		}
 	}
-	else 
+	else
 		path = *argv;
 	return (change_dir(path));
 }
