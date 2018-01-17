@@ -6,7 +6,7 @@
 #    By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/17 00:00:01 by gmordele          #+#    #+#              #
-#    Updated: 2018/01/11 21:13:22 by gmordele         ###   ########.fr        #
+#    Updated: 2018/01/12 20:35:22 by gmordele         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -14,7 +14,7 @@ NAME			=	21sh
 
 CC				=	gcc
 
-CFLAGS			=	-Wall -Werror -Wextra -fsanitize=address
+CFLAGS			=	-Wall -Werror -Wextra #-fsanitize=address
 
 SRC				=	main.c				 			init_term.c							sta_term_info.c					\
 					err_exit.c						cmd_handle_key_char.c				restore_term.c					\
