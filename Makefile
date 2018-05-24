@@ -73,7 +73,8 @@ DEST_LIB		=	./libft
 
 LIBFT			=	$(DEST_LIB)/libft.a
 
-all 			:	mklib $(NAME)
+all 			:	mklib
+	make -j $(NAME)
 
 $(NAME)			:	$(DEST_OBJ) $(LIBFT) $(OBJ) $(HEADERS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) -I$(DEST_INC) -I$(DEST_LIB) -ltermcap
